@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Category page: Outdoors</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;family=Inter:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+button{font:inherit;cursor:pointer}
+a{color:#B4532A}a:hover{color:#8E3F1F}
+</style>
+</helmet>
+<div style="width: 390px; height: 1100px; position: relative; overflow: hidden; background: #F7F1E8; color: #2B211A; font-family: Inter, system-ui, sans-serif">
+  <div style="background: #E3ECD9; padding: 14px 20px 20px; display: flex; flex-direction: column; gap: 14px">
+    <a href="#" aria-label="Back to Explore" style="width: 44px; height: 44px; border-radius: 22px; background: #FFFCF7; color: #2B211A; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></a>
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <h1 style="margin: 0; font-family: Fraunces, Georgia, serif; font-size: 34px; font-weight: 700; color: #22391A">Outdoors</h1>
+      <span style="font-size: 14px; color: #2F4D21">In and around Bucharest · 2 upcoming · 1 idea</span>
+    </div>
+    <div role="tablist" aria-label="Show" style="display: flex; gap: 6px">
+      <button role="tab" aria-selected="true" style="height: 40px; padding: 0 16px; border-radius: 20px; border: none; background: #2F4D21; color: #FFFFFF; font-size: 14px; font-weight: 600">Upcoming</button>
+      <button role="tab" aria-selected="false" style="height: 40px; padding: 0 16px; border-radius: 20px; border: none; background: #FFFCF7; color: #2F4D21; font-size: 14px; font-weight: 600">Calendar</button>
+      <button role="tab" aria-selected="false" style="height: 40px; padding: 0 16px; border-radius: 20px; border: none; background: #FFFCF7; color: #2F4D21; font-size: 14px; font-weight: 600">Past</button>
+    </div>
+  </div>
+  <div style="padding: 20px 20px 100px; display: flex; flex-direction: column; gap: 22px">
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <span style="font-family: Fraunces, Georgia, serif; font-size: 18px; font-weight: 600">Coming up</span>
+      <div style="background: #FFFCF7; border: 1px solid #E6DACB; border-radius: 18px; display: flex; flex-direction: column">
+        <div style="display: flex; gap: 14px; align-items: center; padding: 12px 14px; border-bottom: 1px solid #EFE5D8">
+          <div style="width: 46px; height: 50px; border-radius: 12px; background: #E3ECD9; color: #2F4D21; display: flex; flex-direction: column; align-items: center; justify-content: center"><span style="font-size: 11px; font-weight: 600">SAT</span><span style="font-size: 18px; font-weight: 700; line-height: 1">21</span></div>
+          <div style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600">Walk and mulled wine</span><span style="font-size: 13px; color: #6E5F52">16:00 · Parcul Herăstrău · 8 going</span></div>
+          <span style="font-size: 12px; font-weight: 600; color: #2F4D21">Going</span>
+        </div>
+        <div style="display: flex; gap: 14px; align-items: center; padding: 12px 14px">
+          <div style="width: 46px; height: 50px; border-radius: 12px; background: #E3ECD9; color: #2F4D21; display: flex; flex-direction: column; align-items: center; justify-content: center"><span style="font-size: 11px; font-weight: 600">SUN</span><span style="font-size: 18px; font-weight: 700; line-height: 1">6</span></div>
+          <div style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600">Christmas market, Piața Constituției</span><span style="font-size: 13px; color: #6E5F52">6 Dec · 18:00 · 3 going</span></div>
+          <span style="font-size: 12px; font-weight: 600; color: #FFFFFF; background: #B4532A; padding: 4px 10px; border-radius: 10px">RSVP</span>
+        </div>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; justify-content: space-between; align-items: center"><span style="font-family: Fraunces, Georgia, serif; font-size: 18px; font-weight: 600">Ideas open to a vote</span><span style="font-size: 11px; font-weight: 600; color: #6E5F52; border: 1px solid #D9CBB8; padding: 2px 7px; border-radius: 8px">v2</span></div>
+      <div style="background: #FFFCF7; border: 1.5px dashed #B9C9A6; border-radius: 18px; padding: 14px 16px; display: flex; align-items: center; gap: 12px">
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 15px; font-weight: 600">Kayaking on Lake Snagov</span><span style="font-size: 13px; color: #6E5F52">Proposed by Dana · 5 interested · spring, date to be decided</span></div>
+        <button style="height: 44px; padding: 0 14px; border-radius: 14px; border: 1.5px solid #2F4D21; background: #E3ECD9; color: #2F4D21; font-size: 13px; font-weight: 600">I'm in</button>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-family: Fraunces, Georgia, serif; font-size: 18px; font-weight: 600">Lately</span><a href="#" style="font-size: 13px; font-weight: 600">All past events</a></div>
+      <div style="background: #FFFCF7; border: 1px solid #E6DACB; border-radius: 18px; overflow: hidden; display: flex; flex-direction: column">
+        <div aria-hidden="true" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3px; height: 96px">
+          <div style="background: #D7CDBB; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #4A3D32">Photo</div>
+          <div style="background: #CEC3AF; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #4A3D32">Photo</div>
+          <div style="background: #C5B9A3; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #2B211A; font-weight: 600">+9</div>
+        </div>
+        <div style="padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; gap: 10px">
+          <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600">Picnic in Parcul Tineretului</span><span style="font-size: 13px; color: #6E5F52">4 Oct · 8 went · 12 photos</span></div>
+          <span style="font-size: 13px; font-weight: 600; color: #2F4D21; display: flex; align-items: center; gap: 4px"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11v9H4v-9zM7 11l4-7c1.5 0 2.5 1 2.2 2.6L12.6 10H19a2 2 0 0 1 2 2.3l-1.2 6A2 2 0 0 1 17.8 20H7"/></svg>7 of 8</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nav aria-label="Main" style="position: absolute; left: 0; right: 0; bottom: 0; height: 80px; background: #FFFCF7; border-top: 1px solid #E6DACB; display: flex; align-items: center; justify-content: space-around; padding: 0 8px 8px; box-sizing: border-box">
+    <a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 56px; padding: 6px 0; color: #6E5F52; text-decoration: none; font-size: 11px; font-weight: 500"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Home</a>
+    <a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 56px; padding: 6px 0; color: #6E5F52; text-decoration: none; font-size: 11px; font-weight: 500"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Calendar</a>
+    <button aria-label="Propose an outdoor event" style="width: 56px; height: 56px; border-radius: 28px; border: none; background: #B4532A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; margin-top: -26px; box-shadow: 0 6px 16px rgba(180,83,42,0.35)"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+    <a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 56px; padding: 6px 0; color: #B4532A; text-decoration: none; font-size: 11px; font-weight: 600"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg>Explore</a>
+    <a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 56px; padding: 6px 0; color: #6E5F52; text-decoration: none; font-size: 11px; font-weight: 500"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Me</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1100}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Style guide: two looks, light and dark</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;family=Inter:wght@400;500;600&amp;family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&amp;family=DM+Sans:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+button{font:inherit;cursor:pointer}
+</style>
+</helmet>
+<div style="width: 1700px; height: 1150px; box-sizing: border-box; padding: 48px; background: #F2EFEA; color: #26231F; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; gap: 28px">
+  <div style="display: flex; flex-direction: column; gap: 6px">
+    <h1 style="margin: 0; font-size: 34px; font-weight: 600; letter-spacing: -0.5px">Style guide: two looks, light and dark</h1>
+    <p style="margin: 0; font-size: 16px; color: #5C564E">Every look uses the same building blocks. Only colours, fonts, corners, outlines and shadows change. Sunday Picnic Light is the default.</p>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; flex: 1">
+    <sc-for list="{{ themes }}" as="t" hint-placeholder-count="4">
+      <div style="background: {{ t.bg }}; color: {{ t.ink }}; font-family: {{ t.body }}; border-radius: 24px; border: {{ t.panelBorder }}; padding: 26px; display: flex; flex-direction: column; gap: 20px">
+        <div style="display: flex; justify-content: space-between; align-items: baseline">
+          <span style="font-family: {{ t.head }}; font-weight: {{ t.headWeight }}; font-size: 26px">{{ t.name }}</span>
+          <span style="font-size: 13px; font-weight: 600; color: {{ t.muted }}">{{ t.mode }}</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.8px; color: {{ t.muted }}">COLOURS</span>
+          <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+            <sc-for list="{{ t.swatches }}" as="s" hint-placeholder-count="6">
+              <div style="display: flex; flex-direction: column; gap: 4px">
+                <div style="height: 48px; border-radius: 10px; background: {{ s.hex }}; border: 1px solid {{ t.swatchEdge }}"></div>
+                <span style="font-size: 12px; font-weight: 600">{{ s.name }}</span>
+                <span style="font-size: 11px; color: {{ t.muted }}">{{ s.hex }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.8px; color: {{ t.muted }}">CATEGORIES</span>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px">
+            <sc-for list="{{ t.cats }}" as="c" hint-placeholder-count="4">
+              <span style="height: 34px; padding: 0 12px; border-radius: 17px; display: flex; align-items: center; font-size: 13px; font-weight: 600; background: {{ c.bg }}; color: {{ c.fg }}; border: {{ t.chipBorder }}">{{ c.label }}</span>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.8px; color: {{ t.muted }}">TYPE</span>
+          <span style="font-family: {{ t.head }}; font-weight: {{ t.headWeight }}; font-size: 26px; line-height: 1.1">Walk and mulled wine</span>
+          <span style="font-size: 14px; color: {{ t.muted }}">Saturday, 21 November · 16:00 · Parcul Herăstrău</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.8px; color: {{ t.muted }}">BUTTONS AND RSVP</span>
+          <div style="display: flex; gap: 10px">
+            <button style="flex: 1; height: 46px; border-radius: {{ t.btnRadius }}; background: {{ t.accent }}; color: {{ t.onAccent }}; border: {{ t.btnBorder }}; box-shadow: {{ t.btnShadow }}; font-size: 14px; font-weight: 600">Propose event</button>
+            <button style="flex: 1; height: 46px; border-radius: {{ t.btnRadius }}; background: {{ t.surface }}; color: {{ t.ink }}; border: {{ t.secBorder }}; font-size: 14px; font-weight: 600">Open event</button>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+            <button style="height: 44px; border-radius: {{ t.btnRadius }}; background: {{ t.accent }}; color: {{ t.onAccent }}; border: {{ t.btnBorder }}; font-size: 14px; font-weight: 600">Going</button>
+            <button style="height: 44px; border-radius: {{ t.btnRadius }}; background: {{ t.surface }}; color: {{ t.ink }}; border: {{ t.secBorder }}; font-size: 14px; font-weight: 600">Maybe</button>
+            <button style="height: 44px; border-radius: {{ t.btnRadius }}; background: {{ t.surface }}; color: {{ t.ink }}; border: {{ t.secBorder }}; font-size: 14px; font-weight: 600">No</button>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.8px; color: {{ t.muted }}">EVENT CARD</span>
+          <div style="display: flex; align-items: center; gap: 14px; padding: 12px; background: {{ t.surface }}; border: {{ t.cardBorder }}; box-shadow: {{ t.cardShadow }}; border-radius: {{ t.cardRadius }}">
+            <div style="width: 50px; height: 54px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: {{ t.stubBg }}; color: {{ t.stubFg }}"><span style="font-size: 11px; font-weight: 700">SAT</span><span style="font-size: 20px; font-weight: 800; line-height: 1">21</span></div>
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600">Walk and mulled wine</span><span style="font-size: 13px; color: {{ t.muted }}">16:00 · 7 going</span></div>
+          </div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1700,"height":1150}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const sw = (bg, surface, ink, muted, accent, line) => [
+      { name: 'Background', hex: bg }, { name: 'Surface', hex: surface }, { name: 'Text', hex: ink },
+      { name: 'Muted text', hex: muted }, { name: 'Accent', hex: accent }, { name: 'Lines', hex: line }
+    ];
+    const cats = (o, t, v, g) => [
+      { label: 'Outdoors', bg: o[0], fg: o[1] }, { label: 'Trips', bg: t[0], fg: t[1] },
+      { label: 'Vacations', bg: v[0], fg: v[1] }, { label: 'Gaming', bg: g[0], fg: g[1] }
+    ];
+    const picnic = { head: 'Fraunces, Georgia, serif', headWeight: 700, body: 'Inter, system-ui, sans-serif', btnRadius: '14px', cardRadius: '18px', btnShadow: 'none', cardShadow: 'none', chipBorder: 'none' };
+    const postcard = { head: "'Bricolage Grotesque', system-ui, sans-serif", headWeight: 800, body: "'DM Sans', system-ui, sans-serif", btnRadius: '12px', cardRadius: '14px' };
+    const themes = [
+      Object.assign({}, picnic, {
+        name: 'Sunday Picnic', mode: 'Light (default)', bg: '#F7F1E8', surface: '#FFFCF7', ink: '#2B211A', muted: '#6E5F52', accent: '#B4532A', onAccent: '#FFFFFF',
+        panelBorder: '1px solid #E6DACB', swatchEdge: '#E6DACB', btnBorder: '1.5px solid #B4532A', secBorder: '1.5px solid #D9CBB8', cardBorder: '1px solid #E6DACB',
+        stubBg: '#E3ECD9', stubFg: '#2F4D21',
+        swatches: sw('#F7F1E8', '#FFFCF7', '#2B211A', '#6E5F52', '#B4532A', '#E6DACB'),
+        cats: cats(['#E3ECD9', '#2F4D21'], ['#DCE7F1', '#1E4566'], ['#F6E3C4', '#6E4310'], ['#E8E0F2', '#45306B'])
+      }),
+      Object.assign({}, picnic, {
+        name: 'Sunday Picnic', mode: 'Dark', bg: '#1C1714', surface: '#27201B', ink: '#F5ECE1', muted: '#BBA996', accent: '#E07A4F', onAccent: '#1C1714',
+        panelBorder: '1px solid #3B312A', swatchEdge: '#4A3F36', btnBorder: '1.5px solid #E07A4F', secBorder: '1.5px solid #3B312A', cardBorder: '1px solid #3B312A',
+        stubBg: '#2C3A22', stubFg: '#B5D69B',
+        swatches: sw('#1C1714', '#27201B', '#F5ECE1', '#BBA996', '#E07A4F', '#3B312A'),
+        cats: cats(['#2C3A22', '#B5D69B'], ['#1F3346', '#A9CBEB'], ['#43321A', '#EDC88A'], ['#33284A', '#CDBBF2'])
+      }),
+      Object.assign({}, postcard, {
+        name: 'Postcard', mode: 'Light', bg: '#FBEFD9', surface: '#FFF8EC', ink: '#2A1E14', muted: '#6B5A48', accent: '#C8402A', onAccent: '#FFFFFF',
+        panelBorder: '2px solid #2A1E14', swatchEdge: '#2A1E14', btnBorder: '2px solid #2A1E14', secBorder: '2px solid #2A1E14', btnShadow: '3px 3px 0 #2A1E14',
+        cardBorder: '2px solid #2A1E14', cardShadow: '4px 4px 0 #2A1E14', chipBorder: '2px solid #2A1E14',
+        stubBg: '#3F6B2A', stubFg: '#FFFFFF',
+        swatches: sw('#FBEFD9', '#FFF8EC', '#2A1E14', '#6B5A48', '#C8402A', '#2A1E14'),
+        cats: cats(['#CFE3B8', '#2D4E1C'], ['#C9DDF0', '#1D4568'], ['#F6CFA8', '#7A3D0D'], ['#DCCDF0', '#47306F'])
+      }),
+      Object.assign({}, postcard, {
+        name: 'Postcard', mode: 'Dark', bg: '#2B2119', surface: '#3A2E23', ink: '#FBEFD9', muted: '#D2C1A8', accent: '#F0674E', onAccent: '#1A120C',
+        panelBorder: '2px solid #0E0A07', swatchEdge: '#0E0A07', btnBorder: '2px solid #0E0A07', secBorder: '2px solid #0E0A07', btnShadow: '3px 3px 0 #0E0A07',
+        cardBorder: '2px solid #0E0A07', cardShadow: '4px 4px 0 #0E0A07', chipBorder: '2px solid #0E0A07',
+        stubBg: '#CFE3B8', stubFg: '#1E2E14',
+        swatches: sw('#2B2119', '#3A2E23', '#FBEFD9', '#D2C1A8', '#F0674E', '#0E0A07'),
+        cats: cats(['#2F4523', '#CFE3B8'], ['#1F3A55', '#C9DDF0'], ['#5A3415', '#F6CFA8'], ['#3A2B57', '#DCCDF0'])
+      })
+    ];
+    return { themes };
+  }
+}
+</script>
+</body>
+</html>
