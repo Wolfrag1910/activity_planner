@@ -21,6 +21,10 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
+# Safety net for Windows clones: strip Windows line endings from the start-up
+# script and make sure it's executable, so the container starts either way.
+RUN sed -i 's/\r$//' docker/entrypoint.sh && chmod +x docker/entrypoint.sh
+
 # Prepare static files and translations once, at build time.
 RUN DJANGO_SECRET_KEY=build-only python manage.py collectstatic --noinput \
     && DJANGO_SECRET_KEY=build-only python manage.py compilemessages --ignore=.venv
