@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+  <div class="page-heading">
+    <p class="eyebrow">{{ today_label }}</p>
+    <h1>{% translate "Welcome to Cumetria" %}</h1>
+  </div>
+
+  <section class="card">
+    <h2>{% translate "The site is being built" %}</h2>
+    <p class="muted">{% translate "Members, events, the calendar and RSVPs arrive in the next steps. For now you can try the menu and the language switch." %}</p>
+  </section>
+{% endblock %}

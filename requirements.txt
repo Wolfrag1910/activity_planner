@@ -1,0 +1,5 @@
+# Runtime dependencies. All are pure Python or ship ARM64 wheels.
+Django==5.2.19
+django-htmx==1.29.0
+gunicorn==27.0.1
+whitenoise==6.12.0

@@ -1,0 +1,234 @@
+/*
+ * Layout and components. Colours, fonts and shapes come from themes.css
+ * variables only, so every look and mode works without changes here.
+ *
+ * Phone first: the base rules are for phones; the @media block at the end
+ * switches to the desktop layout (sidebar instead of bottom bar) from 900px.
+ */
+
+/* --- Basics -------------------------------------------------------------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: var(--heading-weight);
+  line-height: 1.15;
+  margin: 0;
+}
+h1 { font-size: 28px; letter-spacing: -0.3px; }
+h2 { font-size: 20px; }
+
+p { margin: 0; }
+
+a { color: var(--color-accent); }
+
+button { font: inherit; cursor: pointer; }
+
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.icon { flex-shrink: 0; }
+
+.muted { color: var(--color-muted); }
+
+.eyebrow { font-size: 14px; color: var(--color-muted); }
+
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  padding: 10px 14px;
+  background: var(--color-surface);
+  border-radius: var(--radius-button);
+  z-index: 100;
+}
+.skip-link:focus { top: 12px; }
+
+/* --- Page frame --------------------------------------------------------- */
+
+.app { min-height: 100vh; }
+
+.sidebar { display: none; }
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 20px 4px;
+}
+
+.brand {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 26px;
+  letter-spacing: -0.3px;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.topbar-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 12px 20px 112px; /* bottom space so the bottom bar never covers content */
+  max-width: 1100px;
+}
+.content:focus { outline: none; }
+
+.page-heading { display: flex; flex-direction: column; gap: 4px; }
+
+/* --- Components ---------------------------------------------------------- */
+
+.card {
+  background: var(--color-surface);
+  border: var(--border-card);
+  box-shadow: var(--shadow-card);
+  border-radius: var(--radius-card);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 18px;
+  border-radius: var(--radius-button);
+  border: 1.5px solid var(--color-line);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+}
+.button-primary {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-on-accent);
+}
+.button-primary:hover { background: var(--color-accent-hover); border-color: var(--color-accent-hover); }
+.button-block { width: 100%; white-space: nowrap; padding: 0 14px; }
+
+.pill-button {
+  min-width: 44px;
+  height: 44px;
+  padding: 0 12px;
+  border-radius: 22px;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* --- Phone bottom bar ---------------------------------------------------- */
+
+.bottom-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: calc(76px + env(safe-area-inset-bottom));
+  padding: 0 8px env(safe-area-inset-bottom);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-line);
+}
+
+.bottom-nav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  min-width: 56px;
+  min-height: 52px;
+  justify-content: center;
+  color: var(--color-muted);
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 500;
+}
+.bottom-nav a[aria-current="page"] { color: var(--color-accent); font-weight: 600; }
+
+.bottom-nav .bottom-nav-propose {
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
+  margin-top: -26px;
+  border-radius: var(--fab-radius);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  box-shadow: var(--shadow-fab);
+}
+.bottom-nav .bottom-nav-propose[aria-current="page"] { color: var(--color-on-accent); }
+.bottom-nav .bottom-nav-propose .icon { width: 24px; height: 24px; stroke-width: 2.2; }
+
+/* --- Desktop (900px and wider) -------------------------------------------- */
+
+@media (min-width: 900px) {
+  .app { display: flex; align-items: stretch; }
+
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    flex: 0 0 256px;
+    min-height: 100vh;
+    padding: 28px 20px;
+    background: var(--color-surface);
+    border-right: 1px solid var(--color-line);
+  }
+  .sidebar .brand { font-size: 28px; padding: 0 8px; }
+
+  .side-nav { display: flex; flex-direction: column; gap: 2px; }
+  .side-nav a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 44px;
+    padding: 0 12px;
+    border-radius: 12px;
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 15px;
+  }
+  .side-nav a:hover { background: var(--color-bg); }
+  .side-nav a[aria-current="page"] {
+    background: var(--color-accent-soft);
+    color: var(--color-accent-strong-text);
+    font-weight: 600;
+  }
+
+  .app-main { flex: 1; min-width: 0; }
+
+  .topbar { padding: 24px 36px 0; }
+  .brand-phone { display: none; }
+
+  .content { padding: 16px 36px 48px; gap: 28px; }
+  h1 { font-size: 32px; }
+
+  .bottom-nav { display: none; }
+}

@@ -1,0 +1,41 @@
+# Automatic checks on every pull request and on main:
+#  1. the tests pass,
+#  2. the Docker image builds for ARM64, the Oracle server's processor type.
+name: Checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install gettext (for the Romanian translations)
+        run: sudo apt-get update && sudo apt-get install -y gettext
+      - name: Install Python packages
+        run: pip install -r requirements-dev.txt
+      - name: Compile translations
+        run: DJANGO_SECRET_KEY=ci DJANGO_DEBUG=true python manage.py compilemessages
+      - name: Check for missing database migrations
+        run: DJANGO_SECRET_KEY=ci DJANGO_DEBUG=true python manage.py makemigrations --check --dry-run
+      - name: Run tests
+        run: pytest
+
+  arm64-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
+      - name: Build the website image for linux/arm64
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          platforms: linux/arm64
+          push: false

@@ -1,0 +1,45 @@
+/*
+ * Themes: one block of colour, font and shape values per look and mode.
+ *
+ * The <html> element carries data-look and data-mode; the matching block below
+ * sets the variables, and every component in app.css uses only these variables.
+ * Adding Postcard or dark mode (v2) means adding a block here, nothing else.
+ * Values come from docs/design/tokens.md.
+ */
+
+:root,
+[data-look="picnic"][data-mode="light"] {
+  /* Colours */
+  --color-bg: #F7F1E8;
+  --color-surface: #FFFCF7;
+  --color-text: #2B211A;
+  --color-muted: #6E5F52;
+  --color-accent: #B4532A;
+  --color-accent-hover: #9A4422;
+  --color-on-accent: #FFFFFF;
+  --color-accent-soft: #F4E4D8;
+  --color-accent-strong-text: #8E3F1F;
+  --color-line: #E6DACB;
+  --color-line-soft: #EFE5D8;
+  --color-track: #EBE1D3;
+  --color-focus: #2F6690;
+
+  /* Category colours: chip background / chip text / solid */
+  --cat-outdoors-bg: #E3ECD9;  --cat-outdoors-text: #2F4D21;  --cat-outdoors: #4F7A3A;
+  --cat-trips-bg: #DCE7F1;     --cat-trips-text: #1E4566;     --cat-trips: #2F6690;
+  --cat-vacations-bg: #F6E3C4; --cat-vacations-text: #6E4310; --cat-vacations: #C08320;
+  --cat-gaming-bg: #E8E0F2;    --cat-gaming-text: #45306B;    --cat-gaming: #6B4C9A;
+
+  /* Type */
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-heading: "Fraunces", Georgia, serif;
+  --heading-weight: 700;
+
+  /* Shapes */
+  --radius-card: 18px;
+  --radius-button: 14px;
+  --border-card: 1px solid var(--color-line);
+  --shadow-card: none;
+  --shadow-fab: 0 6px 16px rgba(180, 83, 42, 0.35);
+  --fab-radius: 28px;
+}
