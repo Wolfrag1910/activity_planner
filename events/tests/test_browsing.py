@@ -108,6 +108,46 @@ def test_home_big_card_is_todays_plan(client, ana, mihai):
     assert html.index("Board games") < html.index("Next week walk")
 
 
+def test_home_big_card_prefers_todays_plan_i_answered(client, ana, mihai):
+    """Going or Maybe beats an event starting today, which beats a trip already under way."""
+    today = timezone.localdate()
+    make_event(mihai, title="Trip under way", category="trips", starts_at=in_days(-1), ends_at=in_days(1))
+    make_event(mihai, title="Lunch", starts_at=local(today, 13))
+    picnic = make_event(mihai, title="Picnic", starts_at=local(today, 18, 30))
+    client.force_login(ana)
+
+    # Not answered anything: an event starting today beats the trip, earliest first.
+    assert client.get(reverse("home")).context["hero"].title == "Lunch"
+
+    # Maybe to the picnic: it wins, even though lunch starts earlier.
+    rsvp = RSVP.objects.create(event=picnic, member=ana, answer="maybe")
+    assert client.get(reverse("home")).context["hero"] == picnic
+    rsvp.answer = "going"
+    rsvp.save()
+    assert client.get(reverse("home")).context["hero"] == picnic
+
+
+def test_home_big_card_answered_events_keep_start_order(client, ana, mihai):
+    today = timezone.localdate()
+    trip = make_event(mihai, title="Trip under way", category="trips", starts_at=in_days(-1), ends_at=in_days(1))
+    picnic = make_event(mihai, title="Picnic", starts_at=local(today, 18, 30))
+    for event in (trip, picnic):
+        RSVP.objects.create(event=event, member=ana, answer="going")
+    client.force_login(ana)
+    assert client.get(reverse("home")).context["hero"] == trip  # both answered: the earlier start wins
+
+
+def test_home_big_card_said_no_counts_as_not_going(client, ana, mihai):
+    today = timezone.localdate()
+    trip = make_event(mihai, title="Trip under way", category="trips", starts_at=in_days(-1), ends_at=in_days(1))
+    picnic = make_event(mihai, title="Picnic", starts_at=local(today, 18, 30))
+    RSVP.objects.create(event=picnic, member=ana, answer="no")
+    client.force_login(ana)
+    assert client.get(reverse("home")).context["hero"] == picnic  # starts today beats the trip
+    RSVP.objects.create(event=trip, member=ana, answer="going")
+    assert client.get(reverse("home")).context["hero"] == trip
+
+
 def test_home_big_card_is_next_plan_when_nothing_today(client, ana, mihai):
     make_event(mihai, title="Cancelled one", starts_at=in_days(1), status="cancelled")
     make_event(mihai, title="Walk", starts_at=in_days(2))
