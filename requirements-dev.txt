@@ -1,3 +1,4 @@
 -r requirements.txt
 pytest==9.2.0
 pytest-django==4.14.0
+Babel==2.18.0  # reads the Romanian translation file in core/tests/test_translations.py

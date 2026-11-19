@@ -3,6 +3,8 @@
 
 {% block title %}{% translate "Cancel event" %} · Cumetria{% endblock %}
 
+{% block content_class %}content-narrow{% endblock %}
+
 {% block content %}
   <div class="page-heading-row">
     <a class="icon-button" href="{% url 'event' event.pk %}" aria-label="{% translate 'Back' %}">{% include "partials/icon.html" with name="back" %}</a>
@@ -10,7 +12,7 @@
   </div>
   <section class="card stack">
     <p>{% blocktranslate with title=event.title %}Cancel <strong>{{ title }}</strong>? It stays visible as cancelled, and nobody can answer any more.{% endblocktranslate %}</p>
-    <form method="post" class="form-actions">
+    <form method="post" class="form-actions form-actions-wrap">
       {% csrf_token %}
       <a class="button" href="{% url 'event' event.pk %}">{% translate "Keep it" %}</a>
       <button class="button button-primary" type="submit">{% translate "Cancel event" %}</button>

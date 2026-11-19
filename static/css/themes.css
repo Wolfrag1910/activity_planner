@@ -24,7 +24,7 @@
   --color-track: #EBE1D3;
   --color-focus: #2F6690;
   --color-scrim: rgba(43, 33, 26, 0.45);          /* dims the page behind the quick preview */
-  --color-on-accent-soft: rgba(255, 255, 255, 0.18); /* chips on the terracotta "today" card */
+  --color-on-accent-soft: rgba(43, 33, 26, 0.28);  /* chips on the terracotta "today" card (white text stays readable) */
 
   /* Category colours: chip background / chip text / solid */
   --cat-outdoors-bg: #E3ECD9;  --cat-outdoors-text: #2F4D21;  --cat-outdoors: #4F7A3A;

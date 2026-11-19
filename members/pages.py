@@ -16,10 +16,25 @@ def birthday_line(member, today):
     return day_and_month(member.birthday), member.age_at_next_birthday(today)
 
 
+def plans_of(member, viewer, answers):
+    """Upcoming events `member` answered with one of `answers`, as rows for `viewer`."""
+    from events.models import Event
+
+    return list(Event.objects.upcoming().active().answered_by(member, answers).with_details(viewer))
+
+
 def profile(request):
     today = timezone.localdate()
     day, turns = birthday_line(request.user, today)
-    return render(request, "members/profile.html", {"birthday_day": day, "birthday_turns": turns})
+    return render(
+        request,
+        "members/profile.html",
+        {
+            "birthday_day": day,
+            "birthday_turns": turns,
+            "plans": plans_of(request.user, request.user, ["going", "maybe"]),
+        },
+    )
 
 
 def profile_edit(request):
@@ -62,5 +77,12 @@ def member_detail(request, pk):
     member = get_object_or_404(Member, pk=pk, is_active=True)
     day, turns = birthday_line(member, timezone.localdate())
     return render(
-        request, "members/member_detail.html", {"member": member, "birthday_day": day, "birthday_turns": turns}
+        request,
+        "members/member_detail.html",
+        {
+            "member": member,
+            "birthday_day": day,
+            "birthday_turns": turns,
+            "plans": plans_of(member, request.user, ["going"]),
+        },
     )

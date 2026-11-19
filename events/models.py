@@ -51,6 +51,10 @@ class EventQuerySet(models.QuerySet):
             Q(ends_at__lt=timezone.now()) | Q(ends_at__isnull=True, starts_at__lt=start_of_today())
         ).order_by("-starts_at")
 
+    def answered_by(self, member, answers):
+        """Events where `member` answered one of `answers` (e.g. ["going", "maybe"])."""
+        return self.filter(pk__in=RSVP.objects.filter(member=member, answer__in=answers).values("event"))
+
     def active(self):
         """Not cancelled."""
         return self.exclude(status=Event.Status.CANCELLED)

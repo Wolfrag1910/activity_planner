@@ -1,6 +1,8 @@
 {% extends "base_public.html" %}
 {% load i18n static %}
 
+{% block frame_class %}public-frame-split{% endblock %}
+
 {% block content %}
   {% if login_photo %}
     <img class="login-photo" src="{% static login_photo %}" alt="{% translate 'Our group' %}">
@@ -8,6 +10,7 @@
     <div class="login-photo login-photo-empty" aria-hidden="true"></div>
   {% endif %}
 
+  <div class="login-panel">
   <div class="login-intro">
     <h1 class="login-title">Cumetria</h1>
     <p class="login-tagline">{% translate "Hikes, trips, holidays and game nights. Planned together, remembered together." %}</p>
@@ -52,4 +55,5 @@
   <p class="login-footnote">
     {% if invite %}{% translate "Invite only. This link is just for you and works once." %}{% else %}{% translate "Invite only. New here? Ask the admin for your personal invite link." %}{% endif %}
   </p>
+  </div>
 {% endblock %}

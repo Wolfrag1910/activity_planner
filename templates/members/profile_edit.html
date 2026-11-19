@@ -3,6 +3,8 @@
 
 {% block title %}{% translate "Edit profile" %} · Cumetria{% endblock %}
 
+{% block content_class %}content-narrow{% endblock %}
+
 {% block content %}
   <div class="page-heading-row">
     <a class="icon-button" href="{% url 'me' %}" aria-label="{% translate 'Back' %}">{% include "partials/icon.html" with name="back" %}</a>

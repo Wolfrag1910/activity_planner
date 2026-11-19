@@ -3,6 +3,8 @@
 
 {% block title %}{{ member.name }} · Cumetria{% endblock %}
 
+{% block content_class %}content-narrow{% endblock %}
+
 {% block content %}
   <div class="page-heading-row">
     <a class="icon-button" href="{% url 'members' %}" aria-label="{% translate 'Back to members' %}">{% include "partials/icon.html" with name="back" %}</a>
@@ -15,5 +17,14 @@
       <p class="muted">{% blocktranslate with day=birthday_day age=birthday_turns %}Birthday {{ day }}, turns {{ age }}{% endblocktranslate %}</p>
     {% endif %}
   </section>
-  <p class="muted small center">{% translate "Their upcoming plans will show here once events arrive." %}</p>
+  <section class="stack member-plans" aria-labelledby="plans-title">
+    <h2 id="plans-title">{% blocktranslate with name=member.name %}{{ name }} is going to{% endblocktranslate %}</h2>
+    {% if plans %}
+      <div class="card list-card">
+        {% for event in plans %}{% include "events/_event_row.html" %}{% endfor %}
+      </div>
+    {% else %}
+      <p class="muted">{% translate "Nothing planned for now." %}</p>
+    {% endif %}
+  </section>
 {% endblock %}

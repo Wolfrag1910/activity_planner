@@ -3,12 +3,14 @@
 # (the Docker image and CI do this automatically).
 msgid ""
 msgstr ""
-"Project-Id-Version: Cumetria\n"
+"Project-Id-Version:  Cumetria\n"
+"POT-Creation-Date: 2026-11-19 17:33+0200\n"
 "Language: ro\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
 
 #: cumetria/settings.py
 msgid "Romanian"
@@ -58,28 +60,7 @@ msgstr "Schimbă în engleză"
 msgid "Switch to Romanian"
 msgstr "Schimbă în română"
 
-#: templates/core/home.html
-msgid "Welcome to Cumetria"
-msgstr "Bine ai venit în Cumetria"
-
-#: templates/core/home.html
-msgid "The site is being built"
-msgstr "Site-ul e în construcție"
-
-#: templates/core/home.html
-msgid ""
-"Members, events, the calendar and RSVPs arrive in the next steps. For now "
-"you can try the menu and the language switch."
-msgstr ""
-"Membrii, evenimentele, calendarul și răspunsurile la invitații vin în pașii "
-"următori. Deocamdată poți încerca meniul și schimbarea limbii."
-
-#: templates/core/placeholder.html
-msgid "This page is coming in a later step."
-msgstr "Pagina aceasta vine într-un pas următor."
-
 # --- Step 2a: members and signing in ---
-
 msgid "This account is switched off"
 msgstr "Contul acesta e dezactivat"
 
@@ -107,18 +88,22 @@ msgstr "N-a ajuns nimic? Verifică dosarul de spam sau încearcă din nou peste 
 msgid "Back"
 msgstr "Înapoi"
 
+#, python-format
 msgid "If <strong>%(email)s</strong> is right, a link to finish joining is on its way. It works for a day."
 msgstr "Dacă <strong>%(email)s</strong> e corect, un link ca să termini înscrierea e pe drum. Funcționează o zi."
 
+#, python-format
 msgid "If <strong>%(email)s</strong> belongs to a member, a sign-in link is on its way. It works once, for a short while."
 msgstr "Dacă <strong>%(email)s</strong> e al unui membru, un link de conectare e pe drum. Funcționează o singură dată, pentru scurt timp."
 
 msgid "Join Cumetria"
 msgstr "Intră în Cumetria"
 
+#, python-format
 msgid "Welcome, %(name)s"
 msgstr "Bine ai venit, %(name)s"
 
+#, python-format
 msgid "You'll join Cumetria with <strong>%(email)s</strong>."
 msgstr "Vei intra în Cumetria cu <strong>%(email)s</strong>."
 
@@ -134,6 +119,7 @@ msgstr "O apăsare și ești înăuntru."
 msgid "Sign in"
 msgstr "Conectează-te"
 
+#, python-format
 msgid "Hi, %(name)s"
 msgstr "Salut, %(name)s"
 
@@ -164,9 +150,11 @@ msgstr "Doar cu invitație. Ești nou? Cere administratorului linkul tău person
 msgid "Our group"
 msgstr "Gașca noastră"
 
+#, python-format
 msgid "<strong>%(inviter)s</strong> invited you to join the group, %(name)s."
 msgstr "<strong>%(inviter)s</strong> te-a invitat în grup, %(name)s."
 
+#, python-format
 msgid "You're invited to join the group, %(name)s."
 msgstr "Ești invitat în grup, %(name)s."
 
@@ -185,12 +173,15 @@ msgstr "Nicio problemă. Poți încerca din nou oricând."
 msgid "If you didn't ask for it, you can ignore this email."
 msgstr "Dacă nu l-ai cerut tu, poți ignora emailul acesta."
 
+#, python-format
 msgid "Hi %(name)s,"
 msgstr "Salut, %(name)s,"
 
+#, python-format
 msgid "Open this link to finish joining Cumetria. It works for %(hours)s hours:"
 msgstr "Deschide linkul ca să termini înscrierea în Cumetria. Funcționează %(hours)s de ore:"
 
+#, python-format
 msgid "Here is your link to sign in to Cumetria. It works once, within %(minutes)s minutes:"
 msgstr "Iată linkul tău de conectare la Cumetria. Funcționează o singură dată, în următoarele %(minutes)s de minute:"
 
@@ -258,7 +249,6 @@ msgid "This email already belongs to a member. Sign in from the start page inste
 msgstr "Emailul acesta e deja al unui membru. Conectează-te de pe pagina de start."
 
 # --- Step 2b: profile, members, admin ---
-
 msgid "Only you can see this page"
 msgstr "Doar tu vezi pagina aceasta"
 
@@ -304,14 +294,8 @@ msgstr "Puterile tale în plus"
 msgid "Edit or cancel any event"
 msgstr "Modifică sau anulează orice eveniment"
 
-msgid "Coming with events: the menu on any event page will offer it, even for events you didn't organize."
-msgstr "Vine odată cu evenimentele: meniul oricărui eveniment îți va oferi asta, chiar dacă nu tu l-ai organizat."
-
 msgid "Remove photos"
 msgstr "Șterge fotografii"
-
-msgid "Coming with photo albums: every photo will have a delete option for you."
-msgstr "Vine odată cu albumele: fiecare fotografie va avea pentru tine opțiunea de ștergere."
 
 msgid "Copied"
 msgstr "Copiat"
@@ -319,36 +303,42 @@ msgstr "Copiat"
 msgid "e.g. Bianca"
 msgstr "de ex. Bianca"
 
+#, python-format
 msgid "Invite for <strong>%(name)s</strong> is ready. Send them this link on WhatsApp or Discord:"
 msgstr "Invitația pentru <strong>%(name)s</strong> e gata. Trimite-i linkul acesta pe WhatsApp sau Discord:"
 
+#, python-format
 msgid "Created %(when)s"
 msgstr "Creată %(when)s"
 
+#, python-format
 msgid "Cancel %(name)s's invite"
 msgstr "Anulează invitația pentru %(name)s"
 
+#, python-format
 msgid "Deactivate %(name)s"
 msgstr "Dezactivează contul: %(name)s"
 
+#, python-format
 msgid "Reactivate %(name)s"
 msgstr "Reactivează contul: %(name)s"
-
-msgid "Their upcoming plans will show here once events arrive."
-msgstr "Planurile următoare vor apărea aici când vin evenimentele."
 
 msgid "Back to members"
 msgstr "Înapoi la membri"
 
+#, python-format
 msgid "Birthday %(day)s, turns %(age)s"
 msgstr "Ziua pe %(day)s, împlinește %(age)s"
 
+#, python-format
 msgid "<strong>%(name)s</strong> turns %(age)s today!"
 msgstr "<strong>%(name)s</strong> împlinește %(age)s azi!"
 
+#, python-format
 msgid "<strong>%(name)s</strong> turns %(age)s tomorrow."
 msgstr "<strong>%(name)s</strong> împlinește %(age)s mâine."
 
+#, python-format
 msgid "<strong>%(name)s</strong> turns %(age)s in %(days)s days, on %(day)s."
 msgstr "<strong>%(name)s</strong> împlinește %(age)s peste %(days)s zile, pe %(day)s."
 
@@ -388,6 +378,7 @@ msgstr "Profilul tău"
 msgid "More"
 msgstr "Mai mult"
 
+#, python-format
 msgid "birthday %(day)s"
 msgstr "ziua pe %(day)s"
 
@@ -418,6 +409,7 @@ msgstr "Fotografie nouă"
 msgid "Please enter a name."
 msgstr "Scrie un nume."
 
+#, python-format
 msgid "That photo is too big. Please choose one under %(mb)s MB."
 msgstr "Fotografia e prea mare. Alege una sub %(mb)s MB."
 
@@ -439,6 +431,7 @@ msgstr "dezactivat"
 msgid "you"
 msgstr "tu"
 
+#, python-format
 msgid "%(counter)s person in Cumetria"
 msgid_plural "%(counter)s people in Cumetria"
 msgstr[0] "%(counter)s persoană în Cumetria"
@@ -446,18 +439,11 @@ msgstr[1] "%(counter)s persoane în Cumetria"
 msgstr[2] "%(counter)s de persoane în Cumetria"
 
 # --- Step 3: events ---
-
 msgid "Upcoming"
 msgstr "Urmează"
 
 msgid "Propose"
 msgstr "Propune"
-
-msgid "Nothing planned yet. Propose the first event!"
-msgstr "Nimic plănuit încă. Propune primul eveniment!"
-
-msgid "The full home page (today, waiting for your answer, categories) arrives in the next step."
-msgstr "Pagina principală completă (azi, ce așteaptă răspunsul tău, categorii) vine în pasul următor."
 
 msgid "Are you coming?"
 msgstr "Vii?"
@@ -480,6 +466,7 @@ msgstr "Anulează evenimentul"
 msgid "Keep it"
 msgstr "Păstrează-l"
 
+#, python-format
 msgid "Cancel <strong>%(title)s</strong>? It stays visible as cancelled, and nobody can answer any more."
 msgstr "Anulezi <strong>%(title)s</strong>? Rămâne vizibil ca anulat și nimeni nu mai poate răspunde."
 
@@ -558,15 +545,19 @@ msgstr "Detalii"
 msgid "Name, or leave empty for a surprise"
 msgstr "Nume, sau lasă gol pentru surpriză"
 
+#, python-format
 msgid "Proposed by %(name)s"
 msgstr "Propus de %(name)s"
 
+#, python-format
 msgid "Answer by %(answer_by)s"
 msgstr "Răspunde până %(answer_by)s"
 
+#, python-format
 msgid "You answered: %(answer)s."
 msgstr "Ai răspuns: %(answer)s."
 
+#, python-format
 msgid "%(taken)s of %(total)s spots taken"
 msgstr "%(taken)s din %(total)s locuri ocupate"
 
@@ -717,6 +708,7 @@ msgstr "Ce să aducă, cum se ajunge, orice trebuie să știe lumea."
 msgid "Guests count too. Empty means no limit."
 msgstr "Se socotesc și invitații. Gol înseamnă fără limită."
 
+#, python-format
 msgid "%(counter)s going"
 msgid_plural "%(counter)s going"
 msgstr[0] "%(counter)s vine"
@@ -781,9 +773,11 @@ msgstr "Arată"
 msgid "Nothing planned yet"
 msgstr "Nimic plănuit încă"
 
+#, python-format
 msgid "Next: %(day)s, %(title)s"
 msgstr "Următorul: %(day)s, %(title)s"
 
+#, python-format
 msgid "next birthday: %(name)s, %(date)s"
 msgstr "următoarea zi de naștere: %(name)s, %(date)s"
 
@@ -814,12 +808,15 @@ msgstr "Vezi calendarul"
 msgid "Waiting for your answer"
 msgstr "Așteaptă răspunsul tău"
 
+#, python-format
 msgid "Hi, %(name)s."
 msgstr "Salut, %(name)s."
 
+#, python-format
 msgid "%(answered)s of %(total)s answered"
 msgstr "%(answered)s din %(total)s au răspuns"
 
+#, python-format
 msgid "proposed by %(name)s"
 msgstr "propus de %(name)s"
 
@@ -838,65 +835,77 @@ msgstr "Online sau față în față"
 msgid "One plan tonight."
 msgstr "Un plan diseară."
 
+#, python-format
 msgid "Today · %(time)s"
 msgstr "Azi · %(time)s"
 
 msgid "Today"
 msgstr "Azi"
 
+#, python-format
 msgid "Next up · %(when)s"
 msgstr "Urmează · %(when)s"
 
 msgid "full"
 msgstr "complet"
 
+#, python-format
 msgid "%(counter)s went"
 msgid_plural "%(counter)s went"
 msgstr[0] "%(counter)s a venit"
 msgstr[1] "%(counter)s au venit"
 msgstr[2] "%(counter)s de oameni au venit"
 
+#, python-format
 msgid "%(counter)s upcoming"
 msgid_plural "%(counter)s upcoming"
 msgstr[0] "%(counter)s eveniment viitor"
 msgstr[1] "%(counter)s evenimente viitoare"
 msgstr[2] "%(counter)s de evenimente viitoare"
 
+#, python-format
 msgid "%(counter)s person"
 msgid_plural "%(counter)s people"
 msgstr[0] "%(counter)s persoană"
 msgstr[1] "%(counter)s persoane"
 msgstr[2] "%(counter)s de persoane"
 
+#, python-format
 msgid "One plan today."
 msgid_plural "%(count)s plans today."
 msgstr[0] "Un plan azi."
 msgstr[1] "%(count)s planuri azi."
 msgstr[2] "%(count)s de planuri azi."
 
+#, python-format
 msgid "One event is waiting for your answer."
 msgid_plural "%(count)s events are waiting for your answer."
 msgstr[0] "Un eveniment așteaptă răspunsul tău."
 msgstr[1] "%(count)s evenimente așteaptă răspunsul tău."
 msgstr[2] "%(count)s de evenimente așteaptă răspunsul tău."
 
+#, python-format
 msgid "%(count)s going"
 msgid_plural "%(count)s going"
 msgstr[0] "%(count)s vine"
 msgstr[1] "%(count)s vin"
 msgstr[2] "%(count)s de oameni vin"
 
+#, python-format
 msgid "%(count)s maybe"
 msgid_plural "%(count)s maybe"
 msgstr[0] "%(count)s poate"
 msgstr[1] "%(count)s poate"
 msgstr[2] "%(count)s poate"
 
+#, python-format
 msgid "%(count)s spot left"
 msgid_plural "%(count)s spots left"
 msgstr[0] "%(count)s loc liber"
 msgstr[1] "%(count)s locuri libere"
 msgstr[2] "%(count)s de locuri libere"
+
+#, python-format
 msgid "Next: today, %(title)s"
 msgstr "Următorul: azi, %(title)s"
 
@@ -931,12 +940,64 @@ msgstr "Luna viitoare"
 msgid "All"
 msgstr "Toate"
 
+#, python-format
 msgid "Day %(number)s of %(total)s"
 msgstr "Ziua %(number)s din %(total)s"
 
+#, python-format
 msgid "%(day)s, %(count)s event"
 msgid_plural "%(day)s, %(count)s events"
 msgstr[0] "%(day)s, %(count)s eveniment"
 msgstr[1] "%(day)s, %(count)s evenimente"
 msgstr[2] "%(day)s, %(count)s de evenimente"
 
+msgid "Use the ⋯ menu at the top of any event page, even for events you didn't organize."
+msgstr "Folosește meniul ⋯ din capul paginii oricărui eveniment, chiar dacă nu tu l-ai organizat."
+
+msgid "Coming with photo albums (v2): every photo will have a delete option for you."
+msgstr "Vine odată cu albumele (v2): fiecare fotografie va avea pentru tine opțiunea de ștergere."
+
+msgid "Who went"
+msgstr "Cine a venit"
+
+msgid "Your plans"
+msgstr "Planurile tale"
+
+msgid "You haven't said yes to anything yet."
+msgstr "N-ai zis încă da la nimic."
+
+msgid "See what's coming up"
+msgstr "Vezi ce urmează"
+
+msgid "%(name)s is going to"
+msgstr "%(name)s merge la"
+
+msgid "Nothing planned for now."
+msgstr "Nimic plănuit deocamdată."
+
+msgid "Page not found"
+msgstr "Pagina nu există"
+
+msgid "Nothing here"
+msgstr "Nu e nimic aici"
+
+msgid "This page doesn't exist, or it was removed. Check the address, or start again from the home page."
+msgstr "Pagina asta nu există sau a fost ștearsă. Verifică adresa sau pornește din nou de pe pagina principală."
+
+msgid "Go to the home page"
+msgstr "Mergi la pagina principală"
+
+msgid "Not allowed"
+msgstr "Nepermis"
+
+msgid "Not for you, sorry"
+msgstr "Nu e pentru tine, scuze"
+
+msgid "This is only for the organizer of the event or the admin."
+msgstr "Asta e doar pentru organizatorul evenimentului sau pentru administrator."
+
+msgid "Just you so far. Invite the others from the admin page."
+msgstr "Deocamdată doar tu. Invită-i pe ceilalți din pagina de administrator."
+
+msgid "Just you so far. The others will show up once the admin invites them."
+msgstr "Deocamdată doar tu. Ceilalți apar aici după ce îi invită administratorul."

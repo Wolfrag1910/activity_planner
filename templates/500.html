@@ -1,0 +1,22 @@
+{% load static %}<!doctype html>
+{# Shown when something breaks on the server. Kept standalone: it must work even when the rest of the site doesn't. #}
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Cumetria</title>
+  <link rel="stylesheet" href="{% static 'css/themes.css' %}">
+  <link rel="stylesheet" href="{% static 'css/app.css' %}">
+</head>
+<body>
+  <main class="public-frame">
+    <div class="error-page">
+      <h1>Ceva n-a mers</h1>
+      <p class="muted">Încearcă din nou peste un minut. Dacă tot nu merge, spune-i administratorului.</p>
+      <p class="muted" lang="en">Something went wrong. Try again in a minute; if it keeps happening, tell the admin.</p>
+      <a class="button button-dark" href="/">Acasă / Home</a>
+    </div>
+  </main>
+</body>
+</html>

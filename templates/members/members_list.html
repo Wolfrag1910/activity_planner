@@ -3,6 +3,8 @@
 
 {% block title %}{% translate "Members" %} · Cumetria{% endblock %}
 
+{% block content_class %}content-narrow{% endblock %}
+
 {% block content %}
   <div class="page-heading">
     <h1>{% translate "Members" %}</h1>
@@ -39,4 +41,15 @@
       </li>
     {% endfor %}
   </ul>
+
+  {% if rows|length == 1 %}
+    <div class="card empty-card">
+      {% if user.is_admin %}
+        <p class="muted">{% translate "Just you so far. Invite the others from the admin page." %}</p>
+        <a class="button button-small" href="{% url 'admin_page' %}">{% translate "Invite someone" %}</a>
+      {% else %}
+        <p class="muted">{% translate "Just you so far. The others will show up once the admin invites them." %}</p>
+      {% endif %}
+    </div>
+  {% endif %}
 {% endblock %}
