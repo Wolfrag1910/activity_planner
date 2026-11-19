@@ -12,7 +12,7 @@ Keep both in sync: when a decision changes, update this file and the doc.
 1. **Discovery** (done)
 2. **Site plan** (done)
 3. **Design direction** (done)
-4. **Build in slices** (next): MVP, then v2, then v3.
+4. **Build in slices** (current): MVP, then v2, then v3. See [`BUILD.md`](BUILD.md).
 5. **Private test**: the owner tests each release with fake member accounts.
 6. **Launch**: hosting, domain, inviting friends **after v2**. From then on, friends' ideas go into the backlog.
 
@@ -165,8 +165,8 @@ Still to design, before the release that needs them:
 
 ## Hosting and tech notes
 
-- Runs on the owner's **Oracle Cloud free instance**. The tech stack is chosen at the start of the Build phase.
-- **Database** on the same server if it costs nothing; nightly automated backup off the server.
+- Runs on the owner's **Oracle Cloud free instance** (ARM64). **Tech stack (agreed 19 Nov 2026):** Django + HTMX + plain CSS variables, SQLite, Caddy for HTTPS, Docker Compose. Details and MVP steps: [`BUILD.md`](BUILD.md).
+- **Database:** SQLite on the same server, so it costs nothing extra; nightly automated backup off the server.
 - **Photos** stored outside the database (server disk or Oracle object storage; free allowance to verify), resized on upload.
 - **Discord**: posting through a channel webhook is simple and free; a bot (e.g. RSVP buttons in Discord) is a later idea.
 - **Calendar sync**: a personal iCal subscribe link per user.
@@ -180,5 +180,5 @@ Still to design, before the release that needs them:
 
 ## Open questions (research tasks for Claude before launch)
 
-- [ ] **Database cost:** which database fits, and can it run on the Oracle free tier at zero cost?
+- [x] **Database cost:** answered 19 Nov 2026. SQLite inside the existing free server costs nothing extra.
 - [ ] **Domain:** free or very cheap options, and how each works with HTTPS on the Oracle server.
