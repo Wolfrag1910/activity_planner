@@ -28,10 +28,12 @@ The website should stay well under 1 GB RAM. Do not change or restart the game s
 
 ### Before the site goes public (Launch phase)
 
+Step by step in [`DEPLOY.md`](DEPLOY.md).
+
 - [ ] Keep Ubuntu 20.04 patched: enable **Ubuntu Pro** (free for personal use) for security updates, or plan an OS upgrade separately from the game servers.
 - [ ] Open TCP 80 and 443 in the **Oracle security list** and in **Ubuntu's iptables rules** (Oracle images block them by default).
 - [ ] Get a domain name (research task) and point it at the server.
-- [ ] Nightly backup of the SQLite file and the photos folder to somewhere off the server.
+- [ ] Nightly backup of the SQLite file and the photos folder to somewhere off the server (`backup_data` command and `docker/nightly-backup.sh`; the off-server copy is still to set up).
 - [ ] An email sending account for sign-in links (SMTP settings in `.env`), e.g. a free transactional email service or a Gmail app password (research at launch).
 - [ ] Google sign-in redirect URI for the real domain (see `GOOGLE_SIGN_IN.md`).
 
@@ -39,7 +41,7 @@ The website should stay well under 1 GB RAM. Do not change or restart the game s
 
 1. Claude Code writes the code in this repository in **small pull requests**; the owner reviews and merges.
 2. The owner runs the site locally with `docker compose up` and tests it with fake member accounts (the private test).
-3. Deploy: on the server, pull `main` and run `docker compose up -d --build` (images build natively on ARM64).
+3. Deploy: on the server, pull `main` and run `docker compose up -d --build` (images build natively on ARM64). First time: [`DEPLOY.md`](DEPLOY.md).
 
 ## MVP steps
 
@@ -50,4 +52,4 @@ Each step is one or a few pull requests. Every step keeps the site runnable and 
 - [x] **3. Events.** Event model and categories, Propose/Edit/Cancel form (organizer or admin), event page, RSVP Going/Maybe/No with quick-pick reasons and note, +1 guests with optional names counting toward spots, "answer by" deadline.
 - [x] **4. Browsing.** Home page (Today/Next up, category shortcuts, Upcoming, Waiting for your RSVP), quick preview (bottom sheet on phone, side panel on desktop), Calendar (month and list, category filters, multi-day bars), Explore, category pages.
 - [x] **5. Polish.** Desktop layouts of all pages, full Romanian translation pass, accessibility pass (tap targets, contrast, keyboard), empty states.
-- [ ] **6. Private test kit.** Command that seeds fake members and events; a deployment guide for the Oracle server (firewall, Caddy, backups). Do not launch publicly: the reveal comes after v2.
+- [x] **6. Private test kit.** Command that seeds fake members and events; a deployment guide for the Oracle server (firewall, Caddy, backups). Do not launch publicly: the reveal comes after v2.

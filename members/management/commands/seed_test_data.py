@@ -3,6 +3,7 @@ Fill the site with fake members and events for the private test.
 
     docker compose exec web python manage.py seed_test_data
     docker compose exec web python manage.py seed_test_data --reset   # start the fake data over
+    docker compose exec web python manage.py seed_test_data --remove  # remove it for good
 
 Every fake member has an @cumetria.test email address (".test" is a reserved
 domain: mail to it goes nowhere). That is how this command recognises its own
@@ -49,8 +50,17 @@ class Command(BaseCommand):
         parser.add_argument(
             "--reset", action="store_true", help="Remove the fake data made earlier, then create it again."
         )
+        parser.add_argument(
+            "--remove", action="store_true", help="Only remove the fake data (before the reveal)."
+        )
 
-    def handle(self, *args, reset, **options):
+    def handle(self, *args, reset, remove, **options):
+        if remove:
+            with transaction.atomic():
+                remove_fake_data()
+            self.stdout.write(self.style.SUCCESS("Fake members, their events and the test invites are gone."))
+            return
+
         owner = Member.objects.filter(is_admin=True).exclude(email__endswith=FAKE_EMAIL_DOMAIN).first()
         if owner is None:
             raise CommandError(

@@ -200,3 +200,16 @@ def test_owner_can_sign_in_as_a_fake_member_with_an_email_link(client, owner):
     assert page.wsgi_request.user == fake("ana")
     # Ana is not the admin, so the Admin page is closed to her.
     assert client.get(reverse("admin_page")).status_code in (302, 403, 404)
+
+
+def test_remove_takes_away_only_the_fake_data(owner):
+    friend = Member.objects.create_user(email="friend@example.com", name="Friend")
+    seed()
+    seed("--remove")
+    assert list(Member.objects.order_by("pk")) == [owner, friend]
+    assert not Event.objects.exists()
+    assert not Invite.objects.exists()
+
+
+def test_remove_works_even_without_an_owner():
+    seed("--remove")  # nothing to remove, no error

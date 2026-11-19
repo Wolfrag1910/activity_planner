@@ -5,6 +5,7 @@ A private, invite-only website for a group of about 9 friends to propose, vote o
 - **Plan:** [`docs/PLAN.md`](docs/PLAN.md): decisions, pages, releases (MVP, v2, v3) and data model
 - **Designs:** [`docs/design/`](docs/design/): screens and design tokens for both looks
 - **Build:** [`docs/BUILD.md`](docs/BUILD.md): tech stack (Django, HTMX, SQLite, Caddy, Docker Compose) and the MVP steps
+- **Server:** [`docs/DEPLOY.md`](docs/DEPLOY.md): putting the site on the Oracle server, backups and updates
 
 Status: design done; building the MVP.
 
@@ -42,7 +43,7 @@ To see every page filled in, add a fake group (8 members, 16 events around today
 docker compose exec web python manage.py seed_test_data
 ```
 
-Run it after `create_owner`: the fake events include answers from you, and some wait for your answer. Dates are counted from today, so to refresh them later run `seed_test_data --reset`. That removes only the fake data (members with an `@cumetria.test` address, their events and the two "(test)" invites) and creates it again. Your own account and events stay.
+Run it after `create_owner`: the fake events include answers from you, and some wait for your answer. Dates are counted from today, so to refresh them later run `seed_test_data --reset`: it removes the fake data (members with an `@cumetria.test` address, their events and the two "(test)" invites) and creates it again. `seed_test_data --remove` only removes it, e.g. before the reveal. Either way your own account and events stay.
 
 To see the site as one of them, sign out, type their address (e.g. `ana@cumetria.test`) and open the sign-in link that appears in the `docker compose up` terminal. Worth trying:
 
