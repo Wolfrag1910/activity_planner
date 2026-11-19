@@ -4,6 +4,7 @@ A private, invite-only website for about 9 friends to plan outdoor activities, t
 
 ## Read first
 
+- `docs/VISION.md`: why the site exists, how it should feel, judgement calls already made and how the owner likes to work. Read it before making any choice the plan doesn't spell out.
 - `docs/PLAN.md`: product decisions, pages, releases (MVP, v2, v3) and data model. Decisions there are settled; don't change behaviour they describe without asking the owner.
 - `docs/BUILD.md`: tech stack, server constraints and the MVP steps. Work through the steps in order and tick them off.
 - `docs/design/tokens.md` and `docs/design/README.md`: colours, fonts, shapes and the screen mockups (`.dc.html` files show exact layout and copy).
