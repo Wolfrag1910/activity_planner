@@ -1,0 +1,33 @@
+# Runs the whole site: the Django website plus Caddy in front of it.
+#   Start:  docker compose up --build
+#   Stop:   docker compose down
+# Settings come from a .env file next to this one (copy .env.example to .env).
+services:
+  web:
+    build: .
+    env_file: .env
+    volumes:
+      - cumetria-data:/data          # database and uploads, kept between restarts
+    restart: unless-stopped
+    mem_limit: 512m                  # the server also runs the game servers
+
+  caddy:
+    image: caddy:2-alpine            # official image, also published for arm64
+    ports:
+      - "${HTTP_PORT:-80}:80"
+      - "${HTTPS_PORT:-443}:443"
+    environment:
+      SITE_ADDRESS: ${SITE_ADDRESS:-:80}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data             # HTTPS certificates
+      - caddy-config:/config
+    depends_on:
+      - web
+    restart: unless-stopped
+    mem_limit: 128m
+
+volumes:
+  cumetria-data:
+  caddy-data:
+  caddy-config:

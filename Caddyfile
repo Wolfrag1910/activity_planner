@@ -1,0 +1,10 @@
+# Caddy: the front door. It receives visitors on ports 80/443, gets free HTTPS
+# certificates automatically when SITE_ADDRESS is a real domain, and passes
+# requests to the Django website.
+#
+# Locally SITE_ADDRESS is ":80" (plain http, no certificate).
+# On the server it will be the domain name, e.g. "cumetria.example.org".
+{$SITE_ADDRESS} {
+	encode zstd gzip
+	reverse_proxy web:8000
+}

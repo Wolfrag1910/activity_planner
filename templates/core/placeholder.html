@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ page_title }} · Cumetria{% endblock %}
+
+{% block content %}
+  <div class="page-heading">
+    <h1>{{ page_title }}</h1>
+  </div>
+
+  <section class="card">
+    <p class="muted">{% translate "This page is coming in a later step." %}</p>
+  </section>
+{% endblock %}

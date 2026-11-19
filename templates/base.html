@@ -1,0 +1,62 @@
+{% load static i18n %}{% get_current_language as LANGUAGE_CODE %}{% with current=request.resolver_match.url_name %}<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}" data-look="{{ theme_look }}" data-mode="{{ theme_mode }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>{% block title %}Cumetria{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+  <link rel="stylesheet" href="{% static 'css/themes.css' %}">
+  <link rel="stylesheet" href="{% static 'css/app.css' %}">
+  <script src="{% static 'js/htmx.min.js' %}" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">{% translate "Skip to content" %}</a>
+
+  <div class="app">
+    {# Desktop: menu on the left. Hidden on phones, where the bottom bar is used instead. #}
+    <aside class="sidebar">
+      <a class="brand" href="{% url 'home' %}">Cumetria</a>
+      <a class="button button-primary button-block" href="{% url 'propose' %}">
+        {% include "partials/icon.html" with name="plus" %}{% translate "Propose event" %}
+      </a>
+      <nav class="side-nav" aria-label="{% translate 'Main' %}">
+        <a href="{% url 'home' %}" {% if current == 'home' %}aria-current="page"{% endif %}>{% include "partials/icon.html" with name="home" %}{% translate "Home" %}</a>
+        <a href="{% url 'calendar' %}" {% if current == 'calendar' %}aria-current="page"{% endif %}>{% include "partials/icon.html" with name="calendar" %}{% translate "Calendar" %}</a>
+        <a href="{% url 'explore' %}" {% if current == 'explore' %}aria-current="page"{% endif %}>{% include "partials/icon.html" with name="explore" %}{% translate "Explore" %}</a>
+        <a href="{% url 'me' %}" {% if current == 'me' %}aria-current="page"{% endif %}>{% include "partials/icon.html" with name="me" %}{% translate "Me" %}</a>
+      </nav>
+    </aside>
+
+    <div class="app-main">
+      <header class="topbar">
+        <a class="brand brand-phone" href="{% url 'home' %}">Cumetria</a>
+        <div class="topbar-actions">
+          <form class="lang-switch" action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.get_full_path }}">
+            {% if LANGUAGE_CODE == "ro" %}
+              <button class="pill-button" type="submit" name="language" value="en" aria-label="{% translate 'Switch to English' %}">EN</button>
+            {% else %}
+              <button class="pill-button" type="submit" name="language" value="ro" aria-label="{% translate 'Switch to Romanian' %}">RO</button>
+            {% endif %}
+          </form>
+        </div>
+      </header>
+
+      <main id="main" class="content" tabindex="-1">
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+  </div>
+
+  {# Phone: bottom bar. Hidden on desktop. #}
+  <nav class="bottom-nav" aria-label="{% translate 'Main' %}">
+    <a href="{% url 'home' %}" {% if current == 'home' %}aria-current="page"{% endif %}>{% include "partials/icon.html" with name="home" %}<span>{% translate "Home" %}</span></a>
+    <a href="{% url 'calendar' %}" {% if current == 'calendar' %}aria-current="page"{% endif %}>{% include "partials/icon.html" with name="calendar" %}<span>{% translate "Calendar" %}</span></a>
+    <a class="bottom-nav-propose" href="{% url 'propose' %}" aria-label="{% translate 'Propose an event' %}" {% if current == 'propose' %}aria-current="page"{% endif %}>{% include "partials/icon.html" with name="plus" %}</a>
+    <a href="{% url 'explore' %}" {% if current == 'explore' %}aria-current="page"{% endif %}>{% include "partials/icon.html" with name="explore" %}<span>{% translate "Explore" %}</span></a>
+    <a href="{% url 'me' %}" {% if current == 'me' %}aria-current="page"{% endif %}>{% include "partials/icon.html" with name="me" %}<span>{% translate "Me" %}</span></a>
+  </nav>
+</body>
+</html>{% endwith %}
