@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% if is_new %}{% translate "Propose an event" %}{% else %}{% translate "Edit event" %}{% endif %} · Cumetria{% endblock %}
+
+{% block content %}
+  <div class="page-heading-row">
+    <a class="icon-button" href="{% if event %}{% url 'event' event.pk %}{% else %}{% url 'home' %}{% endif %}" aria-label="{% translate 'Close without saving' %}">{% include "partials/icon.html" with name="close" %}</a>
+    <h1>{% if is_new %}{% translate "Propose an event" %}{% else %}{% translate "Edit event" %}{% endif %}</h1>
+  </div>
+
+  <form method="post" class="stack event-form" novalidate>
+    {% csrf_token %}
+    {% if form.non_field_errors %}<p class="field-error">{{ form.non_field_errors.0 }}</p>{% endif %}
+
+    <fieldset class="field">
+      <legend>{% translate "Category" %}</legend>
+      <div class="category-picker">
+        {% for choice in form.category %}
+          <label class="category-option category-option-{{ choice.data.value }}">{{ choice.tag }}<span>{{ choice.choice_label }}</span></label>
+        {% endfor %}
+      </div>
+      {% if form.category.errors %}<p class="field-error">{{ form.category.errors.0 }}</p>{% endif %}
+    </fieldset>
+
+    {% include "partials/field.html" with field=form.title %}
+
+    <fieldset class="field">
+      <legend>{% translate "When" %}</legend>
+      <div class="two-columns">
+        {% include "partials/field.html" with field=form.start_date %}
+        {% include "partials/field.html" with field=form.start_time %}
+        {% include "partials/field.html" with field=form.end_date %}
+        {% include "partials/field.html" with field=form.end_time %}
+      </div>
+      <p class="muted small">{% translate "The end is optional. For trips and holidays, pick a later end date." %}</p>
+    </fieldset>
+
+    {% include "partials/field.html" with field=form.place help=_("Meeting point or address. The event page links it to the map.") %}
+
+    <fieldset class="field gaming-fields">
+      <legend>{% translate "For gaming" %}</legend>
+      {% include "partials/field.html" with field=form.game %}
+      {% include "partials/field.html" with field=form.online_link help=_("Discord or call link, if it's online.") %}
+    </fieldset>
+
+    {% include "partials/field.html" with field=form.description help=_("What to bring, how to get there, anything people should know.") %}
+
+    <div class="two-columns">
+      {% include "partials/field.html" with field=form.max_spots help=_("Guests count too. Empty means no limit.") %}
+      <div></div>
+    </div>
+
+    <fieldset class="field">
+      <legend>{% translate "Answer by (optional)" %}</legend>
+      <div class="two-columns">
+        {% include "partials/field.html" with field=form.answer_by_date %}
+        {% include "partials/field.html" with field=form.answer_by_time %}
+      </div>
+      <p class="muted small">{% translate "Left empty, people can answer until the event starts." %}</p>
+    </fieldset>
+
+    <div class="sticky-actions">
+      <button class="button button-primary button-block button-tall" type="submit">
+        {% if is_new %}{% translate "Publish event" %}{% else %}{% translate "Save changes" %}{% endif %}
+      </button>
+    </div>
+  </form>
+{% endblock %}

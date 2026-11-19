@@ -36,7 +36,7 @@ def test_page_carries_theme_attributes(client):
 def test_romanian_is_the_default_language(client):
     html = client.get(reverse("home")).content.decode()
     assert '<html lang="ro"' in html
-    assert "Bine ai venit în Cumetria" in html
+    assert "Salut, Alex" in html
 
 
 def test_switching_to_english(client):
@@ -44,14 +44,14 @@ def test_switching_to_english(client):
     assert response.status_code == 302
     html = client.get(reverse("home")).content.decode()
     assert '<html lang="en"' in html
-    assert "Welcome to Cumetria" in html
+    assert "Hi, Alex" in html
 
 
 def test_switching_back_to_romanian(client):
     client.post(reverse("switch_language"), {"language": "en", "next": "/"})
     client.post(reverse("switch_language"), {"language": "ro", "next": "/"})
     html = client.get(reverse("home")).content.decode()
-    assert "Bine ai venit în Cumetria" in html
+    assert "Salut, Alex" in html
 
 
 def test_current_page_is_marked_in_menu(client):

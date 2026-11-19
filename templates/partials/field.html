@@ -1,0 +1,9 @@
+{% comment %}
+  One form field with its label, optional help text and error message.
+  Usage: {% include "partials/field.html" with field=form.title help="..." %}
+{% endcomment %}<div class="field">
+  <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+  {{ field }}
+  {% if help %}<p class="muted small">{{ help }}</p>{% endif %}
+  {% if field.errors %}<p class="field-error" id="{{ field.auto_id }}-error">{{ field.errors.0 }}</p>{% endif %}
+</div>

@@ -1,0 +1,14 @@
+{% load i18n %}
+<a class="event-row{% if event.is_cancelled %} is-cancelled{% endif %}" href="{% url 'event' event.pk %}">
+  <span class="date-block date-block-{{ event.category }}" aria-hidden="true">
+    <span class="date-block-day">{{ event.starts_at|date:"D"|upper }}</span>
+    <span class="date-block-number">{{ event.starts_at|date:"j" }}</span>
+  </span>
+  <span class="event-row-text">
+    <span class="event-row-title">{{ event.title }}</span>
+    <span class="muted small">
+      {{ event.starts_at|date:"j E" }} · {{ event.starts_at|time:"H:i" }}{% if event.place %} · {{ event.place }}{% endif %}
+      {% if event.is_cancelled %} · {% translate "cancelled" %}{% else %} · {% blocktranslate count counter=event.going_count %}{{ counter }} going{% plural %}{{ counter }} going{% endblocktranslate %}{% endif %}
+    </span>
+  </span>
+</a>

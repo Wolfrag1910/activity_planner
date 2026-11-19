@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ event.title }} · Cumetria{% endblock %}
+
+{% block content %}
+<div class="event-page stack">
+  <div class="event-topbar">
+    <a class="icon-button" href="{% url 'home' %}" aria-label="{% translate 'Back' %}">{% include "partials/icon.html" with name="back" %}</a>
+    {% if can_manage and not event.is_cancelled %}
+      <details class="menu">
+        <summary class="icon-button" aria-label="{% translate 'Edit or cancel' %}">{% include "partials/icon.html" with name="more" %}</summary>
+        <div class="menu-panel">
+          <a href="{% url 'event_edit' event.pk %}">{% translate "Edit event" %}</a>
+          <a href="{% url 'event_cancel' event.pk %}">{% translate "Cancel event" %}</a>
+        </div>
+      </details>
+    {% endif %}
+  </div>
+
+  <header class="event-header">
+    <div class="chip-row">
+      <span class="chip chip-{{ event.category }}">{{ event.get_category_display }}</span>
+      {% if event.is_cancelled %}<span class="chip chip-cancelled">{% translate "Cancelled" %}</span>
+      {% elif event.is_past %}<span class="chip chip-quiet">{% translate "Past" %}</span>
+      {% else %}<span class="chip chip-confirmed">{% translate "Confirmed" %}</span>{% endif %}
+    </div>
+    <h1 class="event-title">{{ event.title }}</h1>
+    <p class="muted">{% blocktranslate with name=event.organizer.name %}Proposed by {{ name }}{% endblocktranslate %}</p>
+  </header>
+
+  {% if event.is_cancelled %}
+    <p class="note note-quiet" role="status">{% translate "This event was cancelled." %}</p>
+  {% endif %}
+
+  <section class="card list-card info-card" aria-label="{% translate 'Details' %}">
+    <div class="info-row">
+      {% include "partials/icon.html" with name="clock" %}
+      <div class="info-text">
+        <span class="info-main">{{ when }}</span>
+        {% if answer_by %}<span class="muted small">{% blocktranslate %}Answer by {{ answer_by }}{% endblocktranslate %}</span>{% endif %}
+      </div>
+    </div>
+    {% if event.place %}
+      <div class="info-row">
+        {% include "partials/icon.html" with name="pin" %}
+        <div class="info-text"><span class="info-main">{{ event.place }}</span></div>
+        <a class="info-link" href="{{ event.map_url }}" target="_blank" rel="noopener">{% translate "Map" %}</a>
+      </div>
+    {% endif %}
+    {% if event.game %}
+      <div class="info-row">
+        {% include "partials/icon.html" with name="game" %}
+        <div class="info-text"><span class="info-main">{{ event.game }}</span></div>
+      </div>
+    {% endif %}
+    {% if event.online_link %}
+      <div class="info-row">
+        {% include "partials/icon.html" with name="link" %}
+        <div class="info-text"><span class="info-main">{% translate "Online" %}</span></div>
+        <a class="info-link" href="{{ event.online_link }}" target="_blank" rel="noopener">{% translate "Join" %}</a>
+      </div>
+    {% endif %}
+  </section>
+
+  {% if event.description %}<div class="event-description">{{ event.description|linebreaks }}</div>{% endif %}
+
+  <section id="your-answer" class="stack" aria-labelledby="answer-title">
+    <h2 id="answer-title">{% translate "Your answer" %}</h2>
+    {% if event.rsvp_open %}
+      {% include "events/_answer_form.html" %}
+    {% else %}
+      <p class="muted">
+        {% if event.is_cancelled %}{% translate "Answers are closed: the event was cancelled." %}
+        {% else %}{% translate "Answers are closed." %}{% endif %}
+        {% if mine %}{% blocktranslate with answer=mine.get_answer_display %}You answered: {{ answer }}.{% endblocktranslate %}{% endif %}
+      </p>
+    {% endif %}
+
+    {% if mine and mine.answer == "going" %}
+      <div class="guests-box">
+        {% if mine.guests.all %}
+          <ul class="plain-list guest-list">
+            {% for guest in mine.guests.all %}
+              <li>
+                <span>{% if guest.name %}{{ guest.name }}{% else %}{% translate "Surprise guest" %}{% endif %}</span>
+                {% if event.rsvp_open %}
+                  <form method="post" action="{% url 'event_remove_guest' event.pk guest.pk %}">
+                    {% csrf_token %}
+                    <button class="button button-small button-quiet" type="submit">{% translate "Remove" %}</button>
+                  </form>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+        {% if event.rsvp_open %}
+          {% if event.spots_left == 0 %}
+            <p class="muted small">{% translate "No spots left for guests." %}</p>
+          {% else %}
+            <form method="post" action="{% url 'event_add_guest' event.pk %}" class="guest-form">
+              {% csrf_token %}
+              <div class="field">
+                <label for="id_guest_name">{% translate "Bring a guest (+1)" %}</label>
+                <input id="id_guest_name" type="text" name="name" maxlength="60" placeholder="{% translate 'Name, or leave empty for a surprise' %}">
+              </div>
+              <button class="button" type="submit">{% translate "Add guest" %}</button>
+            </form>
+          {% endif %}
+        {% endif %}
+      </div>
+    {% endif %}
+  </section>
+
+  <section class="stack" aria-labelledby="coming-title">
+    <div class="section-title-row">
+      <h2 id="coming-title">{% translate "Who's coming" %}</h2>
+      <span class="muted small">
+        {% if event.max_spots %}{% blocktranslate with taken=going_people total=event.max_spots %}{{ taken }} of {{ total }} spots taken{% endblocktranslate %}
+        {% else %}{% blocktranslate count counter=going_people %}{{ counter }} going{% plural %}{{ counter }} going{% endblocktranslate %}{% endif %}
+      </span>
+    </div>
+
+    {% if going %}
+      <p class="group-label group-label-going">{% translate "Going" %}</p>
+      <ul class="plain-list people-chips">
+        {% for rsvp in going %}
+          <li class="person-chip">{{ rsvp.member.name }}{% for guest in rsvp.guests.all %} + {% if guest.name %}{{ guest.name }}{% else %}{% translate "surprise guest" %}{% endif %}{% endfor %}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    {% if maybe %}
+      <p class="group-label">{% translate "Maybe" %}</p>
+      <ul class="plain-list reason-list">
+        {% for rsvp in maybe %}<li>{{ rsvp.member.name }} · <span class="muted">{{ rsvp.get_reason_display }}{% if rsvp.note %}, “{{ rsvp.note }}”{% endif %}</span></li>{% endfor %}
+      </ul>
+    {% endif %}
+    {% if no %}
+      <p class="group-label">{% translate "No" %}</p>
+      <ul class="plain-list reason-list">
+        {% for rsvp in no %}<li>{{ rsvp.member.name }} · <span class="muted">{{ rsvp.get_reason_display }}{% if rsvp.note %}, “{{ rsvp.note }}”{% endif %}</span></li>{% endfor %}
+      </ul>
+    {% endif %}
+    {% if not going and not maybe and not no %}<p class="muted">{% translate "Nobody has answered yet." %}</p>{% endif %}
+  </section>
+</div>
+{% endblock %}
