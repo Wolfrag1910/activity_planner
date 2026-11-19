@@ -41,7 +41,8 @@ def home(request):
     active = [event for event in events if not event.is_cancelled]
     happening_today = [event for event in active if event.happens_on(today)]
 
-    # The big card: today's first plan, or else the next one.
+    # The big card: today's most relevant plan (see todays_priority), or else the next one.
+    happening_today.sort(key=lambda event: todays_priority(event, today))
     hero = (happening_today or active or [None])[0]
     others = [event for event in events if event != hero]
     waiting = [event for event in others if event.needs_answer]
@@ -67,6 +68,23 @@ def home(request):
             "weekday_letters": calendar.weekday_letters(),
         },
     )
+
+
+def todays_priority(event, today):
+    """
+    Which of today's events gets the big card. Lower comes first:
+      0  you said Going or Maybe
+      1  it starts today
+      2  a trip that started earlier and is still under way
+    Within a group, the earliest start comes first.
+    """
+    if event.my_answer in (RSVP.Answer.GOING, RSVP.Answer.MAYBE):
+        group = 0
+    elif event.first_day == today:
+        group = 1
+    else:
+        group = 2
+    return (group, event.starts_at)
 
 
 def mini_month(first_of_month, member, today):
