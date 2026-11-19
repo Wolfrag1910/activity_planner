@@ -1,0 +1,18 @@
+{% load i18n %}
+{# One event under the selected calendar day. Tapping it opens the quick preview. #}
+<a class="day-event{% if event.is_cancelled %} is-cancelled{% endif %}" href="{% url 'event' event.pk %}"
+   hx-get="{% url 'event_preview' event.pk %}" hx-target="#preview-body">
+  <span class="day-event-stripe cat-{{ event.category }}" aria-hidden="true"></span>
+  <span class="event-row-text">
+    <span class="event-row-title">{{ event.title }}</span>
+    <span class="muted small">
+      {% if event.trip_day %}{{ event.trip_day }}{% else %}{{ event.starts_at|time:"H:i" }}{% if event.ends_at %}–{{ event.ends_at|time:"H:i" }}{% endif %}{% endif %}{% if event.place %} · {{ event.place }}{% endif %}{% if event.is_cancelled %} · {% translate "cancelled" %}{% endif %}
+    </span>
+  </span>
+  {% if not event.is_cancelled and not event.is_past %}
+    {% if event.my_answer == "going" %}<span class="row-status row-status-going">{% translate "Going" %}</span>
+    {% elif event.my_answer == "maybe" %}<span class="row-status">{% translate "Maybe" %}</span>
+    {% elif event.my_answer == "no" %}<span class="row-status">{% translate "Not going" %}</span>
+    {% elif event.needs_answer %}<span class="row-status row-status-answer">{% translate "RSVP" %}</span>{% endif %}
+  {% endif %}
+</a>
