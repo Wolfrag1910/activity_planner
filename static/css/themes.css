@@ -30,6 +30,13 @@
   --cat-vacations-bg: #F6E3C4; --cat-vacations-text: #6E4310; --cat-vacations: #C08320;
   --cat-gaming-bg: #E8E0F2;    --cat-gaming-text: #45306B;    --cat-gaming: #6B4C9A;
 
+  /* Soft colours for initials circles (background / letter) */
+  --avatar-1-bg: #F4D9C6; --avatar-1-text: #6A2E14;
+  --avatar-2-bg: #E7E3C8; --avatar-2-text: #3D4220;
+  --avatar-3-bg: #D8E3EC; --avatar-3-text: #1F3A52;
+  --avatar-4-bg: #E6DCEF; --avatar-4-text: #3E2A5C;
+  --avatar-5-bg: #E3ECD9; --avatar-5-text: #2F4D21;
+
   /* Type */
   --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-heading: "Fraunces", Georgia, serif;
@@ -42,4 +49,13 @@
   --shadow-card: none;
   --shadow-fab: 0 6px 16px rgba(180, 83, 42, 0.35);
   --fab-radius: 28px;
+}
+
+/*
+ * Fixed swatches used only to preview each look on the Appearance setting.
+ * They show what a look looks like, so they don't change with the theme.
+ */
+:root {
+  --preview-picnic-bg: #F7F1E8;  --preview-picnic-line: #E6DACB;  --preview-picnic-text: #2B211A;  --preview-picnic-accent: #B4532A;
+  --preview-postcard-bg: #FBEFD9; --preview-postcard-line: #2A1E14; --preview-postcard-text: #2A1E14; --preview-postcard-accent: #C8402A;
 }

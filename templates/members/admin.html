@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load i18n humanize %}
+
+{% block title %}{% translate "Admin" %} · Cumetria{% endblock %}
+
+{% block content %}
+  <div class="page-heading-row">
+    <a class="icon-button" href="{% url 'me' %}" aria-label="{% translate 'Back' %}">{% include "partials/icon.html" with name="back" %}</a>
+    <div class="page-heading">
+      <h1>{% translate "Admin" %}</h1>
+      <p class="muted small">{% translate "Only you can see this page" %}</p>
+    </div>
+  </div>
+
+  <section class="card stack" aria-labelledby="invite-title">
+    <h2 id="invite-title">{% translate "Invite someone" %}</h2>
+    {% if new_invite %}
+      <div class="new-invite" role="status">
+        <p>{% blocktranslate with name=new_invite.name %}Invite for <strong>{{ name }}</strong> is ready. Send them this link on WhatsApp or Discord:{% endblocktranslate %}</p>
+        <div class="copy-row">
+          <label class="visually-hidden" for="new-invite-link">{% translate "Invite link" %}</label>
+          <input id="new-invite-link" class="copy-input" type="text" value="{{ new_invite_link }}" readonly>
+          <button class="button button-primary button-small" type="button" data-copy="#new-invite-link" data-copied-text="{% translate 'Copied' %}">{% translate "Copy link" %}</button>
+        </div>
+      </div>
+    {% endif %}
+    <form method="post" action="{% url 'create_invite' %}" class="stack" novalidate>
+      {% csrf_token %}
+      <div class="field">
+        <label for="id_invite_name">{% translate "Their name" %}</label>
+        <input id="id_invite_name" type="text" name="name" maxlength="60" placeholder="{% translate 'e.g. Bianca' %}"
+               value="{% if invite_form.errors %}{{ invite_form.name.value|default:'' }}{% endif %}"
+               {% if invite_form.name.errors %}aria-invalid="true" aria-describedby="invite-name-error"{% endif %}>
+        {% if invite_form.name.errors %}<p class="field-error" id="invite-name-error">{{ invite_form.name.errors.0 }}</p>{% endif %}
+      </div>
+      <button class="button button-primary" type="submit">{% translate "Create invite link" %}</button>
+    </form>
+    <p class="muted small">{% translate "Send the link yourself, on WhatsApp or Discord. It works once." %}</p>
+  </section>
+
+  <section class="stack" aria-labelledby="waiting-title">
+    <h2 id="waiting-title">{% translate "Waiting to be used" %}</h2>
+    {% if waiting_invites %}
+      <ul class="plain-list stack">
+        {% for invite, link in waiting_invites %}
+          <li class="card waiting-invite">
+            <div class="waiting-invite-text">
+              <span class="list-row-title">{{ invite.name }}</span>
+              <span class="muted small">{% blocktranslate with when=invite.created_at|naturaltime|lower %}Created {{ when }}{% endblocktranslate %}</span>
+            </div>
+            <input id="invite-link-{{ invite.pk }}" class="visually-hidden" type="text" value="{{ link }}" readonly tabindex="-1" aria-hidden="true">
+            <button class="button button-small" type="button" data-copy="#invite-link-{{ invite.pk }}" data-copied-text="{% translate 'Copied' %}">{% translate "Copy link" %}</button>
+            <form method="post" action="{% url 'cancel_invite' invite.pk %}">
+              {% csrf_token %}
+              <button class="button button-small button-quiet" type="submit" aria-label="{% blocktranslate with name=invite.name %}Cancel {{ name }}'s invite{% endblocktranslate %}">{% translate "Cancel" %}</button>
+            </form>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="muted">{% translate "No invites waiting." %}</p>
+    {% endif %}
+  </section>
+
+  <section class="stack" aria-labelledby="members-title">
+    <h2 id="members-title">{% translate "Members" %}</h2>
+    <ul class="card list-card plain-list">
+      {% for member in members %}
+        <li class="list-row{% if not member.is_active %} is-inactive{% endif %}">
+          {% include "partials/avatar.html" with member=member size="sm" %}
+          <span class="list-row-text">
+            <span class="list-row-title">{{ member.name }}{% if member == user %} <span class="muted">({% translate "you" %})</span>{% endif %}</span>
+            <span class="muted small">{{ member.email }}{% if not member.is_active %} · {% translate "deactivated" %}{% endif %}</span>
+          </span>
+          {% if member.is_admin %}
+            <span class="badge">{% translate "Admin" %}</span>
+          {% elif member.is_active %}
+            <form method="post" action="{% url 'deactivate_member' member.pk %}">
+              {% csrf_token %}
+              <button class="button button-small button-quiet" type="submit" aria-label="{% blocktranslate with name=member.name %}Deactivate {{ name }}{% endblocktranslate %}">{% translate "Deactivate" %}</button>
+            </form>
+          {% else %}
+            <form method="post" action="{% url 'reactivate_member' member.pk %}">
+              {% csrf_token %}
+              <button class="button button-small" type="submit" aria-label="{% blocktranslate with name=member.name %}Reactivate {{ name }}{% endblocktranslate %}">{% translate "Reactivate" %}</button>
+            </form>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+    <p class="muted small">{% translate "A deactivated member can't sign in. Their past RSVPs, photos and comments stay." %}</p>
+  </section>
+
+  <section class="card stack" aria-labelledby="powers-title">
+    <h2 id="powers-title">{% translate "Your extra powers" %}</h2>
+    <p><strong>{% translate "Edit or cancel any event" %}</strong><br><span class="muted small">{% translate "Coming with events: the menu on any event page will offer it, even for events you didn't organize." %}</span></p>
+    <p><strong>{% translate "Remove photos" %}</strong><br><span class="muted small">{% translate "Coming with photo albums: every photo will have a delete option for you." %}</span></p>
+  </section>
+{% endblock %}

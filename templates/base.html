@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="{% static 'css/themes.css' %}">
   <link rel="stylesheet" href="{% static 'css/app.css' %}">
   <script src="{% static 'js/htmx.min.js' %}" defer></script>
+  <script src="{% static 'js/copy.js' %}" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">{% translate "Skip to content" %}</a>
@@ -24,7 +25,8 @@
         <a href="{% url 'home' %}" {% if current == 'home' %}aria-current="page"{% endif %}>{% include "partials/icon.html" with name="home" %}{% translate "Home" %}</a>
         <a href="{% url 'calendar' %}" {% if current == 'calendar' %}aria-current="page"{% endif %}>{% include "partials/icon.html" with name="calendar" %}{% translate "Calendar" %}</a>
         <a href="{% url 'explore' %}" {% if current == 'explore' %}aria-current="page"{% endif %}>{% include "partials/icon.html" with name="explore" %}{% translate "Explore" %}</a>
-        <a href="{% url 'me' %}" {% if current == 'me' %}aria-current="page"{% endif %}>{% include "partials/icon.html" with name="me" %}{% translate "Me" %}</a>
+        <a href="{% url 'members' %}" {% if current == 'members' or current == 'member' %}aria-current="page"{% endif %}>{% include "partials/icon.html" with name="members" %}{% translate "Members" %}</a>
+        <a href="{% url 'me' %}" {% if current == 'me' or current == 'profile_edit' or current == 'admin_page' %}aria-current="page"{% endif %}>{% include "partials/icon.html" with name="me" %}{% translate "Me" %}</a>
       </nav>
     </aside>
 
@@ -48,7 +50,7 @@
     <a href="{% url 'calendar' %}" {% if current == 'calendar' %}aria-current="page"{% endif %}>{% include "partials/icon.html" with name="calendar" %}<span>{% translate "Calendar" %}</span></a>
     <a class="bottom-nav-propose" href="{% url 'propose' %}" aria-label="{% translate 'Propose an event' %}" {% if current == 'propose' %}aria-current="page"{% endif %}>{% include "partials/icon.html" with name="plus" %}</a>
     <a href="{% url 'explore' %}" {% if current == 'explore' %}aria-current="page"{% endif %}>{% include "partials/icon.html" with name="explore" %}<span>{% translate "Explore" %}</span></a>
-    <a href="{% url 'me' %}" {% if current == 'me' %}aria-current="page"{% endif %}>{% include "partials/icon.html" with name="me" %}<span>{% translate "Me" %}</span></a>
+    <a href="{% url 'me' %}" {% if current == 'me' or current == 'profile_edit' or current == 'admin_page' or current == 'members' or current == 'member' %}aria-current="page"{% endif %}>{% include "partials/icon.html" with name="me" %}<span>{% translate "Me" %}</span></a>
   </nav>
 </body>
 </html>{% endwith %}

@@ -256,3 +256,191 @@ msgstr "Confirmă-ți emailul ca să intri în Cumetria"
 
 msgid "This email already belongs to a member. Sign in from the start page instead."
 msgstr "Emailul acesta e deja al unui membru. Conectează-te de pe pagina de start."
+
+# --- Step 2b: profile, members, admin ---
+
+msgid "Only you can see this page"
+msgstr "Doar tu vezi pagina aceasta"
+
+msgid "Invite someone"
+msgstr "Invită pe cineva"
+
+msgid "Invite link"
+msgstr "Linkul de invitație"
+
+msgid "Copy link"
+msgstr "Copiază linkul"
+
+msgid "Their name"
+msgstr "Numele persoanei"
+
+msgid "Create invite link"
+msgstr "Creează linkul de invitație"
+
+msgid "Send the link yourself, on WhatsApp or Discord. It works once."
+msgstr "Trimite tu linkul, pe WhatsApp sau Discord. Funcționează o singură dată."
+
+msgid "Waiting to be used"
+msgstr "Încă nefolosite"
+
+msgid "Cancel"
+msgstr "Anulează"
+
+msgid "No invites waiting."
+msgstr "Nicio invitație în așteptare."
+
+msgid "Deactivate"
+msgstr "Dezactivează"
+
+msgid "Reactivate"
+msgstr "Reactivează"
+
+msgid "A deactivated member can't sign in. Their past RSVPs, photos and comments stay."
+msgstr "Un membru dezactivat nu se mai poate conecta. Răspunsurile, fotografiile și comentariile lui rămân."
+
+msgid "Your extra powers"
+msgstr "Puterile tale în plus"
+
+msgid "Edit or cancel any event"
+msgstr "Modifică sau anulează orice eveniment"
+
+msgid "Coming with events: the menu on any event page will offer it, even for events you didn't organize."
+msgstr "Vine odată cu evenimentele: meniul oricărui eveniment îți va oferi asta, chiar dacă nu tu l-ai organizat."
+
+msgid "Remove photos"
+msgstr "Șterge fotografii"
+
+msgid "Coming with photo albums: every photo will have a delete option for you."
+msgstr "Vine odată cu albumele: fiecare fotografie va avea pentru tine opțiunea de ștergere."
+
+msgid "Copied"
+msgstr "Copiat"
+
+msgid "e.g. Bianca"
+msgstr "de ex. Bianca"
+
+msgid "Invite for <strong>%(name)s</strong> is ready. Send them this link on WhatsApp or Discord:"
+msgstr "Invitația pentru <strong>%(name)s</strong> e gata. Trimite-i linkul acesta pe WhatsApp sau Discord:"
+
+msgid "Created %(when)s"
+msgstr "Creată %(when)s"
+
+msgid "Cancel %(name)s's invite"
+msgstr "Anulează invitația pentru %(name)s"
+
+msgid "Deactivate %(name)s"
+msgstr "Dezactivează contul: %(name)s"
+
+msgid "Reactivate %(name)s"
+msgstr "Reactivează contul: %(name)s"
+
+msgid "Their upcoming plans will show here once events arrive."
+msgstr "Planurile următoare vor apărea aici când vin evenimentele."
+
+msgid "Back to members"
+msgstr "Înapoi la membri"
+
+msgid "Birthday %(day)s, turns %(age)s"
+msgstr "Ziua pe %(day)s, împlinește %(age)s"
+
+msgid "<strong>%(name)s</strong> turns %(age)s today!"
+msgstr "<strong>%(name)s</strong> împlinește %(age)s azi!"
+
+msgid "<strong>%(name)s</strong> turns %(age)s tomorrow."
+msgstr "<strong>%(name)s</strong> împlinește %(age)s mâine."
+
+msgid "<strong>%(name)s</strong> turns %(age)s in %(days)s days, on %(day)s."
+msgstr "<strong>%(name)s</strong> împlinește %(age)s peste %(days)s zile, pe %(day)s."
+
+msgid "Add your birthday so the group can celebrate."
+msgstr "Adaugă-ți ziua de naștere ca să te sărbătorim."
+
+msgid "Edit"
+msgstr "Modifică"
+
+msgid "Appearance"
+msgstr "Aspect"
+
+msgid "Look"
+msgstr "Stil"
+
+msgid "Light or dark"
+msgstr "Luminos sau întunecat"
+
+msgid "Match phone"
+msgstr "Ca telefonul"
+
+msgid "Postcard and dark mode arrive before the launch. You'll be able to switch here."
+msgstr "Postcard și modul întunecat vin înainte de lansare. Le vei putea schimba de aici."
+
+msgid "Everyone in the group"
+msgstr "Toată gașca"
+
+msgid "Admin tools"
+msgstr "Unelte de administrator"
+
+msgid "Invite and manage members (only you see this)"
+msgstr "Invită și administrează membrii (doar tu vezi asta)"
+
+msgid "Your profile"
+msgstr "Profilul tău"
+
+msgid "More"
+msgstr "Mai mult"
+
+msgid "birthday %(day)s"
+msgstr "ziua pe %(day)s"
+
+msgid "Edit profile"
+msgstr "Modifică profilul"
+
+msgid "Photo"
+msgstr "Fotografie"
+
+msgid "Remove my photo"
+msgstr "Șterge fotografia mea"
+
+msgid "Name"
+msgstr "Nume"
+
+msgid "Birthday"
+msgstr "Ziua de naștere"
+
+msgid "Shown to the group with your age, and on the calendar."
+msgstr "Apare pentru gașcă împreună cu vârsta ta, și în calendar."
+
+msgid "Save"
+msgstr "Salvează"
+
+msgid "New photo"
+msgstr "Fotografie nouă"
+
+msgid "Please enter a name."
+msgstr "Scrie un nume."
+
+msgid "That photo is too big. Please choose one under %(mb)s MB."
+msgstr "Fotografia e prea mare. Alege una sub %(mb)s MB."
+
+msgid "That file isn't a photo we can read. Try a JPG or PNG."
+msgstr "Fișierul nu e o fotografie pe care s-o putem citi. Încearcă un JPG sau PNG."
+
+msgid "Admin"
+msgstr "Admin"
+
+msgid "Language"
+msgstr "Limba"
+
+msgid "Members"
+msgstr "Membri"
+
+msgid "deactivated"
+msgstr "dezactivat"
+
+msgid "you"
+msgstr "tu"
+
+msgid "%(counter)s person in Cumetria"
+msgid_plural "%(counter)s people in Cumetria"
+msgstr[0] "%(counter)s persoană în Cumetria"
+msgstr[1] "%(counter)s persoane în Cumetria"
+msgstr[2] "%(counter)s de persoane în Cumetria"

@@ -12,10 +12,4 @@
     <p class="muted">{% translate "This page is coming in a later step." %}</p>
   </section>
 
-  {% if page == "me" %}
-    <form method="post" action="{% url 'logout' %}">
-      {% csrf_token %}
-      <button class="button" type="submit">{% translate "Sign out" %}</button>
-    </form>
-  {% endif %}
 {% endblock %}

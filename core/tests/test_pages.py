@@ -69,7 +69,7 @@ def test_romanian_date_uses_lowercase_month(client, settings):
 
     from django.utils import translation
 
-    from core.views import friendly_date
+    from core.dates import friendly_date
 
     day = datetime.date(2026, 11, 19)
     with translation.override("ro"):
