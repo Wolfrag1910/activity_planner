@@ -722,5 +722,181 @@ msgid_plural "%(counter)s going"
 msgstr[0] "%(counter)s vine"
 msgstr[1] "%(counter)s vin"
 msgstr[2] "%(counter)s de oameni vin"
+
 msgid "Day"
 msgstr "Ziua"
+
+# --- Step 4a: home, quick preview, Explore, category pages
+msgid "Categories"
+msgstr "Categorii"
+
+msgid "Group"
+msgstr "Grupul"
+
+msgid "Not going"
+msgstr "Nu vin"
+
+msgid "RSVP"
+msgstr "Răspunde"
+
+msgid "Answer saved."
+msgstr "Răspuns salvat."
+
+msgid "Guest"
+msgstr "Invitat"
+
+msgid "Open event"
+msgstr "Deschide evenimentul"
+
+msgid "Close preview"
+msgstr "Închide previzualizarea"
+
+msgid "Coming up"
+msgstr "În curând"
+
+msgid "Nothing planned here yet."
+msgstr "Nimic plănuit aici încă."
+
+msgid "Propose one"
+msgstr "Propune ceva"
+
+msgid "Lately"
+msgstr "Recent"
+
+msgid "All past events"
+msgstr "Toate evenimentele trecute"
+
+msgid "Past events"
+msgstr "Evenimente trecute"
+
+msgid "No past events yet."
+msgstr "Niciun eveniment trecut încă."
+
+msgid "Back to Explore"
+msgstr "Înapoi la Explorează"
+
+msgid "Show"
+msgstr "Arată"
+
+msgid "Nothing planned yet"
+msgstr "Nimic plănuit încă"
+
+msgid "Next: %(day)s, %(title)s"
+msgstr "Următorul: %(day)s, %(title)s"
+
+msgid "next birthday: %(name)s, %(date)s"
+msgstr "următoarea zi de naștere: %(name)s, %(date)s"
+
+msgid "You're in"
+msgstr "Vii"
+
+msgid "You said maybe"
+msgstr "Ai zis poate"
+
+msgid "You're not going"
+msgstr "Nu vii"
+
+msgid "Answer"
+msgstr "Răspunde"
+
+msgid "Propose a walk, a trip or a game night, and the others can answer."
+msgstr "Propune o plimbare, o excursie sau o seară de jocuri, iar ceilalți pot răspunde."
+
+msgid "Propose the first event"
+msgstr "Propune primul eveniment"
+
+msgid "See all"
+msgstr "Vezi tot"
+
+msgid "See calendar"
+msgstr "Vezi calendarul"
+
+msgid "Waiting for your answer"
+msgstr "Așteaptă răspunsul tău"
+
+msgid "Hi, %(name)s."
+msgstr "Salut, %(name)s."
+
+msgid "%(answered)s of %(total)s answered"
+msgstr "%(answered)s din %(total)s au răspuns"
+
+msgid "proposed by %(name)s"
+msgstr "propus de %(name)s"
+
+msgid "In and around Bucharest"
+msgstr "În București și împrejurimi"
+
+msgid "Romania and abroad"
+msgstr "Prin țară și în străinătate"
+
+msgid "Longer holidays together"
+msgstr "Vacanțe mai lungi împreună"
+
+msgid "Online or in person"
+msgstr "Online sau față în față"
+
+msgid "One plan tonight."
+msgstr "Un plan diseară."
+
+msgid "Today · %(time)s"
+msgstr "Azi · %(time)s"
+
+msgid "Today"
+msgstr "Azi"
+
+msgid "Next up · %(when)s"
+msgstr "Urmează · %(when)s"
+
+msgid "full"
+msgstr "complet"
+
+msgid "%(counter)s went"
+msgid_plural "%(counter)s went"
+msgstr[0] "%(counter)s a venit"
+msgstr[1] "%(counter)s au venit"
+msgstr[2] "%(counter)s de oameni au venit"
+
+msgid "%(counter)s upcoming"
+msgid_plural "%(counter)s upcoming"
+msgstr[0] "%(counter)s eveniment viitor"
+msgstr[1] "%(counter)s evenimente viitoare"
+msgstr[2] "%(counter)s de evenimente viitoare"
+
+msgid "%(counter)s person"
+msgid_plural "%(counter)s people"
+msgstr[0] "%(counter)s persoană"
+msgstr[1] "%(counter)s persoane"
+msgstr[2] "%(counter)s de persoane"
+
+msgid "One plan today."
+msgid_plural "%(count)s plans today."
+msgstr[0] "Un plan azi."
+msgstr[1] "%(count)s planuri azi."
+msgstr[2] "%(count)s de planuri azi."
+
+msgid "One event is waiting for your answer."
+msgid_plural "%(count)s events are waiting for your answer."
+msgstr[0] "Un eveniment așteaptă răspunsul tău."
+msgstr[1] "%(count)s evenimente așteaptă răspunsul tău."
+msgstr[2] "%(count)s de evenimente așteaptă răspunsul tău."
+
+msgid "%(count)s going"
+msgid_plural "%(count)s going"
+msgstr[0] "%(count)s vine"
+msgstr[1] "%(count)s vin"
+msgstr[2] "%(count)s de oameni vin"
+
+msgid "%(count)s maybe"
+msgid_plural "%(count)s maybe"
+msgstr[0] "%(count)s poate"
+msgstr[1] "%(count)s poate"
+msgstr[2] "%(count)s poate"
+
+msgid "%(count)s spot left"
+msgid_plural "%(count)s spots left"
+msgstr[0] "%(count)s loc liber"
+msgstr[1] "%(count)s locuri libere"
+msgstr[2] "%(count)s de locuri libere"
+msgid "Next: today, %(title)s"
+msgstr "Următorul: azi, %(title)s"
+

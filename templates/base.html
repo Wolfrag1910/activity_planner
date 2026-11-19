@@ -11,6 +11,7 @@
   <script src="{% static 'js/htmx.min.js' %}" defer></script>
   <script src="{% static 'js/copy.js' %}" defer></script>
   <script src="{% static 'js/events.js' %}" defer></script>
+  <script src="{% static 'js/preview.js' %}" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">{% translate "Skip to content" %}</a>
@@ -25,7 +26,11 @@
       <nav class="side-nav" aria-label="{% translate 'Main' %}">
         <a href="{% url 'home' %}" {% if current == 'home' %}aria-current="page"{% endif %}>{% include "partials/icon.html" with name="home" %}{% translate "Home" %}</a>
         <a href="{% url 'calendar' %}" {% if current == 'calendar' %}aria-current="page"{% endif %}>{% include "partials/icon.html" with name="calendar" %}{% translate "Calendar" %}</a>
-        <a href="{% url 'explore' %}" {% if current == 'explore' %}aria-current="page"{% endif %}>{% include "partials/icon.html" with name="explore" %}{% translate "Explore" %}</a>
+        <p class="side-nav-label">{% translate "Categories" %}</p>
+        {% for value, label in event_categories %}
+          <a href="{% url 'category' value %}" {% if current == 'category' and request.resolver_match.kwargs.category == value %}aria-current="page"{% endif %}><span class="category-dot cat-{{ value }}" aria-hidden="true"></span>{{ label }}</a>
+        {% endfor %}
+        <p class="side-nav-label">{% translate "Group" %}</p>
         <a href="{% url 'members' %}" {% if current == 'members' or current == 'member' %}aria-current="page"{% endif %}>{% include "partials/icon.html" with name="members" %}{% translate "Members" %}</a>
         <a href="{% url 'me' %}" {% if current == 'me' or current == 'profile_edit' or current == 'admin_page' %}aria-current="page"{% endif %}>{% include "partials/icon.html" with name="me" %}{% translate "Me" %}</a>
       </nav>
@@ -45,12 +50,17 @@
     </div>
   </div>
 
+  {# Quick preview of an event: filled by htmx when an event card is tapped (static/js/preview.js). #}
+  <dialog id="preview" class="preview" aria-labelledby="preview-title">
+    <div id="preview-body"></div>
+  </dialog>
+
   {# Phone: bottom bar. Hidden on desktop. #}
   <nav class="bottom-nav" aria-label="{% translate 'Main' %}">
     <a href="{% url 'home' %}" {% if current == 'home' %}aria-current="page"{% endif %}>{% include "partials/icon.html" with name="home" %}<span>{% translate "Home" %}</span></a>
     <a href="{% url 'calendar' %}" {% if current == 'calendar' %}aria-current="page"{% endif %}>{% include "partials/icon.html" with name="calendar" %}<span>{% translate "Calendar" %}</span></a>
     <a class="bottom-nav-propose" href="{% url 'propose' %}" aria-label="{% translate 'Propose an event' %}" {% if current == 'propose' %}aria-current="page"{% endif %}>{% include "partials/icon.html" with name="plus" %}</a>
-    <a href="{% url 'explore' %}" {% if current == 'explore' %}aria-current="page"{% endif %}>{% include "partials/icon.html" with name="explore" %}<span>{% translate "Explore" %}</span></a>
+    <a href="{% url 'explore' %}" {% if current == 'explore' or current == 'category' %}aria-current="page"{% endif %}>{% include "partials/icon.html" with name="explore" %}<span>{% translate "Explore" %}</span></a>
     <a href="{% url 'me' %}" {% if current == 'me' or current == 'profile_edit' or current == 'admin_page' or current == 'members' or current == 'member' %}aria-current="page"{% endif %}>{% include "partials/icon.html" with name="me" %}<span>{% translate "Me" %}</span></a>
   </nav>
 </body>

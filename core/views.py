@@ -4,31 +4,15 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_not_required
 from django.http import FileResponse, Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from django.utils import timezone
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_POST
 
-from .dates import friendly_date
-
-# Pages that exist in the menu but are built in later MVP steps.
+# Pages that exist in the menu but are built in a later MVP step.
 # Each shows a short "coming later" note so the layout can be tried today.
 PLACEHOLDER_PAGES = {
     "calendar": _("Calendar"),
-    "explore": _("Explore"),
 }
-
-
-def home(request):
-    # A simple upcoming list for now; step 4 replaces this with the real home page.
-    from events.models import Event, with_counts
-
-    upcoming = with_counts(Event.objects.upcoming().select_related("organizer"))[:20]
-    return render(
-        request,
-        "core/home.html",
-        {"today_label": friendly_date(timezone.localdate()), "upcoming": upcoming},
-    )
 
 
 def placeholder(request, page):

@@ -1,0 +1,55 @@
+{% load i18n %}
+{% comment %}
+  Quick preview: what you need to decide, and the answer buttons. Shown in a
+  <dialog> (bottom sheet on phones, side panel on desktop); see static/js/preview.js.
+{% endcomment %}
+<div class="preview-inner">
+  <span class="preview-handle" aria-hidden="true"></span>
+  <div class="preview-head">
+    <div class="stack-tight">
+      <span class="chip-row">
+        <span class="chip chip-{{ event.category }}">{{ event.get_category_display }}</span>
+        {% if event.is_cancelled %}<span class="chip chip-cancelled">{% translate "Cancelled" %}</span>{% endif %}
+      </span>
+      <h2 id="preview-title" class="preview-title">{{ event.title }}</h2>
+    </div>
+    <button class="icon-button" type="button" data-close-preview aria-label="{% translate 'Close preview' %}">{% include "partials/icon.html" with name="close" %}</button>
+  </div>
+
+  <div class="preview-info">
+    <div class="preview-line">{% include "partials/icon.html" with name="clock" %}<span>{{ when }}{% if answer_by %}<br><span class="muted small">{% blocktranslate %}Answer by {{ answer_by }}{% endblocktranslate %}</span>{% endif %}</span></div>
+    {% if event.place %}
+      <div class="preview-line">{% include "partials/icon.html" with name="pin" %}<span class="grow">{{ event.place }}</span><a class="info-link" href="{{ event.map_url }}" target="_blank" rel="noopener">{% translate "Map" %}</a></div>
+    {% endif %}
+    {% if event.game %}<div class="preview-line">{% include "partials/icon.html" with name="game" %}<span>{{ event.game }}</span></div>{% endif %}
+    <div class="preview-line">{% include "partials/icon.html" with name="me" %}<span>{% blocktranslate with name=event.organizer.name %}Proposed by {{ name }}{% endblocktranslate %}</span></div>
+  </div>
+
+  <div class="preview-people">
+    {% if faces %}
+      <span class="avatar-stack avatar-stack-soft">{% for member in faces|slice:":3" %}{% include "partials/avatar.html" with member=member size="xs" %}{% endfor %}{% if faces|length > 3 %}<span class="avatar avatar-xs avatar-more">+{{ faces|length|add:"-3" }}</span>{% endif %}</span>
+    {% endif %}
+    <span>{{ people }}</span>
+  </div>
+
+  <div class="stack">
+    {% if event.rsvp_open %}
+      <p class="preview-question">{% translate "Are you coming?" %}</p>
+      {% include "events/_answer_form.html" %}
+      {% if saved %}<p class="saved-note" role="status">{% translate "Answer saved." %}</p>{% endif %}
+    {% else %}
+      <p class="muted">
+        {% if event.is_cancelled %}{% translate "Answers are closed: the event was cancelled." %}
+        {% else %}{% translate "Answers are closed." %}{% endif %}
+        {% if mine %}{% blocktranslate with answer=mine.get_answer_display %}You answered: {{ answer }}.{% endblocktranslate %}{% endif %}
+      </p>
+    {% endif %}
+  </div>
+
+  <div class="preview-actions">
+    {% if mine.answer == "going" and event.rsvp_open %}
+      <a class="button" href="{% url 'event' event.pk %}#your-answer">{% include "partials/icon.html" with name="plus" %}{% translate "Guest" %}</a>
+    {% endif %}
+    <a class="button button-dark grow" href="{% url 'event' event.pk %}">{% translate "Open event" %}{% include "partials/icon.html" with name="arrow" %}</a>
+  </div>
+</div>

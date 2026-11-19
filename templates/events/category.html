@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ label }} · Cumetria{% endblock %}
+
+{% block content %}
+<div class="category-page cat-{{ category }}">
+  <header class="category-band">
+    <a class="icon-button" href="{% url 'explore' %}" aria-label="{% translate 'Back to Explore' %}">{% include "partials/icon.html" with name="back" %}</a>
+    <div class="stack-tight">
+      <h1 class="category-title">{{ label }}</h1>
+      <p class="category-blurb">{{ blurb }} · {% blocktranslate count counter=upcoming_count %}{{ counter }} upcoming{% plural %}{{ counter }} upcoming{% endblocktranslate %}</p>
+    </div>
+    <nav class="category-tabs" aria-label="{% translate 'Show' %}">
+      <a href="{% url 'category' category %}" {% if show == "upcoming" %}aria-current="page"{% endif %}>{% translate "Upcoming" %}</a>
+      <a href="{% url 'calendar' %}?category={{ category }}">{% translate "Calendar" %}</a>
+      <a href="{% url 'category' category %}?show=past" {% if show == "past" %}aria-current="page"{% endif %}>{% translate "Past" %}</a>
+    </nav>
+  </header>
+
+  {% if show == "upcoming" %}
+    <section class="stack" aria-labelledby="coming-title">
+      <h2 id="coming-title">{% translate "Coming up" %}</h2>
+      {% if upcoming %}
+        <div class="card list-card">
+          {% for event in upcoming %}{% include "events/_event_row.html" %}{% endfor %}
+        </div>
+      {% else %}
+        <div class="card empty-card">
+          <p class="muted">{% translate "Nothing planned here yet." %}</p>
+          <a class="button button-primary" href="{% url 'propose' %}?category={{ category }}">{% include "partials/icon.html" with name="plus" %}{% translate "Propose one" %}</a>
+        </div>
+      {% endif %}
+    </section>
+
+    {% if past %}
+      <section class="stack" aria-labelledby="lately-title">
+        <div class="section-title-row">
+          <h2 id="lately-title">{% translate "Lately" %}</h2>
+          {% if has_more_past %}<a class="text-link" href="{% url 'category' category %}?show=past">{% translate "All past events" %}</a>{% endif %}
+        </div>
+        <div class="card list-card">
+          {% for event in past %}{% include "events/_event_row.html" %}{% endfor %}
+        </div>
+      </section>
+    {% endif %}
+  {% else %}
+    <section class="stack" aria-labelledby="past-title">
+      <h2 id="past-title">{% translate "Past events" %}</h2>
+      {% if past %}
+        <div class="card list-card">
+          {% for event in past %}{% include "events/_event_row.html" %}{% endfor %}
+        </div>
+      {% else %}
+        <p class="muted">{% translate "No past events yet." %}</p>
+      {% endif %}
+    </section>
+  {% endif %}
+</div>
+{% endblock %}

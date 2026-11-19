@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Explore" %} · Cumetria{% endblock %}
+
+{% block content %}
+  <h1>{% translate "Explore" %}</h1>
+
+  <div class="explore-grid">
+    {% for card in cards %}
+      <a class="explore-card cat-{{ card.category }}" href="{% url 'category' card.category %}">
+        <span class="explore-card-name">{{ card.label }}</span>
+        <span class="explore-card-text">
+          <strong>{% blocktranslate count counter=card.count %}{{ counter }} upcoming{% plural %}{{ counter }} upcoming{% endblocktranslate %}</strong>
+          {% if card.next_is_today %}
+            <span>{% blocktranslate with title=card.next.title %}Next: today, {{ title }}{% endblocktranslate %}</span>
+          {% elif card.next %}
+            <span>{% blocktranslate with day=card.next.starts_at|date:"D j" title=card.next.title %}Next: {{ day }}, {{ title }}{% endblocktranslate %}</span>
+          {% else %}
+            <span>{% translate "Nothing planned yet" %}</span>
+          {% endif %}
+        </span>
+      </a>
+    {% endfor %}
+  </div>
+
+  <div class="card list-card">
+    <a class="list-row" href="{% url 'members' %}">
+      <span class="list-row-icon">{% include "partials/icon.html" with name="members" %}</span>
+      <span class="list-row-text">
+        <span class="list-row-title">{% translate "Members" %}</span>
+        <span class="muted small">
+          {% blocktranslate count counter=member_count %}{{ counter }} person{% plural %}{{ counter }} people{% endblocktranslate %}{% if next_birthday %} · {% blocktranslate with name=next_birthday.member.name date=next_birthday.date %}next birthday: {{ name }}, {{ date }}{% endblocktranslate %}{% endif %}
+        </span>
+      </span>
+      {% include "partials/icon.html" with name="chevron" %}
+    </a>
+  </div>
+{% endblock %}

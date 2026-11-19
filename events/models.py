@@ -1,8 +1,9 @@
+import datetime
 from urllib.parse import quote_plus
 
 from django.conf import settings
 from django.db import models
-from django.db.models import Count, Q
+from django.db.models import Count, F, OuterRef, Q, Subquery
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
@@ -14,11 +15,65 @@ class Category(models.TextChoices):
     GAMING = "gaming", _("Gaming")
 
 
+# One line under each category's name (Explore and the category pages).
+CATEGORY_BLURBS = {
+    Category.OUTDOORS: _("In and around Bucharest"),
+    Category.TRIPS: _("Romania and abroad"),
+    Category.VACATIONS: _("Longer holidays together"),
+    Category.GAMING: _("Online or in person"),
+}
+
+
+def start_of_today():
+    """Midnight at the start of today, Bucharest time."""
+    today = timezone.localdate()
+    return timezone.make_aware(datetime.datetime.combine(today, datetime.time.min))
+
+
 class EventQuerySet(models.QuerySet):
+    """
+    When is an event over? At its end time; or, when it has no end time, at the
+    end of the day it starts on (so tonight's game night stays on the home page
+    after it begins).
+    """
+
     def upcoming(self):
-        """Events that haven't finished yet, cancelled ones included (they show as cancelled)."""
-        now = timezone.now()
-        return self.filter(Q(ends_at__gte=now) | Q(ends_at__isnull=True, starts_at__gte=now))
+        """Events that haven't finished yet, soonest first, cancelled ones included (they show as cancelled)."""
+        # The order is set here on purpose: Django drops the model's default order
+        # in queries that count things (with_details), so lists must ask for it.
+        return self.filter(
+            Q(ends_at__gte=timezone.now()) | Q(ends_at__isnull=True, starts_at__gte=start_of_today())
+        ).order_by("starts_at")
+
+    def past(self):
+        """Events that are over, most recent first."""
+        return self.filter(
+            Q(ends_at__lt=timezone.now()) | Q(ends_at__isnull=True, starts_at__lt=start_of_today())
+        ).order_by("-starts_at")
+
+    def active(self):
+        """Not cancelled."""
+        return self.exclude(status=Event.Status.CANCELLED)
+
+    def with_details(self, member):
+        """
+        Add what lists and cards show, in one query:
+          going_count  members going plus their guests
+          answer_count how many members answered at all
+          my_answer    this member's answer ("going", "maybe", "no"), or None
+        """
+        going = Q(rsvps__answer=RSVP.Answer.GOING)
+        my_answer = RSVP.objects.filter(event=OuterRef("pk"), member=member).values("answer")[:1]
+        return (
+            self.annotate(
+                going_members=Count("rsvps", filter=going, distinct=True),
+                going_guests=Count("rsvps__guests", filter=going, distinct=True),
+                answer_count=Count("rsvps", distinct=True),
+                my_answer=Subquery(my_answer),
+            )
+            .annotate(going_count=F("going_members") + F("going_guests"))
+            .select_related("organizer")
+        )
 
 
 class Event(models.Model):
@@ -66,7 +121,33 @@ class Event(models.Model):
 
     @property
     def is_past(self):
-        return (self.ends_at or self.starts_at) < timezone.now()
+        if self.ends_at is not None:
+            return self.ends_at < timezone.now()
+        return self.starts_at < start_of_today()
+
+    @property
+    def is_multi_day(self):
+        return self.ends_at is not None and self.last_day != self.first_day
+
+    @property
+    def first_day(self):
+        return timezone.localtime(self.starts_at).date()
+
+    @property
+    def last_day(self):
+        return timezone.localtime(self.ends_at or self.starts_at).date()
+
+    def happens_on(self, day):
+        """True if the event takes place on that day (for trips: any of their days)."""
+        return self.first_day <= day <= self.last_day
+
+    @property
+    def needs_answer(self):
+        """
+        Waiting for the member's answer: answers are open and they haven't answered.
+        Only on events loaded with `with_details(member)`.
+        """
+        return self.rsvp_open and getattr(self, "my_answer", None) is None
 
     @property
     def rsvp_open(self):
@@ -147,10 +228,3 @@ class Guest(models.Model):
 
     def __str__(self):
         return self.name or "+1"
-
-
-def with_counts(events):
-    """Add going/maybe counts to a list of events in one query (for lists and cards)."""
-    return events.annotate(
-        going_count=Count("rsvps", filter=Q(rsvps__answer=RSVP.Answer.GOING), distinct=True),
-    )

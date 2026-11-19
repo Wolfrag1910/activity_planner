@@ -2,9 +2,13 @@
 {% comment %}
   Going / Maybe / No. Choosing Going saves straight away (events.js); choosing Maybe or No
   reveals the quick reasons and note, then "Save my answer". Works without JavaScript too.
+  Used on the event page and in the quick preview (in_preview: sent with htmx, the
+  preview redraws itself instead of the whole page reloading).
 {% endcomment %}
-<form method="post" action="{% url 'event_answer' event.pk %}" class="answer-form stack" data-answer-form novalidate>
+<form method="post" action="{% url 'event_answer' event.pk %}" class="answer-form stack" data-answer-form novalidate
+      {% if in_preview %}hx-post="{% url 'event_answer' event.pk %}" hx-target="#preview-body"{% endif %}>
   {% csrf_token %}
+  {% if in_preview %}<input type="hidden" name="from" value="preview">{% endif %}
   <fieldset class="segmented answer-choices">
     <legend class="visually-hidden">{% translate "Are you coming?" %}</legend>
     {% for choice in rsvp_form.answer %}
