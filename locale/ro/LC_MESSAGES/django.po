@@ -444,3 +444,283 @@ msgid_plural "%(counter)s people in Cumetria"
 msgstr[0] "%(counter)s persoană în Cumetria"
 msgstr[1] "%(counter)s persoane în Cumetria"
 msgstr[2] "%(counter)s de persoane în Cumetria"
+
+# --- Step 3: events ---
+
+msgid "Upcoming"
+msgstr "Urmează"
+
+msgid "Propose"
+msgstr "Propune"
+
+msgid "Nothing planned yet. Propose the first event!"
+msgstr "Nimic plănuit încă. Propune primul eveniment!"
+
+msgid "The full home page (today, waiting for your answer, categories) arrives in the next step."
+msgstr "Pagina principală completă (azi, ce așteaptă răspunsul tău, categorii) vine în pasul următor."
+
+msgid "Are you coming?"
+msgstr "Vii?"
+
+msgid "Quick reason"
+msgstr "Motiv rapid"
+
+msgid "e.g. I'll know by Friday"
+msgstr "de ex. Știu până vineri"
+
+msgid "Save my answer"
+msgstr "Salvează răspunsul"
+
+msgid "cancelled"
+msgstr "anulat"
+
+msgid "Cancel event"
+msgstr "Anulează evenimentul"
+
+msgid "Keep it"
+msgstr "Păstrează-l"
+
+msgid "Cancel <strong>%(title)s</strong>? It stays visible as cancelled, and nobody can answer any more."
+msgstr "Anulezi <strong>%(title)s</strong>? Rămâne vizibil ca anulat și nimeni nu mai poate răspunde."
+
+msgid "Edit event"
+msgstr "Modifică evenimentul"
+
+msgid "Cancelled"
+msgstr "Anulat"
+
+msgid "Past"
+msgstr "Trecut"
+
+msgid "Confirmed"
+msgstr "Confirmat"
+
+msgid "This event was cancelled."
+msgstr "Evenimentul a fost anulat."
+
+msgid "Map"
+msgstr "Hartă"
+
+msgid "Online"
+msgstr "Online"
+
+msgid "Join"
+msgstr "Intră"
+
+msgid "Your answer"
+msgstr "Răspunsul tău"
+
+msgid "Answers are closed: the event was cancelled."
+msgstr "Răspunsurile sunt închise: evenimentul a fost anulat."
+
+msgid "Answers are closed."
+msgstr "Răspunsurile sunt închise."
+
+msgid "Surprise guest"
+msgstr "Invitat surpriză"
+
+msgid "Remove"
+msgstr "Scoate"
+
+msgid "No spots left for guests."
+msgstr "Nu mai sunt locuri pentru invitați."
+
+msgid "Bring a guest (+1)"
+msgstr "Adu un invitat (+1)"
+
+msgid "Add guest"
+msgstr "Adaugă invitatul"
+
+msgid "Who's coming"
+msgstr "Cine vine"
+
+msgid "Going"
+msgstr "Vin"
+
+msgid "surprise guest"
+msgstr "invitat surpriză"
+
+msgid "Maybe"
+msgstr "Poate"
+
+msgid "No"
+msgstr "Nu"
+
+msgid "Nobody has answered yet."
+msgstr "N-a răspuns nimeni încă."
+
+msgid "Edit or cancel"
+msgstr "Modifică sau anulează"
+
+msgid "Details"
+msgstr "Detalii"
+
+msgid "Name, or leave empty for a surprise"
+msgstr "Nume, sau lasă gol pentru surpriză"
+
+msgid "Proposed by %(name)s"
+msgstr "Propus de %(name)s"
+
+msgid "Answer by %(answer_by)s"
+msgstr "Răspunde până %(answer_by)s"
+
+msgid "You answered: %(answer)s."
+msgstr "Ai răspuns: %(answer)s."
+
+msgid "%(taken)s of %(total)s spots taken"
+msgstr "%(taken)s din %(total)s locuri ocupate"
+
+msgid "Category"
+msgstr "Categorie"
+
+msgid "When"
+msgstr "Când"
+
+msgid "The end is optional. For trips and holidays, pick a later end date."
+msgstr "Sfârșitul e opțional. Pentru excursii și vacanțe, alege o dată de sfârșit mai târzie."
+
+msgid "For gaming"
+msgstr "Pentru jocuri"
+
+msgid "Answer by (optional)"
+msgstr "Răspuns până la (opțional)"
+
+msgid "Left empty, people can answer until the event starts."
+msgstr "Dacă rămâne gol, se poate răspunde până începe evenimentul."
+
+msgid "Publish event"
+msgstr "Publică evenimentul"
+
+msgid "Save changes"
+msgstr "Salvează modificările"
+
+msgid "Close without saving"
+msgstr "Închide fără să salvezi"
+
+msgid "Starts"
+msgstr "Începe"
+
+msgid "At"
+msgstr "La ora"
+
+msgid "Ends"
+msgstr "Se termină"
+
+msgid "Answer by"
+msgstr "Răspuns până la"
+
+msgid "Online link"
+msgstr "Link online"
+
+msgid "Title"
+msgstr "Titlu"
+
+msgid "Where"
+msgstr "Unde"
+
+msgid "Spots"
+msgstr "Locuri"
+
+msgid "Game"
+msgstr "Joc"
+
+msgid "Please give the event a title."
+msgstr "Dă-i evenimentului un titlu."
+
+msgid "The end must be after the start."
+msgstr "Sfârșitul trebuie să fie după început."
+
+msgid "People need to answer before the event starts."
+msgstr "Lumea trebuie să răspundă înainte să înceapă evenimentul."
+
+msgid "Note (optional)"
+msgstr "Notă (opțional)"
+
+msgid "Pick a quick reason."
+msgstr "Alege un motiv rapid."
+
+msgid "Sorry, the event is full."
+msgstr "Ne pare rău, evenimentul e plin."
+
+msgid "Guest's name (optional)"
+msgstr "Numele invitatului (opțional)"
+
+msgid "Outdoors"
+msgstr "În aer liber"
+
+msgid "Trips"
+msgstr "Excursii"
+
+msgid "Vacations"
+msgstr "Vacanțe"
+
+msgid "Gaming"
+msgstr "Jocuri"
+
+msgid "category"
+msgstr "categorie"
+
+msgid "title"
+msgstr "titlu"
+
+msgid "details"
+msgstr "detalii"
+
+msgid "starts"
+msgstr "începe"
+
+msgid "ends"
+msgstr "se termină"
+
+msgid "where"
+msgstr "unde"
+
+msgid "spots"
+msgstr "locuri"
+
+msgid "answer by"
+msgstr "răspuns până la"
+
+msgid "game"
+msgstr "joc"
+
+msgid "online link"
+msgstr "link online"
+
+msgid "event"
+msgstr "eveniment"
+
+msgid "events"
+msgstr "evenimente"
+
+msgid "Working"
+msgstr "Lucrez"
+
+msgid "Out of town"
+msgstr "Plecat din oraș"
+
+msgid "Not feeling it"
+msgstr "Nu am chef"
+
+msgid "Other"
+msgstr "Altceva"
+
+msgid "Meeting point or address. The event page links it to the map."
+msgstr "Punct de întâlnire sau adresă. Pagina evenimentului o leagă de hartă."
+
+msgid "Discord or call link, if it's online."
+msgstr "Link de Discord sau de apel, dacă e online."
+
+msgid "What to bring, how to get there, anything people should know."
+msgstr "Ce să aducă, cum se ajunge, orice trebuie să știe lumea."
+
+msgid "Guests count too. Empty means no limit."
+msgstr "Se socotesc și invitații. Gol înseamnă fără limită."
+
+msgid "%(counter)s going"
+msgid_plural "%(counter)s going"
+msgstr[0] "%(counter)s vine"
+msgstr[1] "%(counter)s vin"
+msgstr[2] "%(counter)s de oameni vin"
+msgid "Day"
+msgstr "Ziua"

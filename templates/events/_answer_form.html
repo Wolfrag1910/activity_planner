@@ -1,0 +1,33 @@
+{% load i18n %}
+{% comment %}
+  Going / Maybe / No. Choosing Going saves straight away (events.js); choosing Maybe or No
+  reveals the quick reasons and note, then "Save my answer". Works without JavaScript too.
+{% endcomment %}
+<form method="post" action="{% url 'event_answer' event.pk %}" class="answer-form stack" data-answer-form novalidate>
+  {% csrf_token %}
+  <fieldset class="segmented answer-choices">
+    <legend class="visually-hidden">{% translate "Are you coming?" %}</legend>
+    {% for choice in rsvp_form.answer %}
+      <label>{{ choice.tag }}{{ choice.choice_label }}</label>
+    {% endfor %}
+  </fieldset>
+  {% if rsvp_form.answer.errors %}<p class="field-error" id="{{ rsvp_form.answer.auto_id }}-error">{{ rsvp_form.answer.errors.0 }}</p>{% endif %}
+
+  <div class="reason-panel">
+    <fieldset class="field">
+      <legend>{% translate "Quick reason" %}</legend>
+      <div class="reason-options">
+        {% for choice in rsvp_form.reason %}
+          <label class="reason-option">{{ choice.tag }}{{ choice.choice_label }}</label>
+        {% endfor %}
+      </div>
+      {% if rsvp_form.reason.errors %}<p class="field-error" id="{{ rsvp_form.reason.auto_id }}-error">{{ rsvp_form.reason.errors.0 }}</p>{% endif %}
+    </fieldset>
+    <div class="field">
+      <label for="{{ rsvp_form.note.id_for_label }}">{{ rsvp_form.note.label }}</label>
+      <input type="text" name="note" id="{{ rsvp_form.note.id_for_label }}" maxlength="200" value="{{ rsvp_form.note.value|default:'' }}" placeholder="{% translate "e.g. I'll know by Friday" %}">
+    </div>
+  </div>
+
+  <button class="button button-dark save-answer" type="submit">{% translate "Save my answer" %}</button>
+</form>

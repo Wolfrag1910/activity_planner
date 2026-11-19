@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Cancel event" %} · Cumetria{% endblock %}
+
+{% block content %}
+  <div class="page-heading-row">
+    <a class="icon-button" href="{% url 'event' event.pk %}" aria-label="{% translate 'Back' %}">{% include "partials/icon.html" with name="back" %}</a>
+    <h1>{% translate "Cancel event" %}</h1>
+  </div>
+  <section class="card stack">
+    <p>{% blocktranslate with title=event.title %}Cancel <strong>{{ title }}</strong>? It stays visible as cancelled, and nobody can answer any more.{% endblocktranslate %}</p>
+    <form method="post" class="form-actions">
+      {% csrf_token %}
+      <a class="button" href="{% url 'event' event.pk %}">{% translate "Keep it" %}</a>
+      <button class="button button-primary" type="submit">{% translate "Cancel event" %}</button>
+    </form>
+  </section>
+{% endblock %}

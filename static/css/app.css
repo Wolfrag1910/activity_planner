@@ -332,6 +332,164 @@ fieldset[disabled].segmented label:not(.is-selected) { color: var(--color-muted)
 .waiting-invite { flex-direction: row; align-items: center; gap: 10px; padding: 12px 14px; flex-wrap: wrap; }
 .waiting-invite-text { flex: 1; min-width: 140px; display: flex; flex-direction: column; }
 
+/* --- Events --------------------------------------------------------------- */
+
+.section-title-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.two-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.field legend { font-size: 14px; font-weight: 600; padding: 0 0 8px; }
+fieldset.field { border: none; margin: 0; padding: 0; }
+.field select, .field textarea, .field input[type="time"], .field input[type="number"], .field input[type="url"] {
+  min-height: 50px;
+  padding: 10px 14px;
+  border-radius: var(--radius-button);
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+}
+.field textarea { resize: vertical; line-height: 1.5; }
+.field [aria-invalid="true"] { border-color: var(--color-accent); border-width: 2px; }
+
+/* Category chips and colours */
+.chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 12px; }
+.chip-outdoors { background: var(--cat-outdoors-bg); color: var(--cat-outdoors-text); }
+.chip-trips { background: var(--cat-trips-bg); color: var(--cat-trips-text); }
+.chip-vacations { background: var(--cat-vacations-bg); color: var(--cat-vacations-text); }
+.chip-gaming { background: var(--cat-gaming-bg); color: var(--cat-gaming-text); }
+.chip-confirmed { background: var(--cat-outdoors-text); color: var(--color-surface); }
+.chip-cancelled { background: var(--color-text); color: var(--color-surface); }
+.chip-quiet { background: var(--color-track); color: var(--color-text); }
+
+/* Propose form: category picker (2 x 2) */
+.category-picker { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.category-option {
+  position: relative;
+  min-height: 48px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-button);
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  font-size: 14px; font-weight: 500;
+  cursor: pointer;
+}
+.category-option input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.category-option:has(input:focus-visible) { outline: 3px solid var(--color-focus); outline-offset: 2px; }
+.category-option-outdoors:has(input:checked) { background: var(--cat-outdoors-bg); color: var(--cat-outdoors-text); border: 2px solid var(--cat-outdoors-text); font-weight: 600; }
+.category-option-trips:has(input:checked) { background: var(--cat-trips-bg); color: var(--cat-trips-text); border: 2px solid var(--cat-trips-text); font-weight: 600; }
+.category-option-vacations:has(input:checked) { background: var(--cat-vacations-bg); color: var(--cat-vacations-text); border: 2px solid var(--cat-vacations-text); font-weight: 600; }
+.category-option-gaming:has(input:checked) { background: var(--cat-gaming-bg); color: var(--cat-gaming-text); border: 2px solid var(--cat-gaming-text); font-weight: 600; }
+
+/* Gaming fields appear only when Gaming is picked (or when they already have a value/error). */
+.gaming-fields { display: none; }
+.event-form:has(input[name="category"][value="gaming"]:checked) .gaming-fields { display: flex; flex-direction: column; gap: 12px; }
+
+.event-form { gap: 20px; padding-bottom: 8px; }
+.sticky-actions {
+  position: sticky;
+  bottom: calc(84px + env(safe-area-inset-bottom));
+  padding: 10px 0;
+  background: linear-gradient(to bottom, transparent, var(--color-bg) 30%);
+}
+
+/* Event page */
+.event-page { gap: 20px; }
+.event-topbar { display: flex; justify-content: space-between; align-items: center; }
+.event-header { display: flex; flex-direction: column; gap: 8px; }
+.event-title { font-size: 32px; }
+.info-card .info-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--color-line-soft);
+}
+.info-card .info-row:last-child { border-bottom: none; }
+.info-row .icon { color: var(--color-muted); width: 20px; height: 20px; }
+.info-text { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.info-main { font-weight: 600; font-size: 15px; }
+.info-link { font-weight: 600; font-size: 14px; min-height: 44px; display: inline-flex; align-items: center; }
+.event-description p { margin: 0 0 10px; line-height: 1.55; }
+.note-quiet { background: var(--color-track); color: var(--color-text); }
+
+/* The "⋯" menu for organizers */
+.menu { position: relative; }
+.menu summary { list-style: none; cursor: pointer; }
+.menu summary::-webkit-details-marker { display: none; }
+.menu-panel {
+  position: absolute; right: 0; top: 50px; z-index: 10;
+  min-width: 200px;
+  display: flex; flex-direction: column;
+  padding: 6px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(43, 33, 26, 0.12);
+}
+.menu-panel a { padding: 12px; border-radius: 10px; color: var(--color-text); text-decoration: none; font-weight: 500; }
+.menu-panel a:hover { background: var(--color-bg); }
+
+/* Answer form: reasons appear only for Maybe or No */
+.answer-choices label:has(input[value="going"]:checked) { background: var(--color-accent); color: var(--color-on-accent); }
+.reason-panel { display: none; flex-direction: column; gap: 12px; }
+.answer-form:has(input[name="answer"][value="maybe"]:checked) .reason-panel,
+.answer-form:has(input[name="answer"][value="no"]:checked) .reason-panel { display: flex; }
+.reason-options { display: flex; flex-wrap: wrap; gap: 8px; }
+.reason-option {
+  position: relative;
+  min-height: 44px; padding: 0 14px;
+  display: inline-flex; align-items: center;
+  border-radius: 22px;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  font-size: 14px;
+  cursor: pointer;
+}
+.reason-option input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.reason-option:has(input:checked) { background: var(--color-text); color: var(--color-surface); border-color: var(--color-text); }
+.reason-option:has(input:focus-visible) { outline: 3px solid var(--color-focus); outline-offset: 2px; }
+.save-answer { align-self: flex-start; }
+.js .answer-form:not(:has(input[name="answer"][value="maybe"]:checked, input[name="answer"][value="no"]:checked)) .save-answer { display: none; }
+
+.guests-box { display: flex; flex-direction: column; gap: 12px; padding: 14px; border-radius: 16px; border: 1px dashed var(--color-line); }
+.guest-list li { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.guest-form { display: flex; flex-direction: column; gap: 8px; }
+.guest-form .button { align-self: flex-start; }
+
+.group-label { font-size: 12px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: var(--color-muted); }
+.group-label-going { color: var(--cat-outdoors-text); }
+.people-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.person-chip { font-size: 14px; padding: 6px 12px; border-radius: 14px; background: var(--color-surface); border: 1px solid var(--color-line); }
+.reason-list { display: flex; flex-direction: column; gap: 4px; font-size: 15px; }
+
+/* Event rows in lists */
+.event-row {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 14px;
+  color: var(--color-text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-line-soft);
+}
+.list-card .event-row:last-child { border-bottom: none; }
+a.event-row:hover { background: var(--color-bg); }
+.event-row.is-cancelled .event-row-title { text-decoration: line-through; color: var(--color-muted); }
+.event-row-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.event-row-title { font-weight: 600; font-size: 15px; }
+.date-block {
+  width: 48px; height: 52px; flex-shrink: 0;
+  border-radius: 12px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.date-block-day { font-size: 11px; font-weight: 600; }
+.date-block-number { font-size: 19px; font-weight: 700; line-height: 1; }
+.date-block-outdoors { background: var(--cat-outdoors-bg); color: var(--cat-outdoors-text); }
+.date-block-trips { background: var(--cat-trips-bg); color: var(--cat-trips-text); }
+.date-block-vacations { background: var(--cat-vacations-bg); color: var(--cat-vacations-text); }
+.date-block-gaming { background: var(--cat-gaming-bg); color: var(--cat-gaming-text); }
+
+@media (min-width: 900px) {
+  .sticky-actions { bottom: 0; }
+  .event-form, .event-page { max-width: 720px; }
+}
+
 /* --- Pages for visitors who aren't signed in ----------------------------- */
 
 .public-frame {

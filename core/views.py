@@ -16,12 +16,19 @@ from .dates import friendly_date
 PLACEHOLDER_PAGES = {
     "calendar": _("Calendar"),
     "explore": _("Explore"),
-    "propose": _("Propose an event"),
 }
 
 
 def home(request):
-    return render(request, "core/home.html", {"today_label": friendly_date(timezone.localdate())})
+    # A simple upcoming list for now; step 4 replaces this with the real home page.
+    from events.models import Event, with_counts
+
+    upcoming = with_counts(Event.objects.upcoming().select_related("organizer"))[:20]
+    return render(
+        request,
+        "core/home.html",
+        {"today_label": friendly_date(timezone.localdate()), "upcoming": upcoming},
+    )
 
 
 def placeholder(request, page):

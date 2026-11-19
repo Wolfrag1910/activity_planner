@@ -6,7 +6,6 @@ urlpatterns = [
     path("", views.home, name="home"),
     path("calendar/", views.placeholder, {"page": "calendar"}, name="calendar"),
     path("explore/", views.placeholder, {"page": "explore"}, name="explore"),
-    path("propose/", views.placeholder, {"page": "propose"}, name="propose"),
     path("language/", views.switch_language, name="switch_language"),
     path("media/<path:path>", views.media, name="media"),
     path("healthz", views.health, name="health"),
