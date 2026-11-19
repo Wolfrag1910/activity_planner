@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Members" %} · Cumetria{% endblock %}
+
+{% block content %}
+  <div class="page-heading">
+    <h1>{% translate "Members" %}</h1>
+    <p class="muted">{% blocktranslate count counter=rows|length %}{{ counter }} person in Cumetria{% plural %}{{ counter }} people in Cumetria{% endblocktranslate %}</p>
+  </div>
+
+  {% if next_birthday %}
+    <p class="note note-accent">
+      {% include "partials/icon.html" with name="gift" %}
+      <span>
+        {% if next_birthday.days == 0 %}
+          {% blocktranslate with name=next_birthday.member.name age=next_birthday.age %}<strong>{{ name }}</strong> turns {{ age }} today!{% endblocktranslate %}
+        {% elif next_birthday.days == 1 %}
+          {% blocktranslate with name=next_birthday.member.name age=next_birthday.age %}<strong>{{ name }}</strong> turns {{ age }} tomorrow.{% endblocktranslate %}
+        {% else %}
+          {% blocktranslate with name=next_birthday.member.name age=next_birthday.age days=next_birthday.days day=next_birthday.date %}<strong>{{ name }}</strong> turns {{ age }} in {{ days }} days, on {{ day }}.{% endblocktranslate %}
+        {% endif %}
+      </span>
+    </p>
+  {% endif %}
+
+  <ul class="card list-card plain-list">
+    {% for row in rows %}
+      <li>
+        <a class="list-row" href="{% url 'member' row.member.pk %}">
+          {% include "partials/avatar.html" with member=row.member %}
+          <span class="list-row-text">
+            <span class="list-row-title">{{ row.member.name }}</span>
+            {% if row.birthday_day %}<span class="muted small">{% blocktranslate with day=row.birthday_day age=row.birthday_turns %}Birthday {{ day }}, turns {{ age }}{% endblocktranslate %}</span>{% endif %}
+          </span>
+          {% if row.member.is_admin %}<span class="badge">{% translate "Admin" %}</span>{% endif %}
+          {% include "partials/icon.html" with name="chevron" %}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

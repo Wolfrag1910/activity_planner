@@ -1,32 +1,23 @@
+from pathlib import Path
+
 from django.conf import settings
 from django.contrib.auth.decorators import login_not_required
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import FileResponse, Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from django.utils import timezone
 from django.utils.http import url_has_allowed_host_and_scheme
-from django.views.decorators.http import require_POST
-from django.utils import formats, timezone, translation
 from django.utils.translation import gettext_lazy as _
+from django.views.decorators.http import require_POST
+
+from .dates import friendly_date
 
 # Pages that exist in the menu but are built in later MVP steps.
 # Each shows a short "coming later" note so the layout can be tried today.
 PLACEHOLDER_PAGES = {
     "calendar": _("Calendar"),
     "explore": _("Explore"),
-    "me": _("Me"),
     "propose": _("Propose an event"),
 }
-
-
-def friendly_date(day):
-    """
-    The date as people write it: "Thursday, 19 November" / "Joi, 19 noiembrie".
-    Romanian writes month and weekday names in lowercase, so only the first
-    letter is capitalised there.
-    """
-    text = formats.date_format(day, "l, j F")
-    if translation.get_language() == "ro":
-        text = text.lower().capitalize()
-    return text
 
 
 def home(request):
@@ -60,6 +51,20 @@ def switch_language(request):
             samesite="Lax",
             secure=settings.LANGUAGE_COOKIE_SECURE,
         )
+    return response
+
+
+def media(request, path):
+    """
+    Uploaded files (member photos, later event albums), shown only to signed-in
+    members. Serving them through Django instead of directly keeps them private.
+    """
+    root = Path(settings.MEDIA_ROOT).resolve()
+    file_path = (root / path).resolve()
+    if root not in file_path.parents or not file_path.is_file():
+        raise Http404
+    response = FileResponse(file_path.open("rb"))
+    response["Cache-Control"] = "private, max-age=604800"
     return response
 
 

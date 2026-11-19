@@ -1,0 +1,4 @@
+{% comment %}
+  A member's photo, or their initial on a soft colour. Decorative: the name is always written next to it.
+  Usage: {% include "partials/avatar.html" with member=someone size="lg" %}
+{% endcomment %}{% if member.photo %}<img class="avatar avatar-{{ size|default:'md' }}" src="{{ member.photo.url }}" alt="" aria-hidden="true">{% else %}<span class="avatar avatar-{{ size|default:'md' }} avatar-tone-{{ member.avatar_tone }}" aria-hidden="true">{{ member.initial }}</span>{% endif %}

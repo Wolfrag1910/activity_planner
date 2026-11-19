@@ -5,6 +5,8 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
+from core.dates import age_on, next_birthday
+
 
 class MemberManager(BaseUserManager):
     """Creates members. Nobody has a password: they sign in with Google or an emailed link."""
@@ -81,6 +83,18 @@ class Member(AbstractBaseUser, PermissionsMixin):
     @property
     def initial(self):
         return self.name[:1].upper()
+
+    @property
+    def avatar_tone(self):
+        """One of five soft colours for the initials circle, so members are easy to tell apart."""
+        return (self.pk or 0) % 5 + 1
+
+    def next_birthday(self, today):
+        return next_birthday(self.birthday, today) if self.birthday else None
+
+    def age_at_next_birthday(self, today):
+        upcoming = self.next_birthday(today)
+        return age_on(self.birthday, upcoming) if upcoming else None
 
     def save(self, *args, **kwargs):
         self.email = self.email.lower()

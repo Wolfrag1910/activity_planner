@@ -28,7 +28,7 @@ docker compose exec web python manage.py create_owner --email you@gmail.com --na
 docker compose exec web python manage.py create_invite --name Bianca
 ```
 
-The first makes you the admin. The second prints an invite link (until the Admin page arrives).
+The first makes you the admin. The second prints an invite link; you can also create invites on the Admin page (Me → Admin tools).
 
 To sign in, open <http://localhost:8080>, type your email and press *Email me a sign-in link*. Locally no real email is sent: the email, with the link, appears in the `docker compose up` terminal.
 

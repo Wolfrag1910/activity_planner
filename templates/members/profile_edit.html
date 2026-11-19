@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Edit profile" %} · Cumetria{% endblock %}
+
+{% block content %}
+  <div class="page-heading-row">
+    <a class="icon-button" href="{% url 'me' %}" aria-label="{% translate 'Back' %}">{% include "partials/icon.html" with name="back" %}</a>
+    <h1>{% translate "Edit profile" %}</h1>
+  </div>
+
+  <form method="post" enctype="multipart/form-data" class="card stack form-card" novalidate>
+    {% csrf_token %}
+
+    <div class="photo-field">
+      {% include "partials/avatar.html" with member=user size="xl" %}
+      <div class="stack">
+        <div class="field">
+          <label for="{{ form.photo_upload.id_for_label }}">{% translate "Photo" %}</label>
+          <input type="file" name="photo_upload" id="{{ form.photo_upload.id_for_label }}" accept="image/*"
+                 {% if form.photo_upload.errors %}aria-invalid="true" aria-describedby="photo-error"{% endif %}>
+          {% if form.photo_upload.errors %}<p class="field-error" id="photo-error">{{ form.photo_upload.errors.0 }}</p>{% endif %}
+        </div>
+        {% if user.photo %}
+          <label class="check"><input type="checkbox" name="remove_photo"> {% translate "Remove my photo" %}</label>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="{{ form.name.id_for_label }}">{% translate "Name" %}</label>
+      <input type="text" name="name" id="{{ form.name.id_for_label }}" value="{{ form.name.value|default:'' }}" maxlength="60" required
+             {% if form.name.errors %}aria-invalid="true" aria-describedby="name-error"{% endif %}>
+      {% if form.name.errors %}<p class="field-error" id="name-error">{{ form.name.errors.0 }}</p>{% endif %}
+    </div>
+
+    <div class="field">
+      <label for="{{ form.birthday.id_for_label }}">{% translate "Birthday" %}</label>
+      {{ form.birthday }}
+      <p class="muted small">{% translate "Shown to the group with your age, and on the calendar." %}</p>
+      {% if form.birthday.errors %}<p class="field-error">{{ form.birthday.errors.0 }}</p>{% endif %}
+    </div>
+
+    <fieldset class="field segmented-field">
+      <legend>{% translate "Language" %}</legend>
+      <div class="segmented">
+        {% for choice in form.language %}
+          <label class="{% if choice.data.selected %}is-selected{% endif %}">{{ choice.tag }}{{ choice.choice_label }}</label>
+        {% endfor %}
+      </div>
+    </fieldset>
+
+    <div class="form-actions">
+      <a class="button" href="{% url 'me' %}">{% translate "Cancel" %}</a>
+      <button class="button button-primary" type="submit">{% translate "Save" %}</button>
+    </div>
+  </form>
+{% endblock %}

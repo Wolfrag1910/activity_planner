@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Me" %} · Cumetria{% endblock %}
+
+{% block content %}
+  <h1>{% translate "Me" %}</h1>
+
+  <section class="card profile-card" aria-label="{% translate 'Your profile' %}">
+    {% include "partials/avatar.html" with member=user size="lg" %}
+    <div class="profile-card-text">
+      <p class="profile-name">{{ user.name }}</p>
+      <p class="muted small">
+        {% if user.is_admin %}{% translate "Admin" %}{% if birthday_day %} · {% endif %}{% endif %}
+        {% if birthday_day %}{% blocktranslate with day=birthday_day %}birthday {{ day }}{% endblocktranslate %}{% elif not user.is_admin %}{% translate "Add your birthday so the group can celebrate." %}{% endif %}
+      </p>
+    </div>
+    <a class="button button-small" href="{% url 'profile_edit' %}">{% translate "Edit" %}</a>
+  </section>
+
+  <section class="stack" aria-labelledby="appearance-title">
+    <h2 id="appearance-title">{% translate "Appearance" %}</h2>
+    <fieldset class="look-options" disabled>
+      <legend class="visually-hidden">{% translate "Look" %}</legend>
+      <label class="look-option is-selected">
+        <input type="radio" name="look" value="picnic" checked>
+        <span class="look-sample look-sample-picnic" aria-hidden="true"><span class="look-sample-aa">Aa</span><span class="look-sample-bar"></span></span>
+        <span>Sunday Picnic</span>
+      </label>
+      <label class="look-option">
+        <input type="radio" name="look" value="postcard">
+        <span class="look-sample look-sample-postcard" aria-hidden="true"><span class="look-sample-aa">Aa</span><span class="look-sample-bar"></span></span>
+        <span>Postcard</span>
+      </label>
+    </fieldset>
+    <fieldset class="segmented" disabled>
+      <legend class="visually-hidden">{% translate "Light or dark" %}</legend>
+      <label class="is-selected"><input type="radio" name="mode" value="light" checked>{% translate "Light" %}</label>
+      <label><input type="radio" name="mode" value="dark">{% translate "Dark" %}</label>
+      <label><input type="radio" name="mode" value="auto">{% translate "Match phone" %}</label>
+    </fieldset>
+    <p class="muted small">{% translate "Postcard and dark mode arrive before the launch. You'll be able to switch here." %}</p>
+  </section>
+
+  <nav class="card list-card" aria-label="{% translate 'More' %}">
+    <a class="list-row" href="{% url 'members' %}">
+      <span class="list-row-text"><span class="list-row-title">{% translate "Members" %}</span><span class="muted small">{% translate "Everyone in the group" %}</span></span>
+      {% include "partials/icon.html" with name="chevron" %}
+    </a>
+    {% if user.is_admin %}
+      <a class="list-row" href="{% url 'admin_page' %}">
+        <span class="list-row-text"><span class="list-row-title">{% translate "Admin tools" %}</span><span class="muted small">{% translate "Invite and manage members (only you see this)" %}</span></span>
+        {% include "partials/icon.html" with name="chevron" %}
+      </a>
+    {% endif %}
+  </nav>
+
+  <form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button class="button button-quiet" type="submit">{% translate "Sign out" %}</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ member.name }} · Cumetria{% endblock %}
+
+{% block content %}
+  <div class="page-heading-row">
+    <a class="icon-button" href="{% url 'members' %}" aria-label="{% translate 'Back to members' %}">{% include "partials/icon.html" with name="back" %}</a>
+  </div>
+  <section class="member-hero">
+    {% include "partials/avatar.html" with member=member size="xl" %}
+    <h1>{{ member.name }}</h1>
+    {% if member.is_admin %}<span class="badge">{% translate "Admin" %}</span>{% endif %}
+    {% if birthday_day %}
+      <p class="muted">{% blocktranslate with day=birthday_day age=birthday_turns %}Birthday {{ day }}, turns {{ age }}{% endblocktranslate %}</p>
+    {% endif %}
+  </section>
+  <p class="muted small center">{% translate "Their upcoming plans will show here once events arrive." %}</p>
+{% endblock %}
