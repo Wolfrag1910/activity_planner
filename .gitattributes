@@ -1,0 +1,16 @@
+# Keep Linux line endings for files that run inside the Linux containers,
+# even when the repository is cloned on Windows. Without this, Windows Git
+# converts them and the container can't start ("exec ...: no such file").
+* text=auto
+*.sh text eol=lf
+Dockerfile text eol=lf
+Caddyfile text eol=lf
+*.py text eol=lf
+*.yml text eol=lf
+.env.example text eol=lf
+*.po text eol=lf
+
+# Binary files: never touch.
+*.woff2 binary
+*.png binary
+*.jpg binary
