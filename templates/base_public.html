@@ -11,7 +11,7 @@
 </head>
 <body class="public">
   {# Pages for visitors who aren't signed in yet: no menu, just the content. #}
-  <div class="public-frame">
+  <div class="public-frame {% block frame_class %}{% endblock %}">
     <header class="public-top">
       {% include "partials/language_switch.html" %}
     </header>

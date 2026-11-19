@@ -3,6 +3,8 @@
 
 {% block title %}{% translate "Admin" %} · Cumetria{% endblock %}
 
+{% block content_class %}content-narrow{% endblock %}
+
 {% block content %}
   <div class="page-heading-row">
     <a class="icon-button" href="{% url 'me' %}" aria-label="{% translate 'Back' %}">{% include "partials/icon.html" with name="back" %}</a>
@@ -93,7 +95,7 @@
 
   <section class="card stack" aria-labelledby="powers-title">
     <h2 id="powers-title">{% translate "Your extra powers" %}</h2>
-    <p><strong>{% translate "Edit or cancel any event" %}</strong><br><span class="muted small">{% translate "Coming with events: the menu on any event page will offer it, even for events you didn't organize." %}</span></p>
-    <p><strong>{% translate "Remove photos" %}</strong><br><span class="muted small">{% translate "Coming with photo albums: every photo will have a delete option for you." %}</span></p>
+    <p><strong>{% translate "Edit or cancel any event" %}</strong><br><span class="muted small">{% translate "Use the ⋯ menu at the top of any event page, even for events you didn't organize." %}</span></p>
+    <p><strong>{% translate "Remove photos" %}</strong><br><span class="muted small">{% translate "Coming with photo albums (v2): every photo will have a delete option for you." %}</span></p>
   </section>
 {% endblock %}

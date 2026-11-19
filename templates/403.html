@@ -1,0 +1,11 @@
+{% extends "base_public.html" %}
+{% load i18n %}
+{# Shown when a member tries something only the organizer or the admin can do. #}
+{% block title %}{% translate "Not allowed" %} · Cumetria{% endblock %}
+{% block content %}
+  <div class="error-page">
+    <h1>{% translate "Not for you, sorry" %}</h1>
+    <p class="muted">{% translate "This is only for the organizer of the event or the admin." %}</p>
+    <a class="button button-dark" href="/">{% translate "Go to the home page" %}</a>
+  </div>
+{% endblock %}

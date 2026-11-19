@@ -73,6 +73,8 @@ button { font: inherit; cursor: pointer; }
 }
 
 .brand {
+  display: inline-flex; align-items: center;
+  min-height: 44px;
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 26px;
@@ -309,12 +311,22 @@ fieldset[disabled].segmented label:not(.is-selected) { color: var(--color-muted)
 /* Forms */
 .form-card { gap: 18px; }
 .field input[type="date"], .field input[type="file"] { min-height: 50px; padding: 10px 14px; }
+.field input[type="file"] { max-width: 100%; min-width: 0; font-size: 14px; }
+.field input[type="file"]::file-selector-button {
+  min-height: 40px; margin-right: 10px; padding: 0 14px;
+  border-radius: 12px; border: 1.5px solid var(--color-line);
+  background: var(--color-surface); color: var(--color-text);
+  font: inherit; font-weight: 600; cursor: pointer;
+}
 .check { display: flex; align-items: center; gap: 8px; min-height: 44px; font-size: 14px; }
 .check input { width: 20px; height: 20px; }
 .photo-field { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
 .form-actions { display: flex; justify-content: flex-end; gap: 10px; }
+.form-actions-wrap { flex-wrap: wrap; }
+.form-actions-wrap .button { flex: 1 1 auto; white-space: nowrap; }
 
 /* Member page */
+.member-plans { margin-top: 8px; }
 .member-hero { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 8px 0; text-align: center; }
 
 /* Admin page */
@@ -406,7 +418,7 @@ fieldset.field { border: none; margin: 0; padding: 0; }
 .info-row .icon { color: var(--color-muted); width: 20px; height: 20px; }
 .info-text { flex: 1; min-width: 0; display: flex; flex-direction: column; }
 .info-main { font-weight: 600; font-size: 15px; }
-.info-link { font-weight: 600; font-size: 14px; min-height: 44px; display: inline-flex; align-items: center; }
+.info-link { font-weight: 600; font-size: 14px; min-height: 44px; min-width: 44px; display: inline-flex; align-items: center; justify-content: center; }
 .event-description p { margin: 0 0 10px; line-height: 1.55; }
 .note-quiet { background: var(--color-track); color: var(--color-text); }
 
@@ -495,7 +507,9 @@ a.event-row:hover { background: var(--color-bg); }
 
 .grow { flex: 1; min-width: 0; }
 .stack-tight { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-.text-link { font-size: 14px; font-weight: 600; min-height: 44px; display: inline-flex; align-items: center; }
+/* Links on the page background use the darker terracotta: the regular one is just
+   under the 4.5:1 contrast needed for small text on cream. */
+.text-link { font-size: 14px; font-weight: 600; min-height: 44px; display: inline-flex; align-items: center; color: var(--color-accent-strong-text); }
 .empty-card { align-items: flex-start; gap: 12px; }
 
 /* Home. On phones everything is one column, and "Waiting for your answer" sits
@@ -773,6 +787,7 @@ a.mini-day:hover { background: var(--color-bg); }
 .login-title { font-size: 44px; letter-spacing: -0.8px; }
 .login-tagline { font-size: 16px; color: var(--color-muted); }
 .invite-card { flex-direction: row; align-items: center; gap: 12px; padding: 14px; }
+.login-panel { flex: 1; display: flex; flex-direction: column; gap: 18px; }
 .login-actions { display: flex; flex-direction: column; gap: 12px; margin-top: auto; }
 .login-footnote { font-size: 13px; color: var(--color-muted); text-align: center; }
 
@@ -788,6 +803,26 @@ a.mini-day:hover { background: var(--color-bg); }
 .message-page { display: flex; flex-direction: column; gap: 14px; padding-top: 32px; }
 .message-page .button { align-self: flex-start; }
 .message-page form .button { align-self: stretch; }
+
+/* Error pages (not found, not allowed) */
+.error-page { display: flex; flex-direction: column; gap: 14px; padding-top: 32px; }
+.error-page .button { align-self: flex-start; }
+
+@media (min-width: 900px) {
+  /* Sign-in page on desktop: the group photo on the left, the form on the right. */
+  .public-frame-split { max-width: 1040px; }
+  .public-frame-split .public-main {
+    display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    column-gap: 56px; align-items: center;
+    padding-top: 24px;
+  }
+  .public-frame-split .login-photo { height: min(620px, 78vh); border-radius: 28px; }
+  .public-frame-split .login-actions { margin-top: 12px; }
+  .public-frame-split .login-footnote { text-align: left; }
+
+  /* Simple pages (members, profile, admin, cancelling) read better narrower. */
+  .content-narrow { max-width: 760px; }
+}
 
 /* --- Phone bottom bar ---------------------------------------------------- */
 

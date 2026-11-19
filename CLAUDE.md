@@ -17,7 +17,7 @@ Reads Python and Java, does not write HTML, CSS or JavaScript. Explain changes i
 
 - **Stack:** Django, server-rendered templates, HTMX, plain CSS custom properties, SQLite, Docker Compose, Caddy. No SPA framework, no CSS framework, no build step for front-end assets unless agreed.
 - **ARM64:** the server is ARM64. Every dependency and Docker image must support `linux/arm64`.
-- **Bilingual:** every user-facing string goes through Django translations, with Romanian and English provided. Dates and times use the Bucharest time zone.
+- **Bilingual:** every user-facing string goes through Django translations, with Romanian and English provided. Dates and times use the Bucharest time zone. Romanian texts live in `locale/ro/LC_MESSAGES/django.po` (written by hand); `core/tests/test_translations.py` fails if a string has no Romanian, and lists the ones to add.
 - **Themes:** looks and modes are CSS variable sets selected by attributes on `<html>` (for example `data-look="picnic"`, `data-mode="light"`). Components use variables only, never hard-coded colours. Looks change appearance only, never features.
 - **Phone first:** design for 390px wide, then adapt for desktop. Tap targets at least 44px, text contrast at least 4.5:1, real `<button>`/`<a>`/`<label>` elements, no emoji in the interface.
 - **Scope:** build only what the current release in `docs/PLAN.md` includes. Ideas outside it go to the owner, not into the code.

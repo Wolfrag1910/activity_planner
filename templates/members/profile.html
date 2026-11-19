@@ -3,6 +3,8 @@
 
 {% block title %}{% translate "Me" %} · Cumetria{% endblock %}
 
+{% block content_class %}content-narrow{% endblock %}
+
 {% block content %}
   <h1>{% translate "Me" %}</h1>
 
@@ -16,6 +18,20 @@
       </p>
     </div>
     <a class="button button-small" href="{% url 'profile_edit' %}">{% translate "Edit" %}</a>
+  </section>
+
+  <section class="stack" aria-labelledby="plans-title">
+    <h2 id="plans-title">{% translate "Your plans" %}</h2>
+    {% if plans %}
+      <div class="card list-card">
+        {% for event in plans %}{% include "events/_event_row.html" %}{% endfor %}
+      </div>
+    {% else %}
+      <div class="card empty-card">
+        <p class="muted">{% translate "You haven't said yes to anything yet." %}</p>
+        <a class="button button-small" href="{% url 'calendar' %}?view=list">{% translate "See what's coming up" %}</a>
+      </div>
+    {% endif %}
   </section>
 
   <section class="stack" aria-labelledby="appearance-title">
