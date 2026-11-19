@@ -100,12 +100,21 @@ def render_detail(request, event, rsvp_form=None, status=200):
 
 @require_POST
 def answer(request, pk):
-    event = get_object_or_404(Event, pk=pk)
+    """
+    Saves Going / Maybe / No. Sent from the event page (reloads the page) or from
+    the quick preview (only the preview is redrawn, with "from=preview").
+    """
+    from .pages import render_preview
+
+    event = get_object_or_404(Event.objects.select_related("organizer"), pk=pk)
+    in_preview = request.POST.get("from") == "preview"
     if not event.rsvp_open:
-        return redirect(answer_url(event))
+        return render_preview(request, event) if in_preview else redirect(answer_url(event))
     mine = RSVP.objects.filter(event=event, member=request.user).first()
     form = RSVPForm(request.POST, event=event, current=mine)
     if not form.is_valid():
+        if in_preview:
+            return render_preview(request, event, rsvp_form=form)
         return render_detail(request, event, rsvp_form=form, status=400)
     data = form.cleaned_data
     with transaction.atomic():
@@ -116,6 +125,8 @@ def answer(request, pk):
         )
         if rsvp.answer != RSVP.Answer.GOING:
             rsvp.guests.all().delete()  # guests come with you; not going means they aren't either
+    if in_preview:
+        return render_preview(request, event, saved=True)
     return redirect(answer_url(event))
 
 

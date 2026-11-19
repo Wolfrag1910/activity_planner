@@ -1,8 +1,12 @@
 from django.urls import path
 
-from . import views
+from . import pages, views
 
 urlpatterns = [
+    path("", pages.home, name="home"),
+    path("explore/", pages.explore, name="explore"),
+    path("explore/<slug:category>/", pages.category, name="category"),
+    path("events/<int:pk>/preview/", pages.preview, name="event_preview"),
     path("propose/", views.propose, name="propose"),
     path("events/<int:pk>/", views.detail, name="event"),
     path("events/<int:pk>/edit/", views.edit, name="event_edit"),
