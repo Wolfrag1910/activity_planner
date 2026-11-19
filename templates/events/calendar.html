@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load i18n event_tags %}
+
+{% block title %}{% translate "Calendar" %} · Cumetria{% endblock %}
+
+{% block content %}
+<div class="calendar-page">
+  <div class="calendar-head">
+    <h1>{% translate "Calendar" %}</h1>
+    <nav class="view-switch" aria-label="{% translate 'View' %}">
+      <a href="{{ month_url }}" {% if view == "month" %}aria-current="page"{% endif %}>{% translate "Month" %}</a>
+      <a href="{{ list_url }}" {% if view == "list" %}aria-current="page"{% endif %}>{% translate "List" %}</a>
+    </nav>
+  </div>
+
+  <nav class="filter-chips" aria-label="{% translate 'Category' %}">
+    {% for value, label, url, active in filters %}
+      <a class="filter-chip{% if value %} cat-{{ value }}{% endif %}" href="{{ url }}" {% if active %}aria-current="page"{% endif %}>{{ label }}</a>
+    {% endfor %}
+  </nav>
+
+  {% if view == "month" %}
+    <div class="calendar-layout">
+      <section class="card month-card" aria-labelledby="month-title">
+        <div class="month-nav">
+          <a class="icon-button icon-button-plain" href="{{ previous_url }}" aria-label="{% translate 'Previous month' %}">{% include "partials/icon.html" with name="back" %}</a>
+          <h2 id="month-title" class="month-title">{{ month_title }}</h2>
+          <a class="icon-button icon-button-plain" href="{{ next_url }}" aria-label="{% translate 'Next month' %}">{% include "partials/icon.html" with name="chevron" %}</a>
+        </div>
+        <div class="month-weekdays" aria-hidden="true">{% for letter in weekday_letters %}<span>{{ letter }}</span>{% endfor %}</div>
+        <div class="month-grid">
+          {% for week in weeks %}{% for day in week %}
+            {% if day.in_month %}
+              <a class="month-day{% if day.is_today %} is-today{% endif %}{% if day.is_past %} is-past{% endif %}{% if day.date == selected %} is-selected{% endif %}"
+                 href="{{ day.url }}" aria-label="{{ day.label }}" {% if day.is_today %}aria-current="date"{% endif %}>
+                <span class="month-day-number">{{ day.date.day }}</span>
+                <span class="month-day-dots">{% for dot in day.dots %}<span class="dot cat-{{ dot }}"></span>{% endfor %}</span>
+                <span class="month-day-bar{% if day.bar %} cat-{{ day.bar.category }}{% if day.bar.starts_here %} bar-start{% endif %}{% if day.bar.ends_here %} bar-end{% endif %}{% endif %}"></span>
+              </a>
+            {% else %}
+              <span class="month-day is-outside" aria-hidden="true"><span class="month-day-number">{{ day.date.day }}</span></span>
+            {% endif %}
+          {% endfor %}{% endfor %}
+        </div>
+        {% if today_url %}<a class="text-link month-today" href="{{ today_url }}">{% translate "Back to today" %}</a>{% endif %}
+      </section>
+
+      <section class="stack day-events" aria-live="polite" aria-labelledby="day-title">
+        {% if selected %}
+          <h2 id="day-title" class="day-title">{{ selected_label }}</h2>
+          {% for event in selected_events %}
+            {% include "events/_day_event.html" %}
+          {% empty %}
+            <p class="muted">{% translate "Nothing on this day." %}</p>
+          {% endfor %}
+        {% else %}
+          <h2 id="day-title" class="visually-hidden">{{ month_title }}</h2>
+          <p class="muted">{% translate "Nothing planned this month." %}</p>
+        {% endif %}
+      </section>
+    </div>
+  {% else %}
+    {% for title, events in months %}
+      <section class="stack" aria-labelledby="list-month-{{ forloop.counter }}">
+        <h2 id="list-month-{{ forloop.counter }}">{{ title }}</h2>
+        <div class="card list-card">
+          {% for event in events %}{% include "events/_event_row.html" %}{% endfor %}
+        </div>
+      </section>
+    {% empty %}
+      <div class="card empty-card">
+        <p class="muted">{% translate "Nothing planned yet" %}</p>
+        <a class="button button-primary" href="{% url 'propose' %}{% if category %}?category={{ category }}{% endif %}">{% include "partials/icon.html" with name="plus" %}{% translate "Propose one" %}</a>
+      </div>
+    {% endfor %}
+  {% endif %}
+</div>
+{% endblock %}

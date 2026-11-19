@@ -3,20 +3,8 @@ from pathlib import Path
 from django.conf import settings
 from django.contrib.auth.decorators import login_not_required
 from django.http import FileResponse, Http404, HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
 from django.utils.http import url_has_allowed_host_and_scheme
-from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_POST
-
-# Pages that exist in the menu but are built in a later MVP step.
-# Each shows a short "coming later" note so the layout can be tried today.
-PLACEHOLDER_PAGES = {
-    "calendar": _("Calendar"),
-}
-
-
-def placeholder(request, page):
-    return render(request, "core/placeholder.html", {"page": page, "page_title": PLACEHOLDER_PAGES[page]})
 
 
 @login_not_required

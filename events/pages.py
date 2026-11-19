@@ -3,8 +3,12 @@ The browsing pages: home, Explore, the category pages, and the quick preview
 that opens when an event card is tapped.
 """
 
+import datetime
+from urllib.parse import urlencode
+
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import gettext as _
 from django.utils.translation import ngettext
@@ -13,6 +17,7 @@ from core.dates import event_when, friendly_date, lowercase_first
 from members.models import Member
 from members.pages import upcoming_birthday
 
+from . import calendar
 from .forms import RSVPForm
 from .models import CATEGORY_BLURBS, RSVP, Category, Event
 from .templatetags.event_tags import people_summary
@@ -31,6 +36,7 @@ def is_htmx(request):
 
 def home(request):
     today = timezone.localdate()
+    first_of_month = today.replace(day=1)
     events = list(Event.objects.upcoming().with_details(request.user))
     active = [event for event in events if not event.is_cancelled]
     happening_today = [event for event in active if event.happens_on(today)]
@@ -55,8 +61,21 @@ def home(request):
             "upcoming": upcoming[:HOME_UPCOMING_ROWS],
             "more_upcoming": len(upcoming) > HOME_UPCOMING_ROWS,
             "member_count": Member.objects.filter(is_active=True).count(),
+            # Small month calendar (desktop only).
+            "mini_month": mini_month(first_of_month, request.user, today),
+            "mini_month_title": calendar.month_title(first_of_month),
+            "weekday_letters": calendar.weekday_letters(),
         },
     )
+
+
+def mini_month(first_of_month, member, today):
+    """This month for the small calendar on the desktop home; each day links to it in the calendar."""
+    weeks = calendar.build_month(first_of_month, calendar.month_events(first_of_month, member), today)
+    for week in weeks:
+        for day in week:
+            day.url = calendar_url(day=day.date)
+    return weeks
 
 
 def home_summary(happening_today, waiting, today):
@@ -196,3 +215,107 @@ def category(request, category):
             "has_more_past": show == "upcoming" and past.count() > LATELY_ROWS,
         },
     )
+
+
+# --- Calendar --------------------------------------------------------------------------------
+
+
+def calendar_url(view="month", month=None, day=None, category=""):
+    """A link to the calendar with the given choices (defaults are left out of the address)."""
+    params = {}
+    if view == "list":
+        params["view"] = "list"
+    if month:
+        params["month"] = f"{month:%Y-%m}"
+    if day:
+        params["day"] = day.isoformat()
+    if category:
+        params["category"] = category
+    return reverse("calendar") + (f"?{urlencode(params)}" if params else "")
+
+
+def parse_month(text):
+    """'2026-11' → 1 November 2026, or None."""
+    try:
+        month = datetime.datetime.strptime(text or "", "%Y-%m").date()
+    except ValueError:
+        return None
+    return month if 2000 <= month.year <= 2100 else None
+
+
+def parse_day(text):
+    """'2026-11-28' → that date, or None."""
+    try:
+        day = datetime.date.fromisoformat(text or "")
+    except ValueError:
+        return None
+    return day if 2000 <= day.year <= 2100 else None
+
+
+def calendar_page(request):
+    """
+    The shared calendar. Month view: a month grid with coloured dots and trip bars,
+    and the events of the selected day below it. List view: every upcoming event,
+    grouped by month. Both can be filtered to one category.
+    """
+    today = timezone.localdate()
+    view = "list" if request.GET.get("view") == "list" else "month"
+    category = request.GET.get("category") if request.GET.get("category") in Category.values else ""
+    selected = parse_day(request.GET.get("day"))
+    month = parse_month(request.GET.get("month")) or (selected or today).replace(day=1)
+
+    context = {
+        "view": view,
+        "category": category,
+        "filters": [("", _("All"), calendar_url(view, month, category=""), category == "")]
+        + [(value, label, calendar_url(view, month, category=value), category == value) for value, label in Category.choices],
+        "month_url": calendar_url("month", month, category=category),
+        "list_url": calendar_url("list", category=category),
+    }
+    if view == "list":
+        context["months"] = upcoming_by_month(request.user, category)
+    else:
+        context.update(month_context(request.user, month, selected, today, category))
+    return render(request, "events/calendar.html", context)
+
+
+def month_context(member, month, selected, today, category):
+    events = calendar.month_events(month, member, category)
+    weeks = calendar.build_month(month, events, today)
+    in_month = [day for week in weeks for day in week if day.in_month]
+    if selected is None or selected.replace(day=1) != month:
+        # Show today when looking at this month; otherwise the first day with something on.
+        busy = [day.date for day in in_month if day.events]
+        selected = today if today.replace(day=1) == month else (busy[0] if busy else None)
+    for day in in_month:
+        day.url = calendar_url("month", month, day.date, category)
+    selected_events = [event for event in events if selected and event.happens_on(selected)]
+    for event in selected_events:
+        if event.is_multi_day:
+            number, total = calendar.day_of_trip(event, selected)
+            event.trip_day = _("Day %(number)s of %(total)s") % {"number": number, "total": total}
+    previous_month = (month - datetime.timedelta(days=1)).replace(day=1)
+    next_month = (month + datetime.timedelta(days=32)).replace(day=1)
+    return {
+        "weeks": weeks,
+        "weekday_letters": calendar.weekday_letters(),
+        "month_title": calendar.month_title(month),
+        "previous_url": calendar_url("month", previous_month, category=category),
+        "next_url": calendar_url("month", next_month, category=category),
+        "today_url": calendar_url("month", category=category) if today.replace(day=1) != month else "",
+        "selected": selected,
+        "selected_label": friendly_date(selected) if selected else "",
+        "selected_events": selected_events,
+    }
+
+
+def upcoming_by_month(member, category):
+    """[(month title, [events])] for the list view."""
+    events = Event.objects.upcoming().with_details(member)
+    if category:
+        events = events.filter(category=category)
+    months = {}
+    for event in events:
+        first = timezone.localtime(event.starts_at).date().replace(day=1)
+        months.setdefault(first, []).append(event)
+    return [(calendar.month_title(first), month_events) for first, month_events in months.items()]

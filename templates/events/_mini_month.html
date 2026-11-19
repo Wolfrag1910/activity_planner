@@ -1,0 +1,21 @@
+{% load i18n %}
+{# Small month calendar on the desktop home. Each day opens that day in the calendar. #}
+<section class="card mini-month" aria-labelledby="mini-month-title">
+  <div class="section-title-row">
+    <h2 id="mini-month-title" class="mini-month-title">{{ mini_month_title }}</h2>
+    <a class="text-link" href="{% url 'calendar' %}">{% translate "Open" %}</a>
+  </div>
+  <div class="month-weekdays" aria-hidden="true">{% for letter in weekday_letters %}<span>{{ letter }}</span>{% endfor %}</div>
+  <div class="mini-month-grid">
+    {% for week in mini_month %}{% for day in week %}
+      {% if day.in_month %}
+        <a class="mini-day{% if day.is_today %} is-today{% endif %}{% if day.is_past %} is-past{% endif %}" href="{{ day.url }}" aria-label="{{ day.label }}" {% if day.is_today %}aria-current="date"{% endif %}>
+          <span>{{ day.date.day }}</span>
+          <span class="dot{% if day.bar %} cat-{{ day.bar.category }}{% elif day.dots %} cat-{{ day.dots.0 }}{% else %} dot-none{% endif %}"></span>
+        </a>
+      {% else %}
+        <span class="mini-day is-outside" aria-hidden="true"><span>{{ day.date.day }}</span><span class="dot dot-none"></span></span>
+      {% endif %}
+    {% endfor %}{% endfor %}
+  </div>
+</section>

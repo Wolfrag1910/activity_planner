@@ -900,3 +900,43 @@ msgstr[2] "%(count)s de locuri libere"
 msgid "Next: today, %(title)s"
 msgstr "Următorul: azi, %(title)s"
 
+# --- Step 4b: calendar
+msgid "Open"
+msgstr "Deschide"
+
+msgid "Month"
+msgstr "Lună"
+
+msgid "List"
+msgstr "Listă"
+
+msgid "Back to today"
+msgstr "Înapoi la azi"
+
+msgid "Nothing on this day."
+msgstr "Nimic în ziua asta."
+
+msgid "Nothing planned this month."
+msgstr "Nimic plănuit luna asta."
+
+msgid "View"
+msgstr "Vizualizare"
+
+msgid "Previous month"
+msgstr "Luna trecută"
+
+msgid "Next month"
+msgstr "Luna viitoare"
+
+msgid "All"
+msgstr "Toate"
+
+msgid "Day %(number)s of %(total)s"
+msgstr "Ziua %(number)s din %(total)s"
+
+msgid "%(day)s, %(count)s event"
+msgid_plural "%(day)s, %(count)s events"
+msgstr[0] "%(day)s, %(count)s eveniment"
+msgstr[1] "%(day)s, %(count)s evenimente"
+msgstr[2] "%(day)s, %(count)s de evenimente"
+

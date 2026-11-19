@@ -503,7 +503,7 @@ a.event-row:hover { background: var(--color-bg); }
    On desktop it moves to a column on the right. */
 .home { display: flex; flex-direction: column; gap: 20px; }
 .home-main { display: contents; }
-.home-side { order: 1; }
+.home-side { order: 1; display: flex; flex-direction: column; gap: 10px; }
 .home-upcoming { order: 2; }
 .home-heading h1 { font-size: 22px; font-weight: 600; }
 
@@ -621,6 +621,97 @@ body:has(.preview[open]) { overflow: hidden; }
 }
 .category-tabs a[aria-current="page"] { background: var(--cat-text); color: var(--color-surface); }
 
+/* Calendar */
+.calendar-page { display: flex; flex-direction: column; gap: 14px; }
+.calendar-layout { display: flex; flex-direction: column; gap: 16px; }
+.calendar-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.view-switch { display: flex; padding: 3px; border-radius: 24px; background: var(--color-track); }
+.view-switch a {
+  min-height: 44px; padding: 0 16px;
+  display: inline-flex; align-items: center;
+  border-radius: 22px;
+  color: var(--color-text); text-decoration: none;
+  font-size: 14px; font-weight: 500;
+}
+.view-switch a[aria-current="page"] { background: var(--color-surface); font-weight: 600; }
+
+.filter-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter-chip {
+  min-height: 44px; padding: 0 14px;
+  display: inline-flex; align-items: center;
+  border-radius: 22px;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface); color: var(--color-text);
+  font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap;
+}
+.filter-chip[class*="cat-"] { background: var(--cat-bg); color: var(--cat-text); border-color: transparent; }
+.filter-chip[aria-current="page"] { background: var(--color-text); color: var(--color-surface); border-color: var(--color-text); }
+.filter-chip[class*="cat-"][aria-current="page"] { background: var(--cat-text); color: var(--color-surface); }
+
+.month-card { padding: 12px 10px 14px; gap: 6px; }
+.month-nav { display: flex; justify-content: space-between; align-items: center; }
+.icon-button-plain { border: none; background: transparent; }
+.month-title { font-size: 18px; font-weight: 600; }
+.month-weekdays { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); text-align: center; font-size: 11px; font-weight: 600; color: var(--color-muted); }
+.month-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); row-gap: 4px; }
+.month-day {
+  min-height: 54px;
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  padding-top: 2px;
+  color: var(--color-text); text-decoration: none;
+}
+.month-day-number {
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  font-size: 14px; font-weight: 500;
+}
+a.month-day:hover .month-day-number { background: var(--color-bg); }
+.month-day.is-past .month-day-number, .month-day.is-outside { color: var(--color-muted); }
+.month-day.is-outside .month-day-number { font-weight: 400; }
+.month-day.is-selected .month-day-number { box-shadow: inset 0 0 0 2px var(--color-text); font-weight: 700; }
+.month-day.is-today .month-day-number { background: var(--color-accent); color: var(--color-on-accent); font-weight: 700; }
+.month-day-dots { display: flex; gap: 3px; height: 6px; }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--cat-solid); }
+.dot-none { background: transparent; }
+.month-day-bar { align-self: stretch; height: 4px; }
+.month-day-bar[class*="cat-"] { background: var(--cat-solid); }
+.month-day-bar.bar-start { margin-left: 6px; border-radius: 4px 0 0 4px; }
+.month-day-bar.bar-end { margin-right: 6px; border-radius: 0 4px 4px 0; }
+.month-day-bar.bar-start.bar-end { border-radius: 4px; }
+.month-today { align-self: center; }
+
+.day-title { font-size: 18px; font-weight: 600; }
+.day-event {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 14px;
+  background: var(--color-surface);
+  border: var(--border-card);
+  border-radius: 16px;
+  color: var(--color-text); text-decoration: none;
+}
+.day-event:hover { border-color: var(--color-muted); }
+.day-event.is-cancelled .event-row-title { text-decoration: line-through; color: var(--color-muted); }
+.day-event-stripe { width: 10px; height: 40px; border-radius: 5px; flex-shrink: 0; background: var(--cat-solid); }
+
+/* Small month on the desktop home */
+.mini-month { display: none; padding: 18px; gap: 12px; }
+.mini-month-title { font-size: 18px; font-weight: 600; }
+.mini-month-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
+.mini-day {
+  min-height: 44px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  border-radius: 10px;
+  font-size: 13px; font-weight: 500;
+  color: var(--color-text); text-decoration: none;
+}
+a.mini-day:hover { background: var(--color-bg); }
+.mini-day .dot { width: 5px; height: 5px; }
+.mini-day.is-past, .mini-day.is-outside { color: var(--color-muted); }
+.mini-day.is-outside { font-weight: 400; }
+.mini-day.is-today { background: var(--color-accent); color: var(--color-on-accent); font-weight: 700; }
+.mini-day.is-today .dot:not(.dot-none) { background: var(--color-on-accent); }
+
 /* Desktop menu: group labels and category dots */
 .side-nav-label { font-size: 12px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: var(--color-muted); padding: 16px 12px 6px; }
 .category-dot { width: 10px; height: 10px; border-radius: 50%; margin: 0 5px; background: var(--cat-solid); flex-shrink: 0; }
@@ -633,7 +724,13 @@ body:has(.preview[open]) { overflow: hidden; }
   .home { display: grid; grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr); gap: 28px; align-items: start; }
   .home-heading { grid-column: 1 / -1; }
   .home-main { display: flex; flex-direction: column; gap: 28px; min-width: 0; }
-  .home-side { position: sticky; top: 24px; }
+  .home-side { position: sticky; top: 24px; display: flex; flex-direction: column; gap: 20px; }
+  .mini-month { display: flex; }
+
+  .calendar-layout { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(280px, 1fr); gap: 28px; align-items: start; }
+  .month-card { padding: 18px 16px 20px; }
+  .month-day { min-height: 64px; }
+  .month-day-number { width: 36px; height: 36px; font-size: 15px; }
   .hero-card { padding: 24px 26px; border-radius: 24px; }
   .hero-title { font-size: 32px; }
   .hero-place { font-size: 15px; }

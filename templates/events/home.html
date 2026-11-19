@@ -57,7 +57,7 @@
       <section class="home-upcoming stack" aria-labelledby="upcoming-title">
         <div class="section-title-row">
           <h2 id="upcoming-title">{% translate "Upcoming" %}</h2>
-          <a class="text-link" href="{% url 'calendar' %}">{% if more_upcoming %}{% translate "See all" %}{% else %}{% translate "See calendar" %}{% endif %}</a>
+          <a class="text-link" href="{% url 'calendar' %}{% if more_upcoming %}?view=list{% endif %}">{% if more_upcoming %}{% translate "See all" %}{% else %}{% translate "See calendar" %}{% endif %}</a>
         </div>
         <div class="card list-card">
           {% for event in upcoming %}{% include "events/_event_row.html" %}{% endfor %}
@@ -66,21 +66,24 @@
     {% endif %}
   </div>
 
-  {% if waiting %}
-    <section class="home-side stack" aria-labelledby="waiting-title">
-      <h2 id="waiting-title">{% translate "Waiting for your answer" %}</h2>
-      {% for event in waiting %}
-        <a class="card waiting-card" href="{% url 'event' event.pk %}" hx-get="{% url 'event_preview' event.pk %}" hx-target="#preview-body">
-          <span class="chip chip-{{ event.category }}">{{ event.get_category_display }}</span>
-          <span class="waiting-title">{{ event.title }}</span>
-          <span class="muted small">{{ event|row_when }}{% if event.place %} · {{ event.place }}{% endif %}</span>
-          <span class="waiting-bottom">
-            <span class="muted small">{% blocktranslate with answered=event.answer_count total=member_count %}{{ answered }} of {{ total }} answered{% endblocktranslate %} · {% blocktranslate with name=event.organizer.name %}proposed by {{ name }}{% endblocktranslate %}</span>
-            <span class="button button-dark button-small">{% translate "Answer" %}</span>
-          </span>
-        </a>
-      {% endfor %}
-    </section>
-  {% endif %}
+  <div class="home-side">
+    {% include "events/_mini_month.html" %}
+    {% if waiting %}
+      <section class="stack" aria-labelledby="waiting-title">
+        <h2 id="waiting-title">{% translate "Waiting for your answer" %}</h2>
+        {% for event in waiting %}
+          <a class="card waiting-card" href="{% url 'event' event.pk %}" hx-get="{% url 'event_preview' event.pk %}" hx-target="#preview-body">
+            <span class="chip chip-{{ event.category }}">{{ event.get_category_display }}</span>
+            <span class="waiting-title">{{ event.title }}</span>
+            <span class="muted small">{{ event|row_when }}{% if event.place %} · {{ event.place }}{% endif %}</span>
+            <span class="waiting-bottom">
+              <span class="muted small">{% blocktranslate with answered=event.answer_count total=member_count %}{{ answered }} of {{ total }} answered{% endblocktranslate %} · {% blocktranslate with name=event.organizer.name %}proposed by {{ name }}{% endblocktranslate %}</span>
+              <span class="button button-dark button-small">{% translate "Answer" %}</span>
+            </span>
+          </a>
+        {% endfor %}
+      </section>
+    {% endif %}
+  </div>
 </div>
 {% endblock %}
