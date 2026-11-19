@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Event page</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;family=Inter:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+button{font:inherit;cursor:pointer}
+a{color:#B4532A}a:hover{color:#8E3F1F}
+</style>
+</helmet>
+<div style="width: 390px; height: 1640px; background: #F7F1E8; color: #2B211A; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column">
+  <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 16px">
+    <a href="#" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #FFFCF7; border: 1px solid #E6DACB; color: #2B211A; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></a>
+    <div style="display: flex; gap: 8px">
+      <button aria-label="Share event" style="width: 44px; height: 44px; border-radius: 22px; background: #FFFCF7; border: 1px solid #E6DACB; color: #2B211A; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></button>
+      <button aria-label="Edit or cancel (organizer)" style="width: 44px; height: 44px; border-radius: 22px; background: #FFFCF7; border: 1px solid #E6DACB; color: #2B211A; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="19" cy="12" r="1.8"/></svg></button>
+    </div>
+  </div>
+  <div style="padding: 4px 20px 32px; display: flex; flex-direction: column; gap: 22px">
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; gap: 8px"><span style="font-size: 12px; font-weight: 600; color: #2F4D21; background: #E3ECD9; padding: 4px 10px; border-radius: 12px">Outdoors · Bucharest</span><span style="font-size: 12px; font-weight: 600; color: #FFFFFF; background: #2F4D21; padding: 4px 10px; border-radius: 12px">Confirmed</span></div>
+      <h1 style="margin: 0; font-family: Fraunces, Georgia, serif; font-size: 32px; font-weight: 700; line-height: 1.1">Walk and mulled wine</h1>
+      <span style="font-size: 14px; color: #6E5F52">Proposed by Ioana · 3 days ago</span>
+    </div>
+    <div style="background: #FFFCF7; border: 1px solid #E6DACB; border-radius: 18px; display: flex; flex-direction: column">
+      <div style="display: flex; gap: 12px; align-items: center; padding: 14px 16px; border-bottom: 1px solid #EFE5D8"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6E5F52" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div style="display: flex; flex-direction: column"><span style="font-size: 15px; font-weight: 600">Saturday, 21 November</span><span style="font-size: 13px; color: #6E5F52">16:00–19:00 · answer by Friday 20:00</span></div></div>
+      <div style="display: flex; gap: 12px; align-items: center; padding: 14px 16px; border-bottom: 1px solid #EFE5D8"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6E5F52" stroke-width="1.8"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><div style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 15px; font-weight: 600">Parcul Herăstrău</span><span style="font-size: 13px; color: #6E5F52">Meet at the main entrance</span></div><a href="#" style="font-size: 14px; font-weight: 600">Map</a></div>
+      <div style="display: flex; gap: 12px; align-items: center; padding: 14px 16px"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6E5F52" stroke-width="1.8" stroke-linecap="round"><path d="M7 18a4 4 0 0 1-.5-8A5.5 5.5 0 0 1 17 8.5 4.5 4.5 0 0 1 17 18z"/></svg><div style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 15px; font-weight: 600">6°, cloudy</span><span style="font-size: 13px; color: #6E5F52">Forecast for Saturday afternoon</span></div><span style="font-size: 11px; font-weight: 600; color: #6E5F52; border: 1px solid #D9CBB8; padding: 2px 7px; border-radius: 8px">v3</span></div>
+    </div>
+    <p style="margin: 0; font-size: 15px; line-height: 1.55">A slow walk around the lake, then mulled wine at the stalls near the entrance. Bring gloves, it gets cold once the sun goes down.</p>
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <span style="font-family: Fraunces, Georgia, serif; font-size: 18px; font-weight: 600">Your answer</span>
+      <div role="group" aria-label="Your answer" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+        <button style="height: 48px; border-radius: 14px; border: 1.5px solid #B4532A; background: #B4532A; color: #FFFFFF; font-size: 15px; font-weight: 600">Going</button>
+        <button style="height: 48px; border-radius: 14px; border: 1.5px solid #D9CBB8; background: #FFFCF7; color: #2B211A; font-size: 15px; font-weight: 600">Maybe</button>
+        <button style="height: 48px; border-radius: 14px; border: 1.5px solid #D9CBB8; background: #FFFCF7; color: #2B211A; font-size: 15px; font-weight: 600">No</button>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 14px; background: #FFFCF7; border: 1px dashed #D9CBB8">
+        <span style="flex: 1; font-size: 14px">Your guests: <strong>Matei</strong> (your brother)</span>
+        <button style="height: 40px; padding: 0 12px; border-radius: 12px; border: 1px solid #D9CBB8; background: #F7F1E8; color: #2B211A; font-size: 13px; font-weight: 600">+ Guest</button>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-family: Fraunces, Georgia, serif; font-size: 18px; font-weight: 600">Who's coming</span><span style="font-size: 13px; color: #6E5F52">8 of 12 spots taken</span></div>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <span style="font-size: 12px; font-weight: 600; color: #2F4D21; letter-spacing: 0.6px">GOING · 8 (INCLUDING 2 GUESTS)</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px">
+          <span style="font-size: 13px; padding: 6px 10px; border-radius: 12px; background: #FFFCF7; border: 1px solid #E6DACB">Ioana</span>
+          <span style="font-size: 13px; padding: 6px 10px; border-radius: 12px; background: #FFFCF7; border: 1px solid #E6DACB">Mihai</span>
+          <span style="font-size: 13px; padding: 6px 10px; border-radius: 12px; background: #FFFCF7; border: 1px solid #E6DACB">Alex + Matei</span>
+          <span style="font-size: 13px; padding: 6px 10px; border-radius: 12px; background: #FFFCF7; border: 1px solid #E6DACB">Ana</span>
+          <span style="font-size: 13px; padding: 6px 10px; border-radius: 12px; background: #FFFCF7; border: 1px solid #E6DACB">Radu</span>
+          <span style="font-size: 13px; padding: 6px 10px; border-radius: 12px; background: #FFFCF7; border: 1px solid #E6DACB">Dana + 1 surprise guest</span>
+        </div>
+        <span style="font-size: 12px; font-weight: 600; color: #6E5F52; letter-spacing: 0.6px; padding-top: 4px">MAYBE · 1</span>
+        <span style="font-size: 14px">Sorin · <span style="color: #6E5F52">Working, "I'll know by Friday"</span></span>
+        <span style="font-size: 12px; font-weight: 600; color: #6E5F52; letter-spacing: 0.6px; padding-top: 4px">NO · 2</span>
+        <span style="font-size: 14px">Bianca · <span style="color: #6E5F52">Out of town</span></span>
+        <span style="font-size: 14px">Tudor · <span style="color: #6E5F52">Not feeling it</span></span>
+      </div>
+    </div>
+    <div style="background: #FFFCF7; border: 1px solid #E6DACB; border-radius: 18px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; justify-content: space-between; align-items: center"><span style="font-family: Fraunces, Georgia, serif; font-size: 18px; font-weight: 600">Poll</span><span style="font-size: 11px; font-weight: 600; color: #6E5F52; border: 1px solid #D9CBB8; padding: 2px 7px; border-radius: 8px">v2</span></div>
+      <span style="font-size: 15px; font-weight: 600">Mulled wine or hot chocolate?</span>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <div style="position: relative; height: 40px; border-radius: 12px; background: #F7F1E8; overflow: hidden; display: flex; align-items: center; padding: 0 12px; font-size: 14px"><span style="position: absolute; left: 0; top: 0; bottom: 0; width: 70%; background: #F4D9C6"></span><span style="position: relative; flex: 1; font-weight: 600">Mulled wine</span><span style="position: relative">7 votes</span></div>
+        <div style="position: relative; height: 40px; border-radius: 12px; background: #F7F1E8; overflow: hidden; display: flex; align-items: center; padding: 0 12px; font-size: 14px"><span style="position: absolute; left: 0; top: 0; bottom: 0; width: 30%; background: #EBE1D3"></span><span style="position: relative; flex: 1">Hot chocolate</span><span style="position: relative">3 votes</span></div>
+      </div>
+    </div>
+    <div style="background: #FFFCF7; border: 1px solid #E6DACB; border-radius: 18px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; justify-content: space-between; align-items: center"><span style="font-family: Fraunces, Georgia, serif; font-size: 18px; font-weight: 600">Costs</span><span style="font-size: 11px; font-weight: 600; color: #6E5F52; border: 1px solid #D9CBB8; padding: 2px 7px; border-radius: 8px">v3</span></div>
+      <div style="display: flex; justify-content: space-between; font-size: 14px"><span>Mulled wine for everyone, paid by Ioana</span><span style="font-weight: 600">120 RON</span></div>
+      <div style="display: flex; align-items: center; gap: 10px; padding: 12px; border-radius: 14px; background: #F7F1E8">
+        <div style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 14px; font-weight: 600">You owe Ioana 30 RON</span><span style="font-size: 12px; color: #6E5F52">(6.03 EUR) · you and Matei</span></div>
+        <button style="height: 40px; padding: 0 14px; border-radius: 12px; border: none; background: #2B211A; color: #FFFCF7; font-size: 13px; font-weight: 600">I paid</button>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; justify-content: space-between; align-items: center"><span style="font-family: Fraunces, Georgia, serif; font-size: 18px; font-weight: 600">Photos</span><span style="font-size: 11px; font-weight: 600; color: #6E5F52; border: 1px solid #D9CBB8; padding: 2px 7px; border-radius: 8px">v2</span></div>
+      <div style="height: 86px; border-radius: 16px; border: 1.5px dashed #D9CBB8; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #6E5F52; text-align: center; padding: 0 24px">The album opens when the event starts. Everyone who went can add photos.</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; justify-content: space-between; align-items: center"><span style="font-family: Fraunces, Georgia, serif; font-size: 18px; font-weight: 600">Comments</span><span style="font-size: 11px; font-weight: 600; color: #6E5F52; border: 1px solid #D9CBB8; padding: 2px 7px; border-radius: 8px">v2</span></div>
+      <div style="display: flex; gap: 10px"><span style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 16px; background: #E7E3C8; color: #3D4220; font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center">M</span><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 13px; font-weight: 600">Mihai <span style="font-weight: 400; color: #6E5F52">· 2 h</span></span><span style="font-size: 14px">I'll bring the thermos. Anyone want to meet earlier at Aviatorilor?</span></div></div>
+      <div style="display: flex; gap: 10px"><span style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 16px; background: #F4D9C6; color: #6A2E14; font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center">I</span><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 13px; font-weight: 600">Ioana <span style="font-weight: 400; color: #6E5F52">· 1 h</span></span><span style="font-size: 14px">Yes! 15:40 at the metro exit.</span></div></div>
+      <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #6E5F52">Write a comment
+        <input type="text" placeholder="Say something…" style="height: 46px; border-radius: 14px; border: 1px solid #D9CBB8; background: #FFFCF7; padding: 0 14px; font: inherit; font-size: 14px; color: #2B211A">
+      </label>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1640}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

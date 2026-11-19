@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Calendar</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;family=Inter:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+button{font:inherit;cursor:pointer}
+a{color:#B4532A}a:hover{color:#8E3F1F}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F7F1E8; color: #2B211A; font-family: Inter, system-ui, sans-serif">
+  <div style="padding: 18px 20px 100px; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; justify-content: space-between; align-items: center">
+      <h1 style="margin: 0; font-family: Fraunces, Georgia, serif; font-size: 28px; font-weight: 700">Calendar</h1>
+      <div style="display: flex; gap: 8px">
+        <button aria-label="Add to my phone's calendar" style="width: 44px; height: 44px; border-radius: 22px; border: 1px solid #E2D5C4; background: #FFFCF7; color: #2B211A; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M12 13v5M9.5 15.5h5"/></svg></button>
+        <div role="group" aria-label="View" style="display: flex; padding: 3px; border-radius: 22px; background: #EBE1D3">
+          <button style="height: 38px; padding: 0 14px; border-radius: 19px; border: none; background: #FFFCF7; color: #2B211A; font-size: 13px; font-weight: 600">Month</button>
+          <button style="height: 38px; padding: 0 14px; border-radius: 19px; border: none; background: transparent; color: #4A3D32; font-size: 13px; font-weight: 500">List</button>
+        </div>
+      </div>
+    </div>
+    <div style="display: flex; gap: 6px; overflow: hidden">
+      <span style="height: 34px; padding: 0 12px; border-radius: 17px; background: #2B211A; color: #FFFCF7; font-size: 13px; font-weight: 600; display: flex; align-items: center; white-space: nowrap">All</span>
+      <span style="height: 34px; padding: 0 12px; border-radius: 17px; background: #E3ECD9; color: #2F4D21; font-size: 13px; font-weight: 600; display: flex; align-items: center; white-space: nowrap">Outdoors</span>
+      <span style="height: 34px; padding: 0 12px; border-radius: 17px; background: #DCE7F1; color: #1E4566; font-size: 13px; font-weight: 600; display: flex; align-items: center; white-space: nowrap">Trips</span>
+      <span style="height: 34px; padding: 0 12px; border-radius: 17px; background: #F6E3C4; color: #6E4310; font-size: 13px; font-weight: 600; display: flex; align-items: center; white-space: nowrap">Vacations</span>
+      <span style="height: 34px; padding: 0 12px; border-radius: 17px; background: #E8E0F2; color: #45306B; font-size: 13px; font-weight: 600; display: flex; align-items: center; white-space: nowrap">Gaming</span>
+    </div>
+    <div style="background: #FFFCF7; border: 1px solid #E6DACB; border-radius: 20px; padding: 14px 12px; display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 4px">
+        <button aria-label="Previous month" style="width: 44px; height: 44px; border-radius: 22px; border: none; background: transparent; color: #2B211A; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <span style="font-family: Fraunces, Georgia, serif; font-size: 18px; font-weight: 600">November 2026</span>
+        <button aria-label="Next month" style="width: 44px; height: 44px; border-radius: 22px; border: none; background: transparent; color: #2B211A; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); text-align: center; font-size: 11px; font-weight: 600; color: #6E5F52"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div>
+      <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); row-gap: 4px">
+        <sc-for list="{{ days }}" as="d" hint-placeholder-count="42">
+          <div style="height: 50px; display: flex; flex-direction: column; align-items: center; gap: 3px">
+            <span style="width: 32px; height: 32px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 14px; background: {{ d.bg }}; color: {{ d.fg }}; font-weight: {{ d.fw }}; box-shadow: {{ d.ring }}">{{ d.n }}</span>
+            <div style="display: flex; gap: 3px; height: 6px"><span style="width: 6px; height: 6px; border-radius: 3px; background: {{ d.dot1 }}"></span><span style="width: 6px; height: 6px; border-radius: 3px; background: {{ d.dot2 }}"></span></div>
+            <span style="align-self: stretch; height: 4px; background: {{ d.bar }}; border-radius: {{ d.barRadius }}"></span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <span style="font-family: Fraunces, Georgia, serif; font-size: 18px; font-weight: 600">Saturday, 28 November</span>
+      <div style="display: flex; gap: 12px; align-items: center; padding: 12px 14px; background: #FFFCF7; border: 1px solid #E6DACB; border-radius: 16px">
+        <span style="width: 10px; height: 40px; border-radius: 5px; background: #2F6690"></span>
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600">Cabin weekend</span><span style="font-size: 13px; color: #6E5F52">Day 2 of 3 · Brașov</span></div>
+        <span style="font-size: 12px; font-weight: 600; color: #6E5F52">Maybe</span>
+      </div>
+      <div style="display: flex; gap: 12px; align-items: center; padding: 12px 14px; background: #FFFCF7; border: 1px solid #E6DACB; border-radius: 16px">
+        <span style="width: 10px; height: 40px; border-radius: 5px; background: #B4532A"></span>
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600">Ana turns 27</span><span style="font-size: 13px; color: #6E5F52">Birthday</span></div>
+      </div>
+    </div>
+  </div>
+  <nav aria-label="Main" style="position: absolute; left: 0; right: 0; bottom: 0; height: 80px; background: #FFFCF7; border-top: 1px solid #E6DACB; display: flex; align-items: center; justify-content: space-around; padding: 0 8px 8px; box-sizing: border-box">
+    <a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 56px; padding: 6px 0; color: #6E5F52; text-decoration: none; font-size: 11px; font-weight: 500"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Home</a>
+    <a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 56px; padding: 6px 0; color: #B4532A; text-decoration: none; font-size: 11px; font-weight: 600"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Calendar</a>
+    <button aria-label="Propose an event" style="width: 56px; height: 56px; border-radius: 28px; border: none; background: #B4532A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; margin-top: -26px; box-shadow: 0 6px 16px rgba(180,83,42,0.35)"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+    <a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 56px; padding: 6px 0; color: #6E5F52; text-decoration: none; font-size: 11px; font-weight: 500"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg>Explore</a>
+    <a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 56px; padding: 6px 0; color: #6E5F52; text-decoration: none; font-size: 11px; font-weight: 500"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Me</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const G = '#6B4C9A', O = '#4F7A3A', T = '#2F6690', B = '#B4532A', none = 'transparent';
+    const dots = { 6: [O], 12: [G], 18: [G], 21: [O], 26: [G], 28: [B] };
+    const bars = { 27: '12px 0 0 12px', 28: '0', 29: '0 12px 12px 0' };
+    const days = [];
+    const out = (n) => ({ n, bg: none, fg: '#7D6E5F', fw: 400, ring: 'none', dot1: none, dot2: none, bar: none, barRadius: '0' });
+    [26, 27, 28, 29, 30, 31].forEach((n) => days.push(out(n)));
+    for (let n = 1; n <= 30; n++) {
+      const today = n === 18, sel = n === 28, ds = dots[n] || [];
+      days.push({
+        n,
+        bg: today ? '#B4532A' : 'transparent',
+        fg: today ? '#FFFFFF' : (n < 18 ? '#7D6E5F' : '#2B211A'),
+        fw: today || sel ? 700 : 500,
+        ring: sel ? 'inset 0 0 0 2px #2B211A' : 'none',
+        dot1: ds[0] || none, dot2: ds[1] || none,
+        bar: bars[n] ? T : none, barRadius: bars[n] || '0'
+      });
+    }
+    [1, 2, 3, 4, 5, 6].forEach((n) => days.push(out(n)));
+    return { days };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Profile with appearance switch</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;family=Inter:wght@400;500;600&amp;family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&amp;family=DM+Sans:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+button{font:inherit;cursor:pointer}
+</style>
+</helmet>
+<div style="width: 390px; height: 1060px; position: relative; overflow: hidden; background: {{ t.bg }}; color: {{ t.ink }}; font-family: {{ t.body }}">
+  <div style="padding: 18px 20px 110px; display: flex; flex-direction: column; gap: 22px">
+    <h1 style="margin: 0; font-family: {{ t.head }}; font-weight: {{ t.headWeight }}; font-size: 28px">Me</h1>
+    <div style="display: flex; align-items: center; gap: 14px; padding: 16px; background: {{ t.surface }}; border: {{ t.cardBorder }}; box-shadow: {{ t.cardShadow }}; border-radius: {{ t.radius }}">
+      <span style="width: 64px; height: 64px; flex-shrink: 0; border-radius: 32px; background: {{ t.accent }}; color: {{ t.onAccent }}; font-size: 26px; font-weight: 700; display: flex; align-items: center; justify-content: center">A</span>
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 2px">
+        <span style="font-family: {{ t.head }}; font-weight: {{ t.headWeight }}; font-size: 22px">Alex</span>
+        <span style="font-size: 13px; color: {{ t.muted }}">Admin · birthday 3 March</span>
+      </div>
+      <button style="height: 40px; padding: 0 12px; border-radius: {{ t.btnRadius }}; border: {{ t.secBorder }}; background: {{ t.bg }}; color: {{ t.ink }}; font-size: 13px; font-weight: 600">Edit</button>
+    </div>
+    <section aria-label="Appearance" style="display: flex; flex-direction: column; gap: 12px">
+      <span style="font-family: {{ t.head }}; font-weight: {{ t.headWeight }}; font-size: 19px">Appearance</span>
+      <div role="group" aria-label="Look" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+        <button onClick="{{ pickPicnic }}" style="padding: 10px; border-radius: {{ t.radius }}; background: {{ t.surface }}; color: {{ t.ink }}; border: {{ picnicBorder }}; display: flex; flex-direction: column; gap: 8px; text-align: left">
+          <span aria-hidden="true" style="height: 64px; border-radius: 12px; background: #F7F1E8; border: 1px solid #E6DACB; display: flex; flex-direction: column; justify-content: space-between; padding: 8px; box-sizing: border-box">
+            <span style="font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: 18px; color: #2B211A">Aa</span>
+            <span style="height: 14px; width: 70%; border-radius: 7px; background: #B4532A"></span>
+          </span>
+          <span style="font-size: 14px; font-weight: 600">Sunday Picnic</span>
+        </button>
+        <button onClick="{{ pickPostcard }}" style="padding: 10px; border-radius: {{ t.radius }}; background: {{ t.surface }}; color: {{ t.ink }}; border: {{ postcardBorder }}; display: flex; flex-direction: column; gap: 8px; text-align: left">
+          <span aria-hidden="true" style="height: 64px; border-radius: 12px; background: #FBEFD9; border: 2px solid #2A1E14; display: flex; flex-direction: column; justify-content: space-between; padding: 7px; box-sizing: border-box">
+            <span style="font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: 18px; color: #2A1E14">Aa</span>
+            <span style="height: 14px; width: 70%; border-radius: 4px; background: #C8402A; border: 2px solid #2A1E14; box-shadow: 2px 2px 0 #2A1E14"></span>
+          </span>
+          <span style="font-size: 14px; font-weight: 600">Postcard</span>
+        </button>
+      </div>
+      <div role="group" aria-label="Light or dark" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; padding: 4px; border-radius: {{ t.radius }}; background: {{ t.track }}">
+        <button onClick="{{ setLight }}" style="height: 44px; border-radius: {{ t.btnRadius }}; border: none; font-size: 13px; font-weight: 600; background: {{ mLight.bg }}; color: {{ mLight.fg }}">Light</button>
+        <button onClick="{{ setDark }}" style="height: 44px; border-radius: {{ t.btnRadius }}; border: none; font-size: 13px; font-weight: 600; background: {{ mDark.bg }}; color: {{ mDark.fg }}">Dark</button>
+        <button onClick="{{ setAuto }}" style="height: 44px; border-radius: {{ t.btnRadius }}; border: none; font-size: 13px; font-weight: 600; background: {{ mAuto.bg }}; color: {{ mAuto.fg }}">Match phone</button>
+      </div>
+      <sc-if value="{{ isAuto }}" hint-placeholder-val="{{ false }}">
+        <span style="font-size: 13px; color: {{ t.muted }}">Follows your phone. Your phone is in light mode right now.</span>
+      </sc-if>
+    </section>
+    <section aria-label="Language" style="display: flex; justify-content: space-between; align-items: center">
+      <span style="font-size: 15px; font-weight: 600">Language</span>
+      <div role="group" aria-label="Language" style="display: flex; gap: 4px; padding: 4px; border-radius: {{ t.radius }}; background: {{ t.track }}">
+        <button style="height: 40px; padding: 0 14px; border-radius: {{ t.btnRadius }}; border: none; background: transparent; color: {{ t.ink }}; font-size: 13px; font-weight: 600">Română</button>
+        <button style="height: 40px; padding: 0 14px; border-radius: {{ t.btnRadius }}; border: none; background: {{ t.surface }}; color: {{ t.ink }}; font-size: 13px; font-weight: 600">English</button>
+      </div>
+    </section>
+    <div style="display: flex; flex-direction: column; background: {{ t.surface }}; border: {{ t.cardBorder }}; box-shadow: {{ t.cardShadow }}; border-radius: {{ t.radius }}">
+      <div style="display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-bottom: 1px solid {{ t.divider }}">
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600">Add to my phone's calendar</span><span style="font-size: 13px; color: {{ t.muted }}">Events I'm going to, updated automatically</span></div>
+        <button style="height: 40px; padding: 0 12px; border-radius: {{ t.btnRadius }}; border: {{ t.secBorder }}; background: {{ t.bg }}; color: {{ t.ink }}; font-size: 13px; font-weight: 600">Copy link</button>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-bottom: 1px solid {{ t.divider }}">
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600">My upcoming events</span><span style="font-size: 13px; color: {{ t.muted }}">3 going · 1 maybe · 1 waiting for your answer</span></div>
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px; padding: 14px 16px">
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600">Admin tools</span><span style="font-size: 13px; color: {{ t.muted }}">Invite and manage members (only you see this)</span></div>
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>
+      </div>
+    </div>
+    <button style="align-self: flex-start; height: 44px; padding: 0 4px; border: none; background: transparent; color: {{ t.muted }}; font-size: 14px; font-weight: 600">Log out</button>
+  </div>
+  <nav aria-label="Main" style="position: absolute; left: 0; right: 0; bottom: 0; height: 80px; background: {{ t.surface }}; border-top: {{ t.navBorder }}; display: flex; align-items: center; justify-content: space-around; padding: 0 8px 8px; box-sizing: border-box">
+    <a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 56px; padding: 6px 0; color: {{ t.muted }}; text-decoration: none; font-size: 11px; font-weight: 500"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Home</a>
+    <a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 56px; padding: 6px 0; color: {{ t.muted }}; text-decoration: none; font-size: 11px; font-weight: 500"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Calendar</a>
+    <button aria-label="Propose an event" style="width: 56px; height: 56px; border-radius: {{ t.fabRadius }}; border: {{ t.btnBorder }}; background: {{ t.accent }}; color: {{ t.onAccent }}; display: flex; align-items: center; justify-content: center; margin-top: -26px; box-shadow: {{ t.fabShadow }}"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+    <a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 56px; padding: 6px 0; color: {{ t.muted }}; text-decoration: none; font-size: 11px; font-weight: 500"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg>Explore</a>
+    <a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 56px; padding: 6px 0; color: {{ t.accentText }}; text-decoration: none; font-size: 11px; font-weight: 700"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Me</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1060}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const look = (this.state && this.state.look) || 'picnic';
+    const mode = (this.state && this.state.mode) || 'light';
+    const dark = mode === 'dark';
+    const picnicBase = { head: 'Fraunces, Georgia, serif', headWeight: 700, body: 'Inter, system-ui, sans-serif', radius: '18px', btnRadius: '14px', fabRadius: '28px', cardShadow: 'none' };
+    const postcardBase = { head: "'Bricolage Grotesque', system-ui, sans-serif", headWeight: 800, body: "'DM Sans', system-ui, sans-serif", radius: '14px', btnRadius: '12px', fabRadius: '16px' };
+    const P = {
+      'picnic-light': Object.assign({}, picnicBase, { bg: '#F7F1E8', surface: '#FFFCF7', ink: '#2B211A', muted: '#6E5F52', accent: '#B4532A', accentText: '#B4532A', onAccent: '#FFFFFF', track: '#EBE1D3', divider: '#EFE5D8', cardBorder: '1px solid #E6DACB', secBorder: '1px solid #D9CBB8', navBorder: '1px solid #E6DACB', btnBorder: 'none', fabShadow: '0 6px 16px rgba(180,83,42,0.35)' }),
+      'picnic-dark': Object.assign({}, picnicBase, { bg: '#1C1714', surface: '#27201B', ink: '#F5ECE1', muted: '#BBA996', accent: '#E07A4F', accentText: '#E07A4F', onAccent: '#1C1714', track: '#2F2721', divider: '#342B25', cardBorder: '1px solid #3B312A', secBorder: '1px solid #3B312A', navBorder: '1px solid #3B312A', btnBorder: 'none', fabShadow: 'none' }),
+      'postcard-light': Object.assign({}, postcardBase, { bg: '#FBEFD9', surface: '#FFF8EC', ink: '#2A1E14', muted: '#6B5A48', accent: '#C8402A', accentText: '#A8331F', onAccent: '#FFFFFF', track: '#F1E0C2', divider: '#E2CFB0', cardBorder: '2px solid #2A1E14', cardShadow: '4px 4px 0 #2A1E14', secBorder: '2px solid #2A1E14', navBorder: '2px solid #2A1E14', btnBorder: '2px solid #2A1E14', fabShadow: '3px 3px 0 #2A1E14' }),
+      'postcard-dark': Object.assign({}, postcardBase, { bg: '#2B2119', surface: '#3A2E23', ink: '#FBEFD9', muted: '#D2C1A8', accent: '#F0674E', accentText: '#F0674E', onAccent: '#1A120C', track: '#231A13', divider: '#4A3B2E', cardBorder: '2px solid #0E0A07', cardShadow: '4px 4px 0 #0E0A07', secBorder: '2px solid #0E0A07', navBorder: '2px solid #0E0A07', btnBorder: '2px solid #0E0A07', fabShadow: '3px 3px 0 #0E0A07' })
+    };
+    const t = P[look + '-' + (dark ? 'dark' : 'light')];
+    const seg = (on) => on ? { bg: t.accent, fg: t.onAccent } : { bg: 'transparent', fg: t.ink };
+    const ring = (on) => on ? '2.5px solid ' + t.accent : '1px solid ' + t.divider;
+    return {
+      t,
+      picnicBorder: ring(look === 'picnic'),
+      postcardBorder: ring(look === 'postcard'),
+      pickPicnic: () => this.setState({ look: 'picnic' }),
+      pickPostcard: () => this.setState({ look: 'postcard' }),
+      mLight: seg(mode === 'light'), mDark: seg(mode === 'dark'), mAuto: seg(mode === 'auto'),
+      setLight: () => this.setState({ mode: 'light' }),
+      setDark: () => this.setState({ mode: 'dark' }),
+      setAuto: () => this.setState({ mode: 'auto' }),
+      isAuto: mode === 'auto'
+    };
+  }
+}
+</script>
+</body>
+</html>

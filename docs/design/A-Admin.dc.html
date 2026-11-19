@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Admin</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;family=Inter:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+button{font:inherit;cursor:pointer}
+a{color:#B4532A}a:hover{color:#8E3F1F}
+</style>
+</helmet>
+<div style="width: 390px; height: 1000px; background: #F7F1E8; color: #2B211A; font-family: Inter, system-ui, sans-serif">
+  <div style="padding: 14px 20px 32px; display: flex; flex-direction: column; gap: 22px">
+    <div style="display: flex; align-items: center; gap: 12px">
+      <a href="#" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #FFFCF7; border: 1px solid #E6DACB; color: #2B211A; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></a>
+      <div style="display: flex; flex-direction: column"><h1 style="margin: 0; font-family: Fraunces, Georgia, serif; font-size: 26px; font-weight: 700">Admin</h1><span style="font-size: 13px; color: #6E5F52">Only you can see this page</span></div>
+    </div>
+    <section aria-label="Invite someone" style="background: #FFFCF7; border: 1px solid #E6DACB; border-radius: 18px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+      <span style="font-family: Fraunces, Georgia, serif; font-size: 19px; font-weight: 600">Invite someone</span>
+      <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600">Their name
+        <input type="text" placeholder="e.g. Cristi" style="height: 48px; border-radius: 14px; border: 1px solid #D9CBB8; background: #FFFFFF; padding: 0 14px; font: inherit; font-size: 15px; font-weight: 400; color: #2B211A">
+      </label>
+      <button style="height: 50px; border-radius: 14px; border: none; background: #B4532A; color: #FFFFFF; font-size: 15px; font-weight: 600">Create invite link</button>
+      <span style="font-size: 13px; color: #6E5F52">Send the link yourself, on WhatsApp or Discord. It works once.</span>
+    </section>
+    <section aria-label="Waiting invites" style="display: flex; flex-direction: column; gap: 10px">
+      <span style="font-family: Fraunces, Georgia, serif; font-size: 18px; font-weight: 600">Waiting to be used</span>
+      <div style="background: #FFFCF7; border: 1px dashed #D9CBB8; border-radius: 16px; padding: 12px 14px; display: flex; align-items: center; gap: 10px">
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600">Cristi</span><span style="font-size: 13px; color: #6E5F52">Created 2 days ago · not opened yet</span></div>
+        <button style="height: 40px; padding: 0 12px; border-radius: 12px; border: 1px solid #D9CBB8; background: #F7F1E8; color: #2B211A; font-size: 13px; font-weight: 600">Copy link</button>
+        <button aria-label="Cancel Cristi's invite" style="width: 40px; height: 40px; border-radius: 12px; border: 1px solid #D9CBB8; background: #F7F1E8; color: #2B211A; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      </div>
+    </section>
+    <section aria-label="Members" style="display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-family: Fraunces, Georgia, serif; font-size: 18px; font-weight: 600">Members</span><span style="font-size: 13px; color: #6E5F52">9 active</span></div>
+      <div style="background: #FFFCF7; border: 1px solid #E6DACB; border-radius: 18px; display: flex; flex-direction: column">
+        <div style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid #EFE5D8"><span style="width: 36px; height: 36px; border-radius: 18px; background: #F4D9C6; color: #6A2E14; font-weight: 600; display: flex; align-items: center; justify-content: center">A</span><span style="flex: 1; font-size: 15px; font-weight: 600">Alex <span style="font-weight: 400; color: #6E5F52">(you)</span></span><span style="font-size: 11px; font-weight: 600; color: #8E3F1F; background: #F4E4D8; padding: 3px 8px; border-radius: 8px">Admin</span></div>
+        <div style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid #EFE5D8"><span style="width: 36px; height: 36px; border-radius: 18px; background: #E7E3C8; color: #3D4220; font-weight: 600; display: flex; align-items: center; justify-content: center">A</span><span style="flex: 1; font-size: 15px; font-weight: 600">Ana</span><button style="height: 36px; padding: 0 12px; border-radius: 10px; border: 1px solid #D9CBB8; background: transparent; color: #4A3D32; font-size: 13px; font-weight: 600">Deactivate</button></div>
+        <div style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid #EFE5D8"><span style="width: 36px; height: 36px; border-radius: 18px; background: #D8E3EC; color: #1F3A52; font-weight: 600; display: flex; align-items: center; justify-content: center">D</span><span style="flex: 1; font-size: 15px; font-weight: 600">Dana</span><button style="height: 36px; padding: 0 12px; border-radius: 10px; border: 1px solid #D9CBB8; background: transparent; color: #4A3D32; font-size: 13px; font-weight: 600">Deactivate</button></div>
+        <a href="#" style="height: 48px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; text-decoration: none">Show all 9</a>
+      </div>
+      <span style="font-size: 13px; color: #6E5F52">A deactivated member can't log in. Their past RSVPs, photos and comments stay.</span>
+    </section>
+    <section aria-label="Your extra powers" style="display: flex; flex-direction: column; gap: 10px">
+      <span style="font-family: Fraunces, Georgia, serif; font-size: 18px; font-weight: 600">Your extra powers</span>
+      <div style="background: #FFFCF7; border: 1px solid #E6DACB; border-radius: 18px; display: flex; flex-direction: column">
+        <div style="display: flex; gap: 12px; padding: 12px 14px; border-bottom: 1px solid #EFE5D8"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B4532A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 2px"><path d="M4 20h4L19 9l-4-4L4 16z"/></svg><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600">Edit or cancel any event</span><span style="font-size: 13px; color: #6E5F52">Use the ⋯ menu on any event page, even ones you didn't organize.</span></div></div>
+        <div style="display: flex; gap: 12px; padding: 12px 14px"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B4532A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 2px"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600">Remove photos</span><span style="font-size: 13px; color: #6E5F52">Every photo in every album has a delete option for you.</span></div></div>
+      </div>
+    </section>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

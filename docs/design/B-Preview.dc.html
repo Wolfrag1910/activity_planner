@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Campfire: event preview</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+button{font:inherit;cursor:pointer}
+a{color:#F2A541}a:hover{color:#F7C27A}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #1A1612; color: #F3EADB; font-family: Inter, system-ui, sans-serif">
+  <div aria-hidden="true" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 16px">
+    <div style="height: 44px; width: 130px; border-radius: 12px; background: #241E18"></div>
+    <div style="height: 60px; width: 180px; border-radius: 12px; background: #241E18"></div>
+    <div style="height: 200px; border-radius: 20px; background: #241E18"></div>
+  </div>
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(0,0,0,0.55)"></div>
+  <section aria-label="Event preview" style="position: absolute; left: 0; right: 0; bottom: 0; background: #241E18; border-top: 1px solid #3A3129; border-radius: 28px 28px 0 0; padding: 10px 20px 24px; display: flex; flex-direction: column; gap: 18px">
+    <div aria-hidden="true" style="align-self: center; width: 40px; height: 5px; border-radius: 3px; background: #4A3F33"></div>
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px">
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <span style="font-size: 12px; font-weight: 600; color: #9CCB72; letter-spacing: 0.6px">OUTDOORS · BUCHAREST</span>
+        <h2 style="margin: 0; font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 28px; font-weight: 700; line-height: 1.1">Walk and mulled wine</h2>
+      </div>
+      <button aria-label="Close preview" style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 14px; border: 1px solid #3A3129; background: #2E261F; color: #F3EADB; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+      <div style="background: #2E261F; border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 11px; color: #B5A58F">WHEN</span><span style="font-size: 15px; font-weight: 600">Sat 21</span><span style="font-size: 13px; color: #B5A58F">16:00–19:00</span></div>
+      <div style="background: #2E261F; border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 11px; color: #B5A58F">WHERE</span><span style="font-size: 15px; font-weight: 600">Herăstrău</span><a href="#" style="font-size: 13px; font-weight: 600">Map</a></div>
+      <div style="background: #2E261F; border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 11px; color: #B5A58F">WEATHER</span><span style="font-size: 15px; font-weight: 600">6°</span><span style="font-size: 13px; color: #B5A58F">Cloudy</span></div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 10px">
+      <div style="display: flex">
+        <span style="width: 30px; height: 30px; border-radius: 15px; background: #3B4A2E; color: #F3EADB; font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; border: 2px solid #241E18">I</span>
+        <span style="width: 30px; height: 30px; border-radius: 15px; background: #4A3A2C; color: #F3EADB; font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; border: 2px solid #241E18; margin-left: -8px">M</span>
+        <span style="width: 30px; height: 30px; border-radius: 15px; background: #2C3F52; color: #F3EADB; font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; border: 2px solid #241E18; margin-left: -8px">D</span>
+        <span style="width: 30px; height: 30px; border-radius: 15px; background: #3F3354; color: #F3EADB; font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; border: 2px solid #241E18; margin-left: -8px">+4</span>
+      </div>
+      <span style="font-size: 13px; color: #B5A58F">7 going · 1 maybe · 3 spots left · by Ioana</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <div role="group" aria-label="Your answer" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; padding: 5px; border-radius: 18px; background: #1A1612">
+        <button onClick="{{ setGoing }}" style="height: 46px; border-radius: 14px; border: none; font-size: 15px; font-weight: 600; background: {{ going.bg }}; color: {{ going.fg }}">Going</button>
+        <button onClick="{{ setMaybe }}" style="height: 46px; border-radius: 14px; border: none; font-size: 15px; font-weight: 600; background: {{ maybe.bg }}; color: {{ maybe.fg }}">Maybe</button>
+        <button onClick="{{ setNo }}" style="height: 46px; border-radius: 14px; border: none; font-size: 15px; font-weight: 600; background: {{ no.bg }}; color: {{ no.fg }}">No</button>
+      </div>
+      <sc-if value="{{ showReasons }}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <div style="display: flex; flex-wrap: wrap; gap: 8px">
+            <sc-for list="{{ reasons }}" as="item" hint-placeholder-count="4">
+              <button onClick="{{ item.pick }}" style="height: 40px; padding: 0 14px; border-radius: 12px; font-size: 13px; font-weight: 500; border: 1px solid {{ item.bd }}; background: {{ item.bg }}; color: {{ item.fg }}">{{ item.label }}</button>
+            </sc-for>
+          </div>
+          <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #B5A58F">Note (optional)
+            <input type="text" placeholder="e.g. I'll know by Friday" style="height: 42px; border-radius: 12px; border: 1px solid #3A3129; background: #1A1612; padding: 0 12px; font: inherit; font-size: 14px; color: #F3EADB">
+          </label>
+        </div>
+      </sc-if>
+    </div>
+    <div style="display: flex; gap: 10px">
+      <button style="height: 50px; padding: 0 16px; border-radius: 16px; border: 1px solid #3A3129; background: #2E261F; color: #F3EADB; font-size: 14px; font-weight: 600">+ Guest</button>
+      <a href="#" style="flex: 1; height: 50px; border-radius: 16px; background: #F3EADB; color: #1A1612; font-size: 15px; font-weight: 600; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px">Open event<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const r = (this.state && this.state.rsvp) || 'maybe';
+    const reason = (this.state && this.state.reason) || 'Working';
+    const btn = (k) => r === k ? { bg: '#F2A541', fg: '#1A1612' } : { bg: 'transparent', fg: '#F3EADB' };
+    return {
+      going: btn('going'), maybe: btn('maybe'), no: btn('no'),
+      setGoing: () => this.setState({ rsvp: 'going' }),
+      setMaybe: () => this.setState({ rsvp: 'maybe' }),
+      setNo: () => this.setState({ rsvp: 'no' }),
+      showReasons: r !== 'going',
+      reasons: ['Working', 'Out of town', 'Not feeling it', 'Other'].map((x) => ({
+        label: x,
+        bg: reason === x ? '#3A3129' : 'transparent',
+        bd: reason === x ? '#F2A541' : '#3A3129',
+        fg: '#F3EADB',
+        pick: () => this.setState({ reason: x })
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>
