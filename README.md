@@ -34,6 +34,23 @@ To sign in, open <http://localhost:8080>, type your email and press *Email me a 
 
 *Continue with Google* appears once you set it up: see [`docs/GOOGLE_SIGN_IN.md`](docs/GOOGLE_SIGN_IN.md).
 
+### Private test with fake data
+
+To see every page filled in, add a fake group (8 members, 16 events around today, answers, guests and two test invites):
+
+```
+docker compose exec web python manage.py seed_test_data
+```
+
+Run it after `create_owner`: the fake events include answers from you, and some wait for your answer. Dates are counted from today, so to refresh them later run `seed_test_data --reset`. That removes only the fake data (members with an `@cumetria.test` address, their events and the two "(test)" invites) and creates it again. Your own account and events stay.
+
+To see the site as one of them, sign out, type their address (e.g. `ana@cumetria.test`) and open the sign-in link that appears in the `docker compose up` terminal. Worth trying:
+
+- **Ana** organizes several events and has the next birthday; she isn't the admin, so no Admin page.
+- **Bogdan** uses the site in English.
+- **Ioana** joined two days ago and hasn't answered anything.
+- **Mihai** is deactivated: he can't sign in, but his answers still show on past events.
+
 **Login photo:** put the group photo at `static/img/login-photo.jpg` and rebuild; until then the login page shows an empty frame.
 
 ## For development (without Docker)
