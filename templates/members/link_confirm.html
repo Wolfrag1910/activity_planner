@@ -1,0 +1,13 @@
+{% extends "base_public.html" %}
+{% load i18n %}
+
+{% block content %}
+  <div class="message-page">
+    <h1>{% blocktranslate with name=member.name %}Hi, {{ name }}{% endblocktranslate %}</h1>
+    <p>{% translate "One tap and you're in." %}</p>
+    <form method="post">
+      {% csrf_token %}
+      <button class="button button-primary button-block button-tall" type="submit">{% translate "Sign in" %}</button>
+    </form>
+  </div>
+{% endblock %}

@@ -32,6 +32,8 @@ The website should stay well under 1 GB RAM. Do not change or restart the game s
 - [ ] Open TCP 80 and 443 in the **Oracle security list** and in **Ubuntu's iptables rules** (Oracle images block them by default).
 - [ ] Get a domain name (research task) and point it at the server.
 - [ ] Nightly backup of the SQLite file and the photos folder to somewhere off the server.
+- [ ] An email sending account for sign-in links (SMTP settings in `.env`), e.g. a free transactional email service or a Gmail app password (research at launch).
+- [ ] Google sign-in redirect URI for the real domain (see `GOOGLE_SIGN_IN.md`).
 
 ## How we work
 

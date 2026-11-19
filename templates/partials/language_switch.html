@@ -1,0 +1,9 @@
+{% load i18n %}{% get_current_language as LANGUAGE_CODE %}<form class="lang-switch" action="{% url 'switch_language' %}" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="next" value="{{ request.get_full_path }}">
+  {% if LANGUAGE_CODE == "ro" %}
+    <button class="pill-button" type="submit" name="language" value="en" aria-label="{% translate 'Switch to English' %}">EN</button>
+  {% else %}
+    <button class="pill-button" type="submit" name="language" value="ro" aria-label="{% translate 'Switch to Romanian' %}">RO</button>
+  {% endif %}
+</form>

@@ -1,10 +1,14 @@
 from django.contrib import admin
 from django.urls import include, path
+from django.views.generic import RedirectView
 
 urlpatterns = [
     path("", include("core.urls")),
-    # Language switch: the RO/EN button posts here (Django's built-in view).
-    path("i18n/", include("django.conf.urls.i18n")),
-    # Django's own admin, for the owner only. The friendly Admin page comes in step 2.
+    path("", include("members.urls")),
+    # allauth runs Google sign-in under /accounts/. Its own login page isn't used:
+    # send anyone who lands there to ours. (This line must come before the include.)
+    path("accounts/login/", RedirectView.as_view(pattern_name="login", query_string=True)),
+    path("accounts/", include("allauth.urls")),
+    # Django's own admin, a back door for the owner. The friendly Admin page comes in step 2b.
     path("django-admin/", admin.site.urls),
 ]

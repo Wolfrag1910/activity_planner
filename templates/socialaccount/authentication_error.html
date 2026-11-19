@@ -1,0 +1,10 @@
+{% extends "base_public.html" %}
+{% load i18n %}
+
+{% block content %}
+  <div class="message-page">
+    <h1>{% translate "Google sign-in didn't work" %}</h1>
+    <p>{% translate "Something went wrong on the way back from Google. Please try again, or use an email link instead." %}</p>
+    <a class="button" href="{% url 'login' %}">{% translate "Go to sign in" %}</a>
+  </div>
+{% endblock %}

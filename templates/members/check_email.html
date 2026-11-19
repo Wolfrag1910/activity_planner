@@ -1,0 +1,15 @@
+{% extends "base_public.html" %}
+{% load i18n %}
+
+{% block content %}
+  <div class="message-page">
+    <h1>{% translate "Check your email" %}</h1>
+    {% if invite %}
+      <p>{% blocktranslate %}If <strong>{{ email }}</strong> is right, a link to finish joining is on its way. It works for a day.{% endblocktranslate %}</p>
+    {% else %}
+      <p>{% blocktranslate %}If <strong>{{ email }}</strong> belongs to a member, a sign-in link is on its way. It works once, for a short while.{% endblocktranslate %}</p>
+    {% endif %}
+    <p class="muted">{% translate "Nothing arrived? Check your spam folder, or try again in a minute." %}</p>
+    <a class="button" href="{% if invite %}{% url 'invite' invite.token %}{% else %}{% url 'login' %}{% endif %}">{% translate "Back" %}</a>
+  </div>
+{% endblock %}

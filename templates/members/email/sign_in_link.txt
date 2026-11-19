@@ -1,0 +1,8 @@
+{% load i18n %}{% autoescape off %}{% blocktranslate with name=member.name %}Hi {{ name }},{% endblocktranslate %}
+
+{% blocktranslate %}Here is your link to sign in to Cumetria. It works once, within {{ minutes }} minutes:{% endblocktranslate %}
+
+{{ link }}
+
+{% translate "If you didn't ask for it, you can ignore this email." %}
+{% endautoescape %}
