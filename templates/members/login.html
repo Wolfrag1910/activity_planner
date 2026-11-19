@@ -1,0 +1,55 @@
+{% extends "base_public.html" %}
+{% load i18n static %}
+
+{% block content %}
+  {% if login_photo %}
+    <img class="login-photo" src="{% static login_photo %}" alt="{% translate 'Our group' %}">
+  {% else %}
+    <div class="login-photo login-photo-empty" aria-hidden="true"></div>
+  {% endif %}
+
+  <div class="login-intro">
+    <h1 class="login-title">Cumetria</h1>
+    <p class="login-tagline">{% translate "Hikes, trips, holidays and game nights. Planned together, remembered together." %}</p>
+  </div>
+
+  {% if invite %}
+    <div class="card invite-card">
+      <span class="avatar avatar-accent" aria-hidden="true">{{ invite.created_by.initial|default:"C" }}</span>
+      <p>
+        {% if invite.created_by %}
+          {% blocktranslate with inviter=invite.created_by.name name=invite.name %}<strong>{{ inviter }}</strong> invited you to join the group, {{ name }}.{% endblocktranslate %}
+        {% else %}
+          {% blocktranslate with name=invite.name %}You're invited to join the group, {{ name }}.{% endblocktranslate %}
+        {% endif %}
+      </p>
+    </div>
+  {% endif %}
+
+  <div class="login-actions">
+    {% if google_enabled %}
+      <form method="post" action="{% url 'google_login' %}">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.GET.next|default:'/' }}">
+        <button class="button button-dark button-block button-tall" type="submit">{% translate "Continue with Google" %}</button>
+      </form>
+      <p class="or-divider"><span>{% translate "or" %}</span></p>
+    {% endif %}
+
+    <form method="post" action="{% if invite %}{% url 'invite_email' invite.token %}{% else %}{% url 'request_sign_in_link' %}{% endif %}" class="stack" novalidate>
+      {% csrf_token %}
+      <div class="field">
+        <label for="id_email">{% translate "Your email" %}</label>
+        <input id="id_email" type="email" name="email" autocomplete="email" required
+               value="{{ email_form.email.value|default:'' }}"
+               {% if email_form.email.errors %}aria-invalid="true" aria-describedby="email-error"{% endif %}>
+        {% if email_form.email.errors %}<p class="field-error" id="email-error">{{ email_form.email.errors.0 }}</p>{% endif %}
+      </div>
+      <button class="button {% if not google_enabled %}button-dark {% endif %}button-block button-tall" type="submit">{% translate "Email me a sign-in link" %}</button>
+    </form>
+  </div>
+
+  <p class="login-footnote">
+    {% if invite %}{% translate "Invite only. This link is just for you and works once." %}{% else %}{% translate "Invite only. New here? Ask the admin for your personal invite link." %}{% endif %}
+  </p>
+{% endblock %}

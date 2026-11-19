@@ -19,6 +19,23 @@ You need [Docker Desktop](https://www.docker.com/products/docker-desktop/).
 
 The database and uploads live in a Docker volume, so they survive restarts.
 
+### First time: create your account and invites
+
+With the site running, open a second terminal in the same folder:
+
+```
+docker compose exec web python manage.py create_owner --email you@gmail.com --name Alex
+docker compose exec web python manage.py create_invite --name Bianca
+```
+
+The first makes you the admin. The second prints an invite link (until the Admin page arrives).
+
+To sign in, open <http://localhost:8080>, type your email and press *Email me a sign-in link*. Locally no real email is sent: the email, with the link, appears in the `docker compose up` terminal.
+
+*Continue with Google* appears once you set it up: see [`docs/GOOGLE_SIGN_IN.md`](docs/GOOGLE_SIGN_IN.md).
+
+**Login photo:** put the group photo at `static/img/login-photo.jpg` and rebuild; until then the login page shows an empty frame.
+
 ## For development (without Docker)
 
 ```

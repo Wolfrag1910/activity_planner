@@ -1,0 +1,10 @@
+{% extends "base_public.html" %}
+{% load i18n %}
+
+{% block content %}
+  <div class="message-page">
+    <h1>{% translate "This account is switched off" %}</h1>
+    <p>{% translate "The admin has deactivated it. If you think that's a mistake, ask them." %}</p>
+    <a class="button" href="{% url 'login' %}">{% translate "Go to sign in" %}</a>
+  </div>
+{% endblock %}

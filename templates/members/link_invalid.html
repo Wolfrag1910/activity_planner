@@ -1,0 +1,10 @@
+{% extends "base_public.html" %}
+{% load i18n %}
+
+{% block content %}
+  <div class="message-page">
+    <h1>{% translate "This link doesn't work any more" %}</h1>
+    <p>{% translate "Links from emails work once and expire after a while. Ask for a new one." %}</p>
+    <a class="button" href="{% url 'login' %}">{% translate "Go to sign in" %}</a>
+  </div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base_public.html" %}
+{% load i18n %}
+
+{% block content %}
+  <div class="message-page">
+    <h1>{% translate "This Google account isn't a member" %}</h1>
+    <p>{% translate "Cumetria is invite only. If you have an invite link, open it first and then continue with Google. If you're already a member, use the Google account with your member email." %}</p>
+    <a class="button" href="{% url 'login' %}">{% translate "Go to sign in" %}</a>
+  </div>
+{% endblock %}

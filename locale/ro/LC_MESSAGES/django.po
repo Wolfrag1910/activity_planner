@@ -77,3 +77,182 @@ msgstr ""
 #: templates/core/placeholder.html
 msgid "This page is coming in a later step."
 msgstr "Pagina aceasta vine într-un pas următor."
+
+# --- Step 2a: members and signing in ---
+
+msgid "This account is switched off"
+msgstr "Contul acesta e dezactivat"
+
+msgid "The admin has deactivated it. If you think that's a mistake, ask them."
+msgstr "Administratorul l-a dezactivat. Dacă crezi că e o greșeală, întreabă-l."
+
+msgid "Go to sign in"
+msgstr "Mergi la conectare"
+
+msgid "This Google account isn't a member"
+msgstr "Contul Google nu e al unui membru"
+
+msgid "Cumetria is invite only. If you have an invite link, open it first and then continue with Google. If you're already a member, use the Google account with your member email."
+msgstr "Cumetria e doar pe bază de invitație. Dacă ai un link de invitație, deschide-l întâi și apoi continuă cu Google. Dacă ești deja membru, folosește contul Google cu adresa ta de membru."
+
+msgid "Sign out"
+msgstr "Deconectează-te"
+
+msgid "Check your email"
+msgstr "Verifică-ți emailul"
+
+msgid "Nothing arrived? Check your spam folder, or try again in a minute."
+msgstr "N-a ajuns nimic? Verifică dosarul de spam sau încearcă din nou peste un minut."
+
+msgid "Back"
+msgstr "Înapoi"
+
+msgid "If <strong>%(email)s</strong> is right, a link to finish joining is on its way. It works for a day."
+msgstr "Dacă <strong>%(email)s</strong> e corect, un link ca să termini înscrierea e pe drum. Funcționează o zi."
+
+msgid "If <strong>%(email)s</strong> belongs to a member, a sign-in link is on its way. It works once, for a short while."
+msgstr "Dacă <strong>%(email)s</strong> e al unui membru, un link de conectare e pe drum. Funcționează o singură dată, pentru scurt timp."
+
+msgid "Join Cumetria"
+msgstr "Intră în Cumetria"
+
+msgid "Welcome, %(name)s"
+msgstr "Bine ai venit, %(name)s"
+
+msgid "You'll join Cumetria with <strong>%(email)s</strong>."
+msgstr "Vei intra în Cumetria cu <strong>%(email)s</strong>."
+
+msgid "This invite can't be used"
+msgstr "Invitația asta nu mai poate fi folosită"
+
+msgid "It was already used or cancelled. If you're already a member, just sign in; otherwise ask the admin for a new link."
+msgstr "A fost deja folosită sau anulată. Dacă ești deja membru, conectează-te; altfel cere administratorului un link nou."
+
+msgid "One tap and you're in."
+msgstr "O apăsare și ești înăuntru."
+
+msgid "Sign in"
+msgstr "Conectează-te"
+
+msgid "Hi, %(name)s"
+msgstr "Salut, %(name)s"
+
+msgid "This link doesn't work any more"
+msgstr "Linkul acesta nu mai funcționează"
+
+msgid "Links from emails work once and expire after a while. Ask for a new one."
+msgstr "Linkurile din emailuri funcționează o singură dată și expiră după un timp. Cere unul nou."
+
+msgid "Hikes, trips, holidays and game nights. Planned together, remembered together."
+msgstr "Drumeții, excursii, vacanțe și seri de jocuri. Plănuite împreună, amintite împreună."
+
+msgid "Continue with Google"
+msgstr "Continuă cu Google"
+
+msgid "Your email"
+msgstr "Emailul tău"
+
+msgid "Email me a sign-in link"
+msgstr "Trimite-mi un link de conectare"
+
+msgid "Invite only. This link is just for you and works once."
+msgstr "Doar cu invitație. Linkul e doar pentru tine și funcționează o singură dată."
+
+msgid "Invite only. New here? Ask the admin for your personal invite link."
+msgstr "Doar cu invitație. Ești nou? Cere administratorului linkul tău personal."
+
+msgid "Our group"
+msgstr "Gașca noastră"
+
+msgid "<strong>%(inviter)s</strong> invited you to join the group, %(name)s."
+msgstr "<strong>%(inviter)s</strong> te-a invitat în grup, %(name)s."
+
+msgid "You're invited to join the group, %(name)s."
+msgstr "Ești invitat în grup, %(name)s."
+
+msgid "Google sign-in didn't work"
+msgstr "Conectarea cu Google n-a funcționat"
+
+msgid "Something went wrong on the way back from Google. Please try again, or use an email link instead."
+msgstr "Ceva n-a mers la întoarcerea de la Google. Încearcă din nou sau folosește un link pe email."
+
+msgid "Sign-in cancelled"
+msgstr "Conectare anulată"
+
+msgid "No problem. You can try again whenever you like."
+msgstr "Nicio problemă. Poți încerca din nou oricând."
+
+msgid "If you didn't ask for it, you can ignore this email."
+msgstr "Dacă nu l-ai cerut tu, poți ignora emailul acesta."
+
+msgid "Hi %(name)s,"
+msgstr "Salut, %(name)s,"
+
+msgid "Open this link to finish joining Cumetria. It works for %(hours)s hours:"
+msgstr "Deschide linkul ca să termini înscrierea în Cumetria. Funcționează %(hours)s de ore:"
+
+msgid "Here is your link to sign in to Cumetria. It works once, within %(minutes)s minutes:"
+msgstr "Iată linkul tău de conectare la Cumetria. Funcționează o singură dată, în următoarele %(minutes)s de minute:"
+
+msgid "Light"
+msgstr "Luminos"
+
+msgid "Dark"
+msgstr "Întunecat"
+
+msgid "Match my phone"
+msgstr "Ca telefonul meu"
+
+msgid "email"
+msgstr "email"
+
+msgid "name"
+msgstr "nume"
+
+msgid "photo"
+msgstr "fotografie"
+
+msgid "birthday"
+msgstr "zi de naștere"
+
+msgid "language"
+msgstr "limbă"
+
+msgid "look"
+msgstr "aspect"
+
+msgid "light or dark"
+msgstr "luminos sau întunecat"
+
+msgid "admin"
+msgstr "administrator"
+
+msgid "active"
+msgstr "activ"
+
+msgid "joined"
+msgstr "înscris"
+
+msgid "member"
+msgstr "membru"
+
+msgid "members"
+msgstr "membri"
+
+msgid "invite"
+msgstr "invitație"
+
+msgid "invites"
+msgstr "invitații"
+
+msgid "or"
+msgstr "sau"
+
+msgid "Your sign-in link for Cumetria"
+msgstr "Linkul tău de conectare la Cumetria"
+
+msgid "Confirm your email to join Cumetria"
+msgstr "Confirmă-ți emailul ca să intri în Cumetria"
+
+msgid "This email already belongs to a member. Sign in from the start page instead."
+msgstr "Emailul acesta e deja al unui membru. Conectează-te de pe pagina de start."

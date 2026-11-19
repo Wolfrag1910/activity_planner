@@ -1,0 +1,10 @@
+{% extends "base_public.html" %}
+{% load i18n %}
+
+{% block content %}
+  <div class="message-page">
+    <h1>{% translate "Sign-in cancelled" %}</h1>
+    <p>{% translate "No problem. You can try again whenever you like." %}</p>
+    <a class="button" href="{% url 'login' %}">{% translate "Go to sign in" %}</a>
+  </div>
+{% endblock %}

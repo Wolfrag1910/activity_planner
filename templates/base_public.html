@@ -1,0 +1,23 @@
+{% load static i18n %}{% get_current_language as LANGUAGE_CODE %}<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}" data-look="{{ theme_look }}" data-mode="{{ theme_mode }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>{% block title %}Cumetria{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+  <link rel="stylesheet" href="{% static 'css/themes.css' %}">
+  <link rel="stylesheet" href="{% static 'css/app.css' %}">
+</head>
+<body class="public">
+  {# Pages for visitors who aren't signed in yet: no menu, just the content. #}
+  <div class="public-frame">
+    <header class="public-top">
+      {% include "partials/language_switch.html" %}
+    </header>
+    <main id="main" class="public-main">
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+</body>
+</html>

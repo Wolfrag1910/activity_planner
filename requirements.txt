@@ -1,5 +1,7 @@
 # Runtime dependencies. All are pure Python or ship ARM64 wheels.
 Django==5.2.19
+django-allauth[socialaccount]==65.22.1
 django-htmx==1.29.0
 gunicorn==27.0.1
+Pillow==12.3.0
 whitenoise==6.12.0
