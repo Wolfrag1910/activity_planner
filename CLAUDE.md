@@ -1,6 +1,6 @@
 # Working on Cumetria
 
-A private, invite-only website for about 9 friends to plan outdoor activities, trips, vacations and gaming sessions. Being built as a surprise; the owner is the only tester until the reveal after the MVP. Friends' ideas go on the Trello board (see `docs/PLAN.md`).
+A private, invite-only website for about 9 friends to plan outdoor activities, trips, vacations and gaming sessions. Being built as a surprise; the owner is the only tester until the reveal after the MVP. Friends' ideas go on the Trello board and, from v2, the site's ideas box (see `docs/PLAN.md`).
 
 ## Read first
 
