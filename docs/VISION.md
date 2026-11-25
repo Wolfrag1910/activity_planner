@@ -6,7 +6,7 @@
 
 A close group of about 9 friends in Bucharest organizes everything today through WhatsApp events and Discord events. Plans get lost in chats, nobody knows who is really coming, and memories end up scattered across phones. Cumetria is their own place: propose something, see who's in, and keep the photos and stories afterwards.
 
-It is **a gift**. The owner is building it as a surprise and will reveal it after v2. The first time the friends open it, it should feel like it was made *for them*, not like a generic app. They are smart, they care, and after the reveal they will flood the backlog with feedback. Build so that taking their ideas on board is easy.
+It is **a gift**. The owner is building it as a surprise and will reveal it after the MVP (decided 25 Nov 2026), so the friends can shape v2 and v3. The first time the friends open it, it should feel like it was made *for them*, not like a generic app. They are smart, they care, and after the reveal they will flood the backlog with feedback, which they add themselves on the group's Trello board. Build so that taking their ideas on board is easy.
 
 ## How it should feel
 

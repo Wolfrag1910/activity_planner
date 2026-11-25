@@ -7,7 +7,7 @@ A private, invite-only website for a group of about 9 friends to propose, vote o
 - **Build:** [`docs/BUILD.md`](docs/BUILD.md): tech stack (Django, HTMX, SQLite, Caddy, Docker Compose) and the MVP steps
 - **Server:** [`docs/DEPLOY.md`](docs/DEPLOY.md): putting the site on the Oracle server, backups and updates
 
-Status: design done; building the MVP.
+Status: MVP done and privately tested; next, putting it on the server and revealing it to the friends. v2 and v3 follow.
 
 ## Run it on your PC
 

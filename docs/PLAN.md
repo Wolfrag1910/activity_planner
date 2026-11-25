@@ -14,17 +14,17 @@ Keep both in sync: when a decision changes, update this file and the doc.
 3. **Design direction** (done)
 4. **Build in slices** (current): MVP, then v2, then v3. See [`BUILD.md`](BUILD.md).
 5. **Private test**: the owner tests each release with fake member accounts.
-6. **Launch**: hosting, domain, inviting friends **after v2**. From then on, friends' ideas go into the backlog.
+6. **Launch**: hosting, domain, inviting friends **after the MVP** (changed 25 Nov 2026; was after v2). From then on, friends' ideas go on the [Trello board](https://trello.com/b/6KGZDTqz/activity-planner).
 
 ## Releases at a glance
 
 | Release | Contents | Audience |
 | --- | --- | --- |
-| MVP | Invites and login, profiles, members, propose/edit/cancel events (published directly), RSVP with reasons and +1 guests, home, calendar, Explore, 4 category pages, event page with quick preview, admin page, RO/EN, phone and desktop layouts, theme system with the Sunday Picnic look | Owner only (private test) |
-| v2 | Interest voting and polls, bell notifications, Discord notifications, day-before reminders, comments, photo albums, named reviews, birthdays on the calendar, calendar subscribe link, Postcard look, dark mode, ideas and feedback box | The reveal to friends |
+| MVP | Invites and login, profiles, members, propose/edit/cancel events (published directly), RSVP with reasons and +1 guests, home, calendar, Explore, 4 category pages, event page with quick preview, admin page, RO/EN, phone and desktop layouts, theme system with the Sunday Picnic look | Owner's private test, then the reveal to friends |
+| v2 | Interest voting and polls, bell notifications, Discord notifications, day-before reminders, comments, photo albums, named reviews, birthdays on the calendar, calendar subscribe link, Postcard look, dark mode | Friends, after the reveal |
 | v3 | Cost splitting with "I paid" confirmation and costs overview, places map, weather forecast, past events archive | After the reveal |
 
-## Decisions (41)
+## Decisions (42)
 
 ### Accounts and access
 - Users have accounts; the site is **invite-only** (about 9 people, no public sign-up).
@@ -78,7 +78,8 @@ Keep both in sync: when a decision changes, update this file and the doc.
 - **Build in slices**: MVP first, then v2 and v3.
 - Host on the owner's **Oracle Cloud free instance** (it already runs game servers; check spare CPU, memory and disk).
 - **Database on the same server**, if it costs nothing (to be verified).
-- **Reveal to friends after v2.**
+- **Reveal to friends after the MVP** (25 Nov 2026; was after v2), so they can try the site and shape v2 and v3.
+- **Friends' ideas go on a Trello board** ([Activity Planner](https://trello.com/b/6KGZDTqz/activity-planner), lists Ideas, Picked, In progress, Done, Not now). Friends add cards themselves and see where each idea stands; the owner, with Claude, decides what is picked. Trello's free plan allows 10 people per workspace: the owner plus 9 friends. This replaces the v2 "ideas and feedback box" page (25 Nov 2026).
 
 ## Event lifecycle
 
@@ -113,7 +114,7 @@ Proposed ──► Open to voting? ──yes──► Voting ──enough intere
 | Login and invite | Accept invite link, sign in (Google or email link), choose RO or EN | Invited people | MVP |
 | Home | Today (or Next up), category shortcuts, Upcoming, Waiting for your RSVP; later Needs your vote and birthdays (v2) | Members | MVP |
 | Calendar | Month and list views, colour per category, filter chips; later birthdays and subscribe link (v2) | Members | MVP |
-| Explore | Four category cards with their next event; links to Memories (v2), Members, Ideas and feedback (v2) | Members | MVP |
+| Explore | Four category cards with their next event; links to Memories (v2) and Members | Members | MVP |
 | Category page (×4) | Upcoming, ideas open to a vote (v2), filtered calendar, past events | Members | MVP |
 | Event page | Details, place and map link, your answer and guests, who's coming with reasons; later poll, comments, photos, reviews (v2), costs and weather (v3) | Members | MVP |
 | Propose or edit event | Category, title, publish now or vote first (v2), dates, place, details, spots, answer by; later add poll (v2), add cost (v3) | Members; edit by organizer or admin | MVP |
@@ -155,12 +156,12 @@ Birthdays come from member profiles and map pins from event locations, so neithe
 See [`docs/design/README.md`](design/README.md) for the screens and [`docs/design/tokens.md`](design/tokens.md) for colours, fonts and shapes of both looks in light and dark.
 
 Still to design, before the release that needs them:
-- [ ] Desktop layouts of the inner pages (during the MVP build, following the desktop home)
+- [x] Desktop layouts of the inner pages (done in MVP step 5)
 - [ ] v2: organizer's view of a proposal (interest count, Confirm or Cancel)
 - [ ] v2: notifications panel behind the bell
 - [ ] v2: review after an event
 - [ ] v2: photo album and Memories page
-- [ ] v2: create a poll; add a guest; ideas and feedback box
+- [ ] v2: create a poll; add a guest
 - [ ] v3: add a cost, the collector's confirm view, costs overview, places map
 
 ## Hosting and tech notes
@@ -174,6 +175,8 @@ Still to design, before the release that needs them:
 - **Domain and HTTPS**: the owner is looking for a free domain; HTTPS is required.
 
 ## Backlog ideas not scheduled
+
+From the reveal on, ideas live on the [Trello board](https://trello.com/b/6KGZDTqz/activity-planner); this list keeps the ones from before it.
 
 - Carpool: drivers and free seats (Idea)
 - WhatsApp notifications (Cut, 18 Nov 2026)
