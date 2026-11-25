@@ -52,4 +52,4 @@ Each step is one or a few pull requests. Every step keeps the site runnable and 
 - [x] **3. Events.** Event model and categories, Propose/Edit/Cancel form (organizer or admin), event page, RSVP Going/Maybe/No with quick-pick reasons and note, +1 guests with optional names counting toward spots, "answer by" deadline.
 - [x] **4. Browsing.** Home page (Today/Next up, category shortcuts, Upcoming, Waiting for your RSVP), quick preview (bottom sheet on phone, side panel on desktop), Calendar (month and list, category filters, multi-day bars), Explore, category pages.
 - [x] **5. Polish.** Desktop layouts of all pages, full Romanian translation pass, accessibility pass (tap targets, contrast, keyboard), empty states.
-- [x] **6. Private test kit.** Command that seeds fake members and events; a deployment guide for the Oracle server (firewall, Caddy, backups). Do not launch publicly: the reveal comes after v2.
+- [x] **6. Private test kit.** Command that seeds fake members and events; a deployment guide for the Oracle server (firewall, Caddy, backups). The reveal comes after the server setup (see `DEPLOY.md`).
